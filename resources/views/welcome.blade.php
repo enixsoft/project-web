@@ -25,7 +25,36 @@
 
 </head>
 <style>
+	.form-control {
+		width: 100%;
+		height: 40px;
+		border: none;
+		padding: 5px 7px 5px 15px;
+		background: #fff;
+		color: #666;
+		-moz-border-radius: 4px;
+		-webkit-border-radius: 4px;
+		border: 2px solid #ddd;
+		margin-left: 20px;
 
+		border-radius: 4px;
+
+	}
+
+	.log-btn {
+		background: #87CEFA;
+
+		width: 130%;
+		font-size: 16px;
+		height: 40px;
+		color: #fff;
+		margin-left: 6px;
+		text-decoration: none;
+
+
+
+
+	}
 
 
 
@@ -42,6 +71,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
+						
 						<img src="{{ asset('img/logoukf.png') }}">
 					</div>
 					<div class="navbar-collapse collapse ">
@@ -49,6 +79,17 @@
 							<li class="active"><a href="index.html">Domovská stránka</a></li>						
 							<li><a href="{{ url('portfolio') }}">Vyhľadávanie</a></li>							
 							<li><a href="contact.blade.php">Kontakt</a></li>
+							<form action="{{{url("login")}}}"method="get">
+								<li><input type="name" name ="meno" class="form-control" placeholder="Meno" id="UserName">
+								<li><input type="surname" name="priezvisko" class="form-control" placeholder="Heslo" id="Passwod">
+									<input type="submit" value="OK">
+							</form>
+							<!--
+							<li><input type="name" name ="meno" class="form-control" placeholder="Meno" id="UserName">
+							<li><input type="surname" name="priezvisko" class="form-control" placeholder="Heslo" id="Passwod">
+							<li> <button type="button" class="log-btn">
+							-->
+
 						</ul>
 					</div>
 				</div>

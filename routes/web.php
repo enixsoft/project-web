@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Input;
 
+use App\Models\User;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,7 +14,7 @@ use Illuminate\Support\Facades\Input;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/*
 Route::get('/', function () {
    return view('welcome');
 });
@@ -45,10 +47,12 @@ Route::get('/about', function () {
 
 
 
-
+*/
 
 //Route::get('/', 'UserController@showAllAction' 
 //);
+
+/*
 
 Route::get('/adduser', 'UserController@AddUserForm' 
 );
@@ -70,7 +74,7 @@ Route::get('/delete/{id}', [
    'as' => 'delete', 'uses' => 'UserController@deleteAction'
 ]);
 
-
+*/
 
 
 
@@ -82,6 +86,8 @@ Route::get('/delete/{id}', [
 });
 */
 
+
+/*
 
 Route::post('/products/update/{id}', function ($id)
  {	
@@ -122,14 +128,44 @@ Route::get('/products', function ()
 	$products = app('App\Http\Controllers\ProductsController')->showAllAction();
     
     return view('products', compact('products'));
-   
+
 });
 
 
 ?>
 
+*/
+
+Route::get('/', function() {
+    return view('welcome');
+});
+
+Route::get('/allrecords', [
+    'as' => 'allrecords', 'uses' => 'UserController@login'
+
+]);
 
 
+Route::get('/login', function(){
+
+    $name = Input::get('meno');
+    $surname = Input::get('priezvisko');
+
+    echo $checkLogin = DB::table('users')->where(['meno'=>$name,'priezvisko'=>$surname])->get();
+    if(count($checkLogin)>0)
+    {
+        $users = User::all();								// This variable is used in Users table view
+        return view("all_records", ['users' => $users]);
+    }
+
+    else
+    {
+        echo "Name ".$name;
+        echo "Surname ".$surname;
+        echo "Login not succeed!!!";
+    }
+
+});
 
 
 

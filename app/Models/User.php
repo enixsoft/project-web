@@ -9,9 +9,9 @@ class User extends Model
     //
 
 
-protected $table = 'databaza';
+protected $table = 'users';
 
-protected $fillable = ['id', 'meno', 'priezvisko', 'email', 'heslo', 'vek'];
+protected $fillable = ['id', 'meno', 'priezvisko', 'pristupove_prava', 'vek'];
 
 
 }

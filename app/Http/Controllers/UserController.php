@@ -2,10 +2,13 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Routing\Controller;
-use Illuminate\Http\Request; 
+use Illuminate\Http\Request;
+
+use DB;             // added due to using in function
 
 class UserController extends Controller
 {
+    /*
     public function showAction($id)
     {
     	$user = User::find($id);
@@ -58,6 +61,35 @@ class UserController extends Controller
       return view('adduser');
     }
 
+*/
+
+    public function showAllAction()
+    {
+
+    }
+
+    public function login(Request $req)
+    {
+        $username = $req->input('meno');
+        $password = $req->input('priezvisko');
+
+
+        echo $checkLogin = DB::table('users')->where(['meno'=>$username,'priezvisko'=>$password])->get();
+        if(count($checkLogin)>0)
+        {
+            $users = User::all();								// This variable is used in Users table view
+            return view("all_records", ['users' => $users]);
+        }
+
+        else
+        {
+            echo "Name ".$username;
+            echo "Surname ".$password;
+            echo "Login not succeed!!!";
+        }
+
+
+    }
 
 
 
