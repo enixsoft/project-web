@@ -69,7 +69,7 @@
 						
 						<img src="{{ asset('img/logoukf.png') }}">
 
-							<form action="{{{url("login")}}}"method="get">
+							<form class="login" action="{{{url("login")}}}"method="get">
 								<input type="name" name ="meno"  placeholder="Meno" id="UserName">
 								<input type="surname" name="priezvisko"  placeholder="Heslo" id="Passwod">
 
