@@ -65,35 +65,24 @@
 		<header>
 			<div class="navbar navbar-default navbar-static-top">
 				<div class="container">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+
 						
 						<img src="{{ asset('img/logoukf.png') }}">
-					</div>
-					<div class="navbar-collapse collapse ">
-						<ul class="nav navbar-nav">
-							<li class="active"><a href="index.html">Domovská stránka</a></li>						
-							<li><a href="{{ url('portfolio') }}">Vyhľadávanie</a></li>							
-							<li><a href="contact.blade.php">Kontakt</a></li>
+
 							<form action="{{{url("login")}}}"method="get">
-								<li><input type="name" name ="meno" class="form-control" placeholder="Meno" id="UserName">
-								<li><input type="surname" name="priezvisko" class="form-control" placeholder="Heslo" id="Passwod">
+								<input type="name" name ="meno"  placeholder="Meno" id="UserName">
+								<input type="surname" name="priezvisko"  placeholder="Heslo" id="Passwod">
+
 									<input type="submit" value="OK">
+									
 							</form>
 							<!--
 							<li><input type="name" name ="meno" class="form-control" placeholder="Meno" id="UserName">
 							<li><input type="surname" name="priezvisko" class="form-control" placeholder="Heslo" id="Passwod">
 							<li> <button type="button" class="log-btn">
 							-->
-
-						</ul>
 					</div>
 				</div>
-			</div>
 		</header>
 		<!-- end header -->
 		
