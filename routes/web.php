@@ -147,23 +147,43 @@ Route::get('/allrecords', [
 
 
 Route::get('/login', function(){
-
+/*
     $name = Input::get('meno');
     $surname = Input::get('priezvisko');
 
-    echo $checkLogin = DB::table('users')->where(['meno'=>$name,'priezvisko'=>$surname])->get();
-    if(count($checkLogin)>0)
-    {
-        $users = User::all();								// This variable is used in Users table view
-        return view("all_records", ['users' => $users]);
-    }
 
-    else
-    {
-        echo "Name ".$name;
-        echo "Surname ".$surname;
-        echo "Login not succeed!!!";
+
+    echo $checkLogin = DB::table('users')->where(['meno'=>$name,'priezvisko'=>$surname])->get();
+    if(count($checkLogin)>0) {
+
+        $users = User::all();                                // This variable is used in Users table view
+        //return view("all_records", ['users' => $users]);
+
+       return view("template");
+
     }
+    else {
+                echo "Name " . $name;
+                echo "Surname " . $surname;
+                echo "Login not succeed!!!";
+            }
+*/
+    $name = Input::get('meno');
+
+
+  // $user = User::where('meno' , $name)->get();
+
+
+
+ //   echo $user[0]['meno'];
+  //  echo $user[0]['pristupove_prava'];
+
+    $user = DB::table('users') ->select('id', 'meno', 'priezvisko','pristupove_prava')
+      ->where('meno', '=', $name) ->first();
+
+   // return view('template', compact('user'));
+
+    return view("template", ['user' => $user]);
 
 });
 
