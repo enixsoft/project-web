@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>Moderna - Bootstrap 3 flat corporate template</title>
+	<title>UKF - Katalóg zamestnancov</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta name="description" content="" />
 	<!-- css -->
@@ -64,25 +64,19 @@
 		<!-- start header -->
 		<header>
 			<div class="navbar navbar-default navbar-static-top">
-				<div class="container">
+					<div class="container">
 
 						
 						<img src="{{ asset('img/logoukf.png') }}">
+				
 
-							<form class="login" action="{{{url("login")}}}"method="get">
-								<input type="name" name ="meno"  placeholder="Meno" id="UserName">
-								<input type="surname" name="priezvisko"  placeholder="Heslo" id="Passwod">
-
-									<input type="submit" value="OK">
-									
-							</form>
 							<!--
 							<li><input type="name" name ="meno" class="form-control" placeholder="Meno" id="UserName">
 							<li><input type="surname" name="priezvisko" class="form-control" placeholder="Heslo" id="Passwod">
 							<li> <button type="button" class="log-btn">
 							-->
 					</div>
-				</div>
+				
 		</header>
 		<!-- end header -->
 		
@@ -96,7 +90,11 @@
 					<div class="col-lg-12">
 						<div class="big-cta">
 							<div class="cta-text">
-								<h2><span>Vitajte</span> v katalógu zamestnancov UKF</h2>
+								<h2><span>Vitajte</span> 
+									@auth
+									{{ Auth::user()->username }}
+									@endauth
+								 v katalógu zamestnancov UKF</h2>
 							</div>
 						</div>
 					</div>
@@ -106,6 +104,100 @@
 		<section id="content">
 			<div class="container">
 				<div class="row">
+					<div class="container">
+						
+						
+							
+							@guest
+							<!--
+							<form class="login" action="{{ route('login') }}" method="POST">
+								  {{ csrf_field() }}
+								<input type="name" name="email"  placeholder="E-mail" id="email">
+								<input type="password" name="password"  placeholder="Heslo" id="password">
+
+									<input type="submit" value="Prihlásiť sa">
+									
+							</form>
+								-->
+					
+
+					 <form class="form-horizontal" method="POST" action="{{ route('login') }}">
+                        {{ csrf_field() }}
+
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                            <label for="password" class="col-md-4 control-label">Password</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control" name="password" required>
+
+                                @if ($errors->has('password'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Zapamätať prihlásenie
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-8 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary">
+                                    Prihlásiť 
+                                </button>
+                          </div>
+                        </div>
+                    </form>
+                    	<br>
+                    	</div>
+                    	@endguest
+                    	<div class="container">
+   						
+
+                   @auth
+    Používateľ {{ Auth::user()->username }} sa úspešne prihlásil!
+     <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Odhlásiť sa</a>
+<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
+@endauth
+
+@guest
+    Neprihlásený používateľ.
+    <a href="{{ route('register') }}">Registrácia (debug)</a>
+    <a href="{{ route('login') }}">Prihlásenie (debug)</a>
+@endguest
+	</div>						    
+
+
+
+
+
+
+
+
 							<p>
 								<h3>Vyhľadávanie</h3>
 											Napíšte meno, priezvisko

@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
 
 class UserSeeder extends Seeder
 {
@@ -12,10 +15,11 @@ class UserSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'meno' => "Jozef",
-            'priezvisko' => "Mrkvicka",
-            'pristupove_prava' => "admin",
-            'vek' => 30,
+            'username' => "fero",
+            'password' => bcrypt('heslo123'),
+            'email' => "fero@fero.sk",
+            'role' => "admin",
+            'remember_token' => null,         
         ]);
     }
 }
