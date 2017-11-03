@@ -189,6 +189,8 @@
     <a href="{{ route('register') }}">Registrácia (debug)</a>
     <a href="{{ route('login') }}">Prihlásenie (debug)</a>
 @endguest
+
+
 	</div>						    
 
 

@@ -137,13 +137,25 @@ Route::get('/products', function ()
 */
 
 Route::get('/', function() {
-    return view('welcome');
+   //$ids = DB::table('zamestnanci')->latest()->get();
+
+   $ids = DB::select('select id from zamestnanci', [1]);
+    return view('welcome', compact('ids'));
+    //return view('welcome');
 });
 
 Route::get('/allrecords', [
     'as' => 'allrecords', 'uses' => 'UserController@login'
 
 ]);
+
+
+Route::get('/test', function() {
+  
+
+    return view('test');
+    //return view('welcome');
+});
 
 
 Route::get('/login2', function(){
@@ -205,6 +217,7 @@ Route::get('/login2', function(){
     Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
     Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 */
+    
 Route::auth();
 
 Route::get('/home', 'HomeController@index')->name('home');
