@@ -46,7 +46,7 @@
 					<div class="container">
 
 						
-						<img src="{{ asset('img/logoukf.png') }}">
+						<a href="{{ url('/') }}"><img src="{{ asset('img/logoukf.png') }}"></a>
 				
 
 							<!--
@@ -161,8 +161,17 @@ Nenašli sa žiadne výsledky.
 
 @endif
 
-					
-
+<br>
+<br>
+<br>
+	<div class="form-group">
+   <div class="col-md-8 col-md-offset-5">
+                            <a href="{{ url('/') }}"><button style="height:40px; width:250px" class="btn btn-primary">
+                                    Naspäť 
+                                </button>
+                            </a>
+   </div>					
+ </div>
                   	
 
 

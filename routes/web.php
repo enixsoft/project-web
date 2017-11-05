@@ -144,6 +144,11 @@ Route::get('/', function() {
     return view('welcome');
 });
 
+
+Route::get('welcome', function() {
+    return view('welcome');
+});
+
 Route::get('/allrecords', [
     'as' => 'allrecords', 'uses' => 'UserController@login'
 

@@ -70,7 +70,7 @@
 					<div class="container">
 
 						
-						<img src="{{ asset('img/logoukf.png') }}">
+						<a href="{{ url('/') }}"><img src="{{ asset('img/logoukf.png') }}"></a>
 				
 
 							<!--

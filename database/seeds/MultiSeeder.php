@@ -5,12 +5,9 @@ use Illuminate\Support\Facades\Input;
 use App\Models\Zamestnanec;
 use App\Models\Profile;
 use App\Models\Publications;
+use App\Models\Projects;
+use App\Models\Activities;
 
-// Work in Progress
-
-//use App\Models\Projects;
-//use App\Models\Activities;
-//
 
 class MultiSeeder extends Seeder
 {
@@ -46,7 +43,7 @@ class MultiSeeder extends Seeder
 
             
 
-
+            
             if(isset($data['profile']['description']))
             {   
                 $pdescription=$data['profile']['description'];
@@ -61,11 +58,11 @@ class MultiSeeder extends Seeder
             {   
                 $peducation=$data['profile']['education'];
             }
-
+            
 
             
             
-
+            
             Profile::create(array('zamestnanec_id' => $idzam->id,
                     'description' => $pdescription,
                     'consultation_hours' => $pconsultation_hours,
@@ -139,7 +136,118 @@ class MultiSeeder extends Seeder
                 ));
             
               
-            }           
+            } 
+            
+
+           foreach($data['projects'] as $project)
+            {
+
+            
+            $ptitle="";
+            $pyear_from="";
+            $pyear_end="";
+            $preg_number="";
+     
+
+
+            if(isset($project['title']))
+            {
+              $ptitle=$project['title'];
+            }
+             if(isset($project['year_from']))
+            {
+              $pyear_from=$project['year_from'];
+            }
+             if(isset($project['year_end']))
+            {
+              $pyear_end=$project['year_end'];
+            }
+            if(isset($project['reg_number']))
+            {
+              $preg_number=$project['reg_number'];
+            }
+                 
+                 
+            
+
+
+
+
+            Projects::create(array('zamestnanec_id' => $idzam->id,
+                    'title' => $ptitle,
+                    'year_from' => $pyear_from,
+                    'year_end' => $pyear_end,
+                    'reg_number' => $preg_number                
+                ));
+            
+              
+            }
+
+
+            foreach($data['activities'] as $activity)
+            {
+
+            
+            $aID="";
+            $adate="";
+            $atitle="";
+            $acountry="";
+            $atype="";
+            $acategory="";
+            $aall_authors="";
+            
+     
+
+            if(isset($activity['ID']))
+            {
+              $aID=$activity['ID'];
+            }
+             if(isset($activity['date']))
+            {
+              $adate=$activity['date'];
+            }
+             if(isset($activity['title']))
+            {
+              $atitle=$activity['title'];
+            }
+            if(isset($activity['country']))
+            {
+              $acountry=$activity['country'];
+            }
+            if(isset($activity['type']))
+            {
+              $atype=$activity['type'];
+            }
+                 
+            if(isset($activity['category']))
+            {
+              $acategory=$activity['category'];
+            }
+                 
+            if(isset($activity['all_authors']))
+            {
+              $aall_authors=$activity['all_authors'];
+            }
+                 
+                 
+                 
+            
+
+
+
+
+            Activities::create(array('zamestnanec_id' => $idzam->id,
+                    'ID' => $aID,
+                    'date' => $adate,
+                    'title' => $atitle,
+                    'country' => $acountry,
+                    'type' => $atype,
+                    'category' => $acategory, 
+                    'all_authors' => $aall_authors           
+                ));
+            
+              
+            }                        
 
 
 
