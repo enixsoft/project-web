@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="sk">
+<html lang="en">
 
 <head>
 	<meta charset="utf-8">
@@ -26,7 +26,7 @@
 </head>
 <style>
 	.form-control {
-		width: 70%;
+		width: 100%;
 		height: 40px;
 		border: none;
 		padding: 5px 7px 5px 15px;
@@ -35,12 +35,11 @@
 		-moz-border-radius: 4px;
 		-webkit-border-radius: 4px;
 		border: 2px solid #ddd;
-		margin-left: 20px;			
+		margin-left: 20px;
+
 		border-radius: 4px;
 
 	}
-
-
 
 	.log-btn {
 		background: #87CEFA;
@@ -56,8 +55,6 @@
 
 
 	}
-
-	
 
 
 
@@ -112,20 +109,23 @@
 						
 							
 							@guest
-
 							<!--
-							Prihlasovacie rozhranie
-							-->
-								
-								<h2>Prihlásenie</h2>
-											
+							<form class="login" action="{{ route('login') }}" method="POST">
+								  {{ csrf_field() }}
+								<input type="name" name="email"  placeholder="E-mail" id="email">
+								<input type="password" name="password"  placeholder="Heslo" id="password">
+
+									<input type="submit" value="Prihlásiť sa">
+									
+							</form>
+								-->
 					
 
 					 <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-mail</label>
+                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
@@ -141,7 +141,7 @@
 
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Heslo</label>
+                            <label for="password" class="col-md-4 control-label">Password</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control" name="password" required>
@@ -165,8 +165,8 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-8 col-md-offset-5">
-                                <button style="height:40px; width:250px" type="submit" class="btn btn-primary">
+                            <div class="col-md-8 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary">
                                     Prihlásiť 
                                 </button>
                           </div>
@@ -174,8 +174,6 @@
                     </form>
                     	<br>
                     	</div>
-
-
                     	@endguest
                     	<div class="container">
    						
@@ -198,106 +196,128 @@
 
 
 
-							<div class="row">
-							<div class="container">
+
 
 
 
 							<p>
-								<h2>Vyhľadávanie</h2>
-											Napíšte ID a stlačte Enter.
+								<h3>Vyhľadávanie</h3>
+											Napíšte meno, priezvisko
 							</p>
-								
-								<!--
-								STARE VYHLADAVANIE
-							
-								<form class="form-search" action="{{route('searchID')}}" method ="post">
-									 
-									<input style="width:100%"
-									class="form-control" type="text" placeholder="Vyhľadaj..." name = "id" type="text">
-									
-									<br>
-									 <div class="form-group">
-                           			 <div class="col-md-8 col-md-offset-5">
-
-									<button style="height:40px; width:250px" class="btn btn-primary" type="submit">Hľadať v katalógu</button>
-
-									  </div>
-                       				  </div>
-
-									<input type="hidden" name="_token" value="{{ csrf_token() }}">
+								<form class="form-search">
+									<input class="form-control" type="text" placeholder="Vyhľadaj...">
 								</form>
-								-->
+					   </div>
+					</div>
 
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="row">
+							<div class="col-lg-3">
+								<div class="box">
+									<div class="box-gray aligncenter">
+										<h4>Plne responzívny dizajn</h4>
+										<div class="icon">
+											<i class="fa fa-desktop fa-3x"></i>
+										</div>
+										<p>
+											Voluptatem accusantium doloremque laudantium sprea totam rem aperiam.
+										</p>
+
+									</div>
+									
 								</div>
+							</div>
+							<div class="col-lg-3">
+								<div class="box">
+									<div class="box-gray aligncenter">
+										<h4>Moderný štýl</h4>
+										<div class="icon">
+											<i class="fa fa-pagelines fa-3x"></i>
+										</div>
+										<p>
+											Voluptatem accusantium doloremque laudantium sprea totam rem aperiam.
+										</p>
+
+									</div>
+									
 								</div>
+							</div>
+							<div class="col-lg-3">
+								<div class="box">
+									<div class="box-gray aligncenter">
+										<h4>Full-text vyhľadávanie</h4>
+										<div class="icon">
+											<i class="fa fa-edit fa-3x"></i>
+										</div>
+										<p>
+											Voluptatem accusantium doloremque laudantium sprea totam rem aperiam.
+										</p>
 
-				<div class="container">
-						
-							
-					 <form class="form-horizontal" method="POST" action="{{route('searchID')}}">
-                       
+									</div>
+									
+								</div>
+							</div>
+							<div class="col-lg-3">
+								<div class="box">
+									<div class="box-gray aligncenter">
+										<h4>Laravel</h4>
+										<div class="icon">
+											<i class="fa fa-code fa-3x"></i>
+										</div>
+										<p>
+											Voluptatem accusantium doloremque laudantium sprea totam rem aperiam.
+										</p>
 
-                        <div class="form-group">
-                            <label for="email" class="col-md-4 control-label"></label>
+									</div>
+								
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- divider -->
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="solidline">
+						</div>
+					</div>
+				</div>
+				<!-- end divider -->
+				<!-- Portfolio Projects -->
+				
 
-                            <div class="col-md-6">
-                                
-                                <input type="text" class="form-control" name="id">
-                            
-                            </div>
-                        </div>
-
-             
-
-
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-5">
-                                <button style="height:40px; width:250px" type="submit" class="btn btn-primary">
-                                    Hľadať v katalógu 
-                                </button>
-                          </div>
-                        </div>
-
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    </form>
-
-                    	<br>
-                 </div>
-
-
-                    	
-	
-
-
-
-
-	</div>
-		</div>
-
-
+			</div>
 		</section>
 		<footer>
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-3">
 						<div class="widget">
-							<h5 class="widgetheading">Autori</h5>
-					 <address>
-                        <strong>M. Vršanský, M. Vančo, R. Chnapko</strong>
-                        <br>
-                        študenti odboru aplikovaná informatika 
-                        <br>
-                        Fakulta Prírodných Vied
-                        <br>
-                        Univerzita Konštantína Filozofa v Nitre
-                        <br>
-                        <br>
-                        
-                    </address>
+							<h5 class="widgetheading">Get in touch with us</h5>
+							<address>
+					<strong>Moderna company Inc</strong><br>
+					 Modernbuilding suite V124, AB 01<br>
+					 Someplace 16425 Earth </address>
+							<p>
+								<i class="icon-phone"></i> (123) 456-7890 - (123) 555-7891 <br>
+								<i class="icon-envelope-alt"></i> email@domainname.com
+							</p>
 						</div>
 					</div>
-		
+					<div class="col-lg-3">
+						<div class="widget">
+							<h5 class="widgetheading">Pages</h5>
+							<ul class="link-list">
+								<li><a href="#">Press release</a></li>
+								<li><a href="#">Terms and conditions</a></li>
+								<li><a href="#">Privacy policy</a></li>
+								<li><a href="#">Career center</a></li>
+								<li><a href="#">Contact us</a></li>
+							</ul>
+						</div>
+					</div>
 			
 					
 			</div>
@@ -332,7 +352,6 @@
 			</div>
 		</footer>
 	</div>
-
 	<a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
 	<!-- javascript
     ================================================== -->

@@ -137,11 +137,11 @@ Route::get('/products', function ()
 */
 
 Route::get('/', function() {
-   //$ids = DB::table('zamestnanci')->latest()->get();
+  
+   //$ids = DB::select('select id from zamestnanci', [1]);
+  //return view('welcome', compact('ids'));
 
-   $ids = DB::select('select id from zamestnanci', [1]);
-    return view('welcome', compact('ids'));
-    //return view('welcome');
+    return view('welcome');
 });
 
 Route::get('/allrecords', [
@@ -158,46 +158,34 @@ Route::get('/test', function() {
 });
 
 
-Route::get('/login2', function(){
-/*
-    $name = Input::get('meno');
-    $surname = Input::get('priezvisko');
+Route::post('searchID', array(
+
+    'as' => 'searchID',
+
+    function() {
 
 
+         $ID = Input::get('id');
 
-    echo $checkLogin = DB::table('users')->where(['meno'=>$name,'priezvisko'=>$surname])->get();
-    if(count($checkLogin)>0) {
 
-        $users = User::all();                                // This variable is used in Users table view
-        //return view("all_records", ['users' => $users]);
+        $user = DB::table('zamestnanci') ->select('name', 'department','faculty', 'description')       // SQL query
+            ->where('id', '=', $ID) ->first();
 
-       return view("template");
+        if(count($user)>0)
+        {
+            return view("searchresults", ['user' => $user]);
+        }
+
+        // return view('template', compact('user'));
+        else
+            {
+                 return view("searchresults", ['user' => $user]);
+            }
 
     }
-    else {
-                echo "Name " . $name;
-                echo "Surname " . $surname;
-                echo "Login not succeed!!!";
-            }
-*/
-    $name = Input::get('meno');
 
 
-  // $user = User::where('meno' , $name)->get();
-
-
-
- //   echo $user[0]['meno'];
-  //  echo $user[0]['pristupove_prava'];
-
-    $user = DB::table('users') ->select('id', 'meno', 'priezvisko','pristupove_prava')
-      ->where('meno', '=', $name) ->first();
-
-   // return view('template', compact('user'));
-
-    return view("template", ['user' => $user]);
-
-});
+));
 
 
 
