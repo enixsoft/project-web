@@ -64,24 +64,96 @@
 </style>
 <body>
 	<div id="wrapper">
-		<!-- start header -->
+		
+			<!-- start header -->
 		<header>
 			<div class="navbar navbar-default navbar-static-top">
-					<div class="container">
+				<div class="container">
+					<div class="navbar-header">
+					
 
+					<a href="{{ url('/') }}"><img src="{{ asset('img/logoukf.png') }}"></a>
 						
+						</div>
+									
+						
+						
+						@auth
+						<div class="navbar-collapse collapse">						
+							
+						<ul class="nav navbar-nav" style="float:right;">	
+																
+							<li class="dropdown">
+								
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false"><img src="{{ asset('img/user.png') }}"></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">{{ Auth::user()->username }}</a>				
+								<ul class="dropdown-menu">
+									<li><a href="typography.html"><b>Profil</b></a></li>
+									<li><a href="components.html"><b>Nastavenia</b></a></li>
+									<li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><b>Odhlásiť sa</b></a></li>
+								</ul>
+
+							</li>
+							
+						</ul>						
+				
+					</div>
+					@endauth
+				
+
+
+				</div>
+			
+				</div>
+
+			
+		</header>
+
+
+
+
+		<!-- start header 
+		
+
+
+		<header>
+			
+			<div class="navbar navbar-default navbar-static-top">
+				
+					
+					<div class="container">
 						<a href="{{ url('/') }}"><img src="{{ asset('img/logoukf.png') }}"></a>
 				
+						<div class="navbar-header">
+						
+						
 
-							<!--
-							<li><input type="name" name ="meno" class="form-control" placeholder="Meno" id="UserName">
-							<li><input type="surname" name="priezvisko" class="form-control" placeholder="Heslo" id="Passwod">
-							<li> <button type="button" class="log-btn">
-							-->
+                                           
+                    
+                    <div class="navbar-collapse collapse ">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="index.html">Home</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">Features <b class=" icon-angle-down"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="typography.html">Typography</a></li>
+                                    <li><a href="components.html">Components</a></li>
+                                    <li><a href="pricingbox.html">Pricing box</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="portfolio.html">Portfolio</a></li>
+                            <li><a href="blog.html">Blog</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+				</div>
+							
+					<a href="{{ url('/') }}"><img src="{{ asset('img/logoukf.png') }}"></a>
 					</div>
 				
+				
 		</header>
-		<!-- end header -->
+		end header -->
 		
 
 
@@ -180,9 +252,7 @@
                     	<div class="container">
    						
 
-                   @auth
-    Používateľ {{ Auth::user()->username }} sa úspešne prihlásil!
-     <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Odhlásiť sa</a>
+                   @auth   
 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
 @endauth
 
