@@ -12,6 +12,10 @@
 	<link href="{{ asset('css/jcarousel.css') }}" type="text/css" rel="stylesheet" />
 	<link href="{{ asset('css/flexslider.css') }}" type="text/css" rel="stylesheet" />
 	<link href="{{ asset('css/style.css') }}" type="text/css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('DataTables/datatables.css') }}">
+ 
+
+  
 
 	<!-- Theme skin -->
 	<link href="{{ asset('skins/default.css') }}" type="text/css" rel="stylesheet" />
@@ -22,6 +26,8 @@
     Author: BootstrapMade
     Author URL: https://bootstrapmade.com
 	======================================================= -->
+
+
 
 </head>
 <style>
@@ -305,7 +311,7 @@
 				<div class="container">
 						
 							
-					 <form class="form-horizontal" method="POST" action="{{route('searchID')}}">
+					 <form class="form-horizontal" method="POST" action="{{route('searchID2')}}">
                        
 
                         <div class="form-group">
@@ -343,7 +349,9 @@
 
 
 	</div>
-		</div>
+
+
+</div>
 
 
 		</section>
@@ -409,7 +417,6 @@
 	<!-- Placed at the end of the document so the pages load faster -->
 	
 
-
 	<script src="{{ asset('js/jquery.js') }}"></script>
 	<script src="{{ asset('js/jquery.easing.1.3.js') }}"></script>
 	<script src="{{ asset('js/bootstrap.min.js') }}"></script>
@@ -421,6 +428,12 @@
 	<script src="{{ asset('js/jquery.flexslider.js') }}"></script>
 	<script src="{{ asset('js/animate.js') }}"></script>
 	<script src="{{ asset('js/custom.js') }}"></script>
+	<script type="text/javascript" charset="utf8" src="{{ asset('DataTables/datatables.js') }}"></script>	
+	<script type="text/javascript">
+        $(document).ready(function () {
+            $('#datatable').dataTable();
+        });
+    </script>
 
 </body>
 

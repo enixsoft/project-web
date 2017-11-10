@@ -193,6 +193,36 @@ Route::post('searchID', array(
 ));
 
 
+Route::post('searchID2', array(
+
+    'as' => 'searchID2',
+
+    function() {
+
+
+       $ID = Input::get('id');
+
+
+        $user = DB::table('zamestnanci') ->select('name', 'department','faculty', 'description')       // SQL query
+            ->where('id', '>', $ID)->get();
+
+        if(count($user)>0)
+        {
+            return view("searchresults2", ['user' => $user]);
+        }
+
+        // return view('template', compact('user'));
+        else
+            {
+                 return view("searchresults2", ['user' => $user]);
+            }
+
+    }
+
+
+));
+
+
 
 /*
     // Authentication Routes...
