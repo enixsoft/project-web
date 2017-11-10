@@ -269,20 +269,7 @@
 @endguest
 
 
-	</div>						    
-
-
-
-
-							<div class="row">
-							<div class="container">
-
-
-
-							<p>
-								<h2>Vyhľadávanie</h2>
-											Napíšte ID a stlačte Enter.
-							</p>
+	</div>			  
 								
 								<!--
 								STARE VYHLADAVANIE
@@ -305,6 +292,18 @@
 								</form>
 								-->
 
+
+
+							<div class="row">
+							<div class="container">
+
+
+
+							<p>
+								<h2>Vyhľadávanie zamestnanca</h2>
+											Napíšte ID a stlačte Enter.
+							</p>
+
 								</div>
 								</div>
 
@@ -315,15 +314,49 @@
                        
 
                         <div class="form-group">
-                            <label for="email" class="col-md-4 control-label"></label>
+                            <label for="email" class="col-md-4 control-label">Meno:</label>
 
                             <div class="col-md-6">
                                 
-                                <input type="text" class="form-control" name="id">
+                                <input type="text" class="form-control" name="name">
                             
                             </div>
                         </div>
 
+                       <div class="form-group">
+                            <label for="email" class="col-md-4 control-label">Katedra:</label>
+
+                            <div class="col-md-6">
+                                
+                                <input type="text" class="form-control" name="department">
+                            
+                            </div>
+                        </div>
+
+                       <div class="form-group">
+                            <label for="email" class="col-md-4 control-label">Fakulta:</label>
+
+                            <div class="col-md-6">
+                                
+                                <input type="text" class="form-control" name="faculty">
+                            
+                            </div>
+                        </div>
+
+						 <div class="form-group">
+                            <label for="email" class="col-md-4 control-label">Popis:</label>
+
+                            <div class="col-md-6">
+                                
+                                <input type="text" class="form-control" name="description">
+                            
+                            </div>
+                        </div>
+
+
+
+
+             
              
 
 
@@ -340,6 +373,353 @@
 
                     	<br>
                  </div>
+
+
+							<div class="row">
+							<div class="container">
+
+
+
+							<p>
+								<h2>Vyhľadávanie publikácií</h2>
+											Napíšte ID a stlačte Enter.
+							</p>
+
+								</div>
+								</div>
+
+
+                 <div class="container">
+						
+						
+					 <form class="form-horizontal" method="POST" action="{{route('searchID2')}}">
+                       
+
+                        <div class="form-group">
+                            <label for="email" class="col-md-4 control-label">ISBN:</label>
+
+                            <div class="col-md-6">
+                                
+                                <input type="text" class="form-control" name="ISBN">
+                            
+                            </div>
+                        </div>
+
+                       <div class="form-group">
+                            <label for="email" class="col-md-4 control-label">Titul:</label>
+
+                            <div class="col-md-6">
+                                
+                                <input type="text" class="form-control" name="title">
+                            
+                            </div>
+                        </div>
+
+                       <div class="form-group">
+                            <label for="email" class="col-md-4 control-label">Podtitul:</label>
+
+                            <div class="col-md-6">
+                                
+                                <input type="text" class="form-control" name="sub_title">
+                            
+                            </div>
+                        </div>
+
+						 <div class="form-group">
+                            <label for="email" class="col-md-4 control-label">Autor:</label>
+
+                            <div class="col-md-6">
+                                
+                                <input type="text" class="form-control" name="author">
+                            
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="col-md-4 control-label">Typ:</label>
+
+                            <div class="col-md-6">
+                                
+                                <input type="text" class="form-control" name="type">
+                            
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="col-md-4 control-label">Vydavateľ:</label>
+
+                            <div class="col-md-6">
+                                
+                                <input type="text" class="form-control" name="publisher">
+                            
+                            </div>
+                        </div>    
+
+                        <div class="form-group">
+                            <label for="email" class="col-md-4 control-label">Počet strán:</label>
+
+                            <div class="col-md-6">
+                                
+                                <input type="text" class="form-control" name="pages">
+                            
+                            </div>
+                        </div>
+
+                   
+
+                        <div class="form-group">
+                            <label for="email" class="col-md-4 control-label">Rok:</label>
+
+                            <div class="col-md-6">
+                                
+                                <input type="text" class="form-control" name="year">
+                            
+                            </div>
+                        </div>
+
+              
+                     
+
+
+                        <div class="form-group">
+                            <label for="email" class="col-md-4 control-label">Kód:</label>
+
+                            <div class="col-md-6">
+                                
+                                <input type="text" class="form-control" name="code">
+                            
+                            </div>
+                        </div>
+
+
+
+
+             
+             
+
+
+                        <div class="form-group">
+                            <div class="col-md-8 col-md-offset-5">
+                                <button style="height:40px; width:250px" type="submit" class="btn btn-primary">
+                                    Hľadať v katalógu 
+                                </button>
+                          </div>
+                        </div>
+
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    </form>
+
+                    	<br>
+                 </div>
+
+                 					<div class="row">
+							<div class="container">
+
+
+
+							<p>
+								<h2>Vyhľadávanie aktivít</h2>
+											Napíšte ID a stlačte Enter.
+							</p>
+
+								</div>
+								</div>
+
+
+
+                  <div class="container">
+						
+						
+					 <form class="form-horizontal" method="POST" action="{{route('searchID2')}}">
+                       
+
+                        <div class="form-group">
+                            <label for="email" class="col-md-4 control-label">Zamestnanec:</label>
+
+                            <div class="col-md-6">
+                                
+                                <input type="text" class="form-control" name="zamestnanec">
+                            
+                            </div>
+                        </div>
+
+                       <div class="form-group">
+                            <label for="email" class="col-md-4 control-label">Dátum:</label>
+
+                            <div class="col-md-6">
+                                
+                                <input type="text" class="form-control" name="date">
+                            
+                            </div>
+                        </div>
+
+                       <div class="form-group">
+                            <label for="email" class="col-md-4 control-label">Titul:</label>
+
+                            <div class="col-md-6">
+                                
+                                <input type="text" class="form-control" name="title">
+                            
+                            </div>
+                        </div>
+
+						 <div class="form-group">
+                            <label for="email" class="col-md-4 control-label">Krajina:</label>
+
+                            <div class="col-md-6">
+                                
+                                <input type="text" class="form-control" name="country">
+                            
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="col-md-4 control-label">Typ:</label>
+
+                            <div class="col-md-6">
+                                
+                                <input type="text" class="form-control" name="type">
+                            
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="col-md-4 control-label">Kategória:</label>
+
+                            <div class="col-md-6">
+                                
+                                <input type="text" class="form-control" name="category">
+                            
+                            </div>
+                        </div>    
+
+                        <div class="form-group">
+                            <label for="email" class="col-md-4 control-label">Ostatní autori:</label>
+
+                            <div class="col-md-6">
+                                
+                                <input type="text" class="form-control" name="all_authors">
+                            
+                            </div>
+                        </div>
+                
+
+           
+
+             
+             
+
+
+                        <div class="form-group">
+                            <div class="col-md-8 col-md-offset-5">
+                                <button style="height:40px; width:250px" type="submit" class="btn btn-primary">
+                                    Hľadať v katalógu 
+                                </button>
+                          </div>
+                        </div>
+
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    </form>
+
+                    	<br>
+                 </div>
+
+                            <div class="row">
+							<div class="container">
+
+
+
+							<p>
+								<h2>Vyhľadávanie projektov</h2>
+											Napíšte ID a stlačte Enter.
+							</p>
+
+								</div>
+								</div>
+
+
+
+                  <div class="container">
+						
+						
+					 <form class="form-horizontal" method="POST" action="{{route('searchID2')}}">
+                       
+
+                        <div class="form-group">
+                            <label for="email" class="col-md-4 control-label">Zamestnanec:</label>
+
+                            <div class="col-md-6">
+                                
+                                <input type="text" class="form-control" name="zamestnanec">
+                            
+                            </div>
+                        </div>
+
+                       <div class="form-group">
+                            <label for="email" class="col-md-4 control-label">Titul:</label>
+
+                            <div class="col-md-6">
+                                
+                                <input type="text" class="form-control" name="title">
+                            
+                            </div>
+                        </div>
+
+                       <div class="form-group">
+                            <label for="email" class="col-md-4 control-label">Od roku:</label>
+
+                            <div class="col-md-6">
+                                
+                                <input type="text" class="form-control" name="year_from">
+                            
+                            </div>
+                        </div>
+
+						 <div class="form-group">
+                            <label for="email" class="col-md-4 control-label">Do roku:</label>
+
+                            <div class="col-md-6">
+                                
+                                <input type="text" class="form-control" name="year_end">
+                            
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="col-md-4 control-label">Reg. číslo:</label>
+
+                            <div class="col-md-6">
+                                
+                                <input type="text" class="form-control" name="reg_number">
+                            
+                            </div>
+                        </div>
+
+                            
+                     
+
+
+             
+             
+
+
+                        <div class="form-group">
+                            <div class="col-md-8 col-md-offset-5">
+                                <button style="height:40px; width:250px" type="submit" class="btn btn-primary">
+                                    Hľadať v katalógu 
+                                </button>
+                          </div>
+                        </div>
+
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    </form>
+
+                    	<br>
+                 </div>
+
+
+
+                    	
 
 
                     	
