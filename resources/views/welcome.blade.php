@@ -94,7 +94,7 @@
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false"><img src="{{ asset('img/user.png') }}"></a>
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">{{ Auth::user()->username }}</a>				
 								<ul class="dropdown-menu">
-									<li><a href="typography.html"><b>Profil</b></a></li>
+									<li><a href="{{URL::to('profile')}}"><b>Profil</b></a></li>
 									<li><a href="components.html"><b>Nastavenia</b></a></li>
 									<li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><b>Odhlásiť sa</b></a></li>
 								</ul>
@@ -310,7 +310,7 @@
 				<div class="container">
 						
 							
-					 <form class="form-horizontal" method="POST" action="{{route('searchID2')}}">
+					 <form class="form-horizontal" method="POST" action="{{route('searchEmployee')}}">
                        
 
                         <div class="form-group">
@@ -392,7 +392,7 @@
                  <div class="container">
 						
 						
-					 <form class="form-horizontal" method="POST" action="{{route('searchID2')}}">
+					 <form class="form-horizontal" method="POST" action="{{route('searchPublication')}}">
                        
 
                         <div class="form-group">
@@ -530,7 +530,7 @@
                   <div class="container">
 						
 						
-					 <form class="form-horizontal" method="POST" action="{{route('searchID2')}}">
+					 <form class="form-horizontal" method="POST" action="{{route('searchActivity')}}">
                        
 
                         <div class="form-group">
@@ -538,7 +538,7 @@
 
                             <div class="col-md-6">
                                 
-                                <input type="text" class="form-control" name="zamestnanec">
+                                <input type="text" class="form-control" name="zamestnanec_id">
                             
                             </div>
                         </div>
@@ -642,11 +642,11 @@
                   <div class="container">
 						
 						
-					 <form class="form-horizontal" method="POST" action="{{route('searchID2')}}">
+					 <form class="form-horizontal" method="POST" action="{{route('searchProject')}}">
                        
 
                         <div class="form-group">
-                            <label for="email" class="col-md-4 control-label">Zamestnanec:</label>
+                            <label for="email" class="col-md-4 control-label">Zamestnanec_ID:</label>
 
                             <div class="col-md-6">
                                 

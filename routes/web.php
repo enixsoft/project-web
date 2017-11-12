@@ -163,6 +163,17 @@ Route::get('/test', function() {
 });
 
 
+Route::get('/profile', function() {                        // Will show login user Profile                              
+
+
+$user = Auth::User();
+
+return View("template", compact('user'));
+
+});
+
+
+
 Route::post('searchID', array(
 
     'as' => 'searchID',
@@ -192,35 +203,240 @@ Route::post('searchID', array(
 
 ));
 
+Route::post('searchProject', array(       // treba oddelit okrem stlpcov aj jednotlive properties
 
-Route::post('searchID2', array(
-
-    'as' => 'searchID2',
+    'as' => 'searchProject',
 
     function() {
 
+      $stlpec1 = "Zamestnanec_ID";
+      $stlpec2 = "Názov";
+      $stlpec3 = "Rok Vydania";
+      $stlpec4 = "Registračné číslo";
 
-       $ID = Input::get('id');
+      $variable1 = "zamestnanec_id";
+      $variable2 = "title";
+      $variable3 = "year_from";
+      $variable4 = "reg_number";
 
 
-        $user = DB::table('zamestnanci') ->select('name', 'department','faculty', 'description')       // SQL query
-            ->where('id', '>', $ID)->get();
+       $Zamestnanec = Input::get('zamestnanec');
+       $Title = Input::get('title'); 
+       $Year_from = Input::get('year_from');
+       $Year_end = Input::get('year_end');
+       $Reg_number = Input::get('reg_number');
 
-        if(count($user)>0)
+
+
+        $user = DB::table('projects') ->select('zamestnanec_id', 'title','year_from', 'reg_number')       // SQL query
+            ->where('zamestnanec_id', 'like','%'.$Zamestnanec.'%')
+            ->where('title', 'like', '%'.$Title.'%')
+            ->where('year_from', 'like', '%'.$Year_from.'%')
+            ->where('year_end', 'like', '%'.$Year_end.'%')
+            ->get();
+           
+
+             
+
+         if(count($user)>0)
         {
-            return view("searchresults2", ['user' => $user]);
+            return view("searchresults2", compact('user', 'stlpec1', 'stlpec2', 'stlpec3', 'stlpec4', 'variable1', 
+              'variable2', 'variable3', 'variable4'));
         }
 
         // return view('template', compact('user'));
         else
             {
-                 return view("searchresults2", ['user' => $user]);
+                 //return view("searchresults2", ['user' => $user]);
+               return view("searchresults2", compact('user', 'stlpec1', 'stlpec2', 'stlpec3', 'stlpec4', 'variable1', 
+              'variable2', 'variable3', 'variable4'));
+            }
+    }
+
+
+));
+
+
+
+Route::post('searchEmployee', array(    // vyhlada zamestnanca
+
+    'as' => 'searchEmployee',
+
+    function() {
+
+      $stlpec1 = "Meno";
+      $stlpec2 = "Katedra";
+      $stlpec3 = "Fakulta";
+      $stlpec4 = "Popis";
+
+      $variable1 = "name";
+      $variable2 = "department";
+      $variable3 = "faculty";
+      $variable4 = "description";
+
+
+       $Name = Input::get('name');
+       $Department = Input::get('department'); 
+       $Faculty = Input::get('faculty');
+       $Description = Input::get('description');
+
+
+
+        $user = DB::table('zamestnanci') ->select('name', 'department','faculty', 'description')       // SQL query
+            ->where('name', 'like','%'.$Name.'%')
+            ->where('department', 'like', '%'.$Department.'%')
+            ->where('faculty', 'like', '%'.$Faculty.'%')
+            ->where('description', 'like', '%'.$Description.'%')
+            ->get();
+           
+
+             
+
+        if(count($user)>0)
+        {
+            return view("searchresults2", compact('user', 'stlpec1', 'stlpec2', 'stlpec3', 'stlpec4', 'variable1', 
+              'variable2', 'variable3', 'variable4'));
+        }
+
+        // return view('template', compact('user'));
+        else
+            {
+                 //return view("searchresults2", ['user' => $user]);
+               return view("searchresults2", compact('user', 'stlpec1', 'stlpec2', 'stlpec3', 'stlpec4', 'variable1', 
+              'variable2', 'variable3', 'variable4'));
             }
 
     }
 
 
 ));
+
+
+Route::post('searchPublication', array(
+
+    'as' => 'searchPublication',
+
+    function() {
+
+      $stlpec1 = "ISBN";
+      $stlpec2 = "Popis";
+      $stlpec3 = "Všetci autori";
+      $stlpec4 = "Popis";
+
+      $variable1 = "ISBN";
+      $variable2 = "title";
+      $variable3 = "all_authors";
+      $variable4 = "publisher";
+
+
+       $isbn = Input::get('ISBN');
+       $Title = Input::get('title'); 
+       $Sub_title = Input::get('sub_title');
+       $Author = Input::get('author');
+       $Type = Input::get('type');
+       $Publisher = Input::get('publisher');
+       $Pages = Input::get('pages');
+       $Year = Input::get('year');
+       $Code = Input::get('code');
+
+
+
+        $user = DB::table('publications') ->select('ISBN', 'title','all_authors', 'publisher')       // SQL query
+            ->where('ISBN', 'like','%'.$isbn.'%')
+            ->where('title', 'like', '%'.$Title.'%')
+            ->where('sub_title', 'like', '%'.$Sub_title.'%')
+            ->where('all_authors', 'like', '%'.$Author.'%')
+            ->where('type', 'like', '%'.$Type.'%')
+            ->where('publisher', 'like', '%'.$Publisher.'%')
+            ->where('pages', 'like', '%'.$Pages.'%')
+            ->where('year', 'like', '%'.$Year.'%')
+            ->where('code', 'like', '%'.$Code.'%')
+            ->get();
+           
+
+             
+
+        if(count($user)>0)
+        {
+            return view("searchresults2", compact('user', 'stlpec1', 'stlpec2', 'stlpec3', 'stlpec4', 'variable1', 
+              'variable2', 'variable3', 'variable4'));
+        }
+
+        // return view('template', compact('user'));
+        else
+            {
+                 //return view("searchresults2", ['user' => $user]);
+               return view("searchresults2", compact('user', 'stlpec1', 'stlpec2', 'stlpec3', 'stlpec4', 'variable1', 
+              'variable2', 'variable3', 'variable4'));
+            }
+
+    }
+
+
+));
+
+
+Route::post('searchActivity', array(
+
+    'as' => 'searchActivity',
+
+    function() {
+
+      $stlpec1 = "ID";
+      $stlpec2 = "Dátum";
+      $stlpec3 = "Typ";
+      $stlpec4 = "Autori";
+
+      $variable1 = "ID";
+      $variable2 = "date";
+      $variable3 = "type";
+      $variable4 = "all_authors";
+
+
+       $Zamestnanec_id = Input::get('zamestnanec_id');
+       $Date = Input::get('date'); 
+       $Title = Input::get('title');
+       $Country = Input::get('country');
+       $Type = Input::get('type');
+       $Category = Input::get('category');
+       $All_authors = Input::get('all_authors');
+       
+
+
+
+        $user = DB::table('activities') ->select('ID', 'date','type', 'all_authors')       // SQL query
+            ->where('zamestnanec_id', 'like','%'.$Zamestnanec_id.'%')
+            ->where('date', 'like', '%'.$Date.'%')
+            ->where('title', 'like', '%'.$Title.'%')
+            ->where('country', 'like', '%'.$Country.'%')
+            ->where('type', 'like', '%'.$Type.'%')
+            ->where('category', 'like', '%'.$Category.'%')
+            ->where('all_authors', 'like', '%'.$All_authors.'%')
+            ->get();
+           
+
+             
+
+        if(count($user)>0)
+        {
+            return view("searchresults2", compact('user', 'stlpec1', 'stlpec2', 'stlpec3', 'stlpec4', 'variable1', 
+              'variable2', 'variable3', 'variable4'));
+        }
+
+        // return view('template', compact('user'));
+        else
+            {
+                 //return view("searchresults2", ['user' => $user]);
+               return view("searchresults2", compact('user', 'stlpec1', 'stlpec2', 'stlpec3', 'stlpec4', 'variable1', 
+              'variable2', 'variable3', 'variable4'));
+            }
+
+    }
+
+
+));
+
+
 
 
 
