@@ -95,9 +95,9 @@
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">{{ Auth::user()->username }}</a>				
 								<ul class="dropdown-menu">									
 									<li><a href="{{ route('profile') }}"><b>Profil</b></a></li>
-									<li><a href="{{ route('profile') }}"><b>Publikácie</b></a></li>
+									<li><a href="{{ route('publications') }}"><b>Publikácie</b></a></li>
                                    	<li><a href="{{ route('projects') }}"><b>Projekty</b></a></li>
-									<li><a href="{{ route('profile') }}"><b>Aktivity</b></a></li>
+									<li><a href="{{ route('activities') }}"><b>Aktivity</b></a></li>
 
 								
 									<li><a href="components.html"><b>Nastavenia</b></a></li>

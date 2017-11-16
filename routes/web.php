@@ -455,3 +455,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile', 'ProfileController@getview')->name('profile');
 
 Route::get('/projects', 'ProjectController@getview')->name('projects');
+
+Route::get('/publications', 'PublicationsController@getview')->name('publications');
+
+Route::get('/activities', 'ActivitiesController@getview')->name('activities');
