@@ -45,21 +45,21 @@
     <div align="center">
         <table style="width:50%">
             <tr>
-                <th><h4>Meno</h4></th>
-                <th><input type="text" size="40" name="username" value="{{ $user->name }}"></th>
+                <th><h4>ID</h4></th>
+                <th><input type="text" size="40" name="username" value="{{ $user->id }}"></th>
             </tr>
             <tr>
-                <th><h4>Oddelenie</h4></th>
-                <th><input type="text" size="40" name="department" value="{{ $user->department }}">
+                <th><h4>Používateľské meno</h4></th>
+                <th><input type="text" size="40" name="department" value="{{ $user->username }}">
             </tr>
             <tr>
-                <th><h4>Fakulta</h4></th>
-                <th><input type="text" size="40" name="faculty" value="{{ $user->faculty }}">
+                <th><h4>E-mail</h4></th>
+                <th><input type="text" size="40" name="faculty" value="{{ $user->email }}">
                 </th>
             </tr>
             <tr>
-                <th><h4>Popis</h4></th>
-                <th><input type="text" size="40" name="description" value="{{ $user->description }}"></th>
+                <th><h4>Práva</h4></th>
+                <th><input type="text" size="40" name="description" value="{{ $user->role }}"></th>
             </tr>
         </table>
     </div>
