@@ -12,8 +12,8 @@
 	<link href="{{ asset('css/jcarousel.css') }}" type="text/css" rel="stylesheet" />
 	<link href="{{ asset('css/flexslider.css') }}" type="text/css" rel="stylesheet" />
 	<link href="{{ asset('css/style.css') }}" type="text/css" rel="stylesheet" />
-	<link rel="stylesheet" type="text/css" href="{{ asset('DataTables/datatables.css') }}">
- 
+	<link rel="stylesheet" type="text/css" href="{{ asset('DataTables/DataTables-1.10.16/css/dataTables.bootstrap4.css') }}">
+ 													
 
   
 
@@ -30,8 +30,8 @@
 </head>
 <style>
 
- table,th {border: 1px solid black; padding: 3px; background-color: #efefef;}
-
+ /*table,th {border: 1px solid black; padding: 3px; background-color: #efefef;} 
+*/
 
 
 
@@ -42,27 +42,53 @@
 
 
 </style>
+
 <body>
 	<div id="wrapper">
 		<!-- start header -->
 		<header>
-			<div class="navbar navbar-default navbar-static-top">
-					<div class="container">
+				<div class="navbar navbar-default navbar-static-top">
+				<div class="container">
+					<div class="navbar-header">
+					
 
+					<a href="{{ url('/') }}"><img src="{{ asset('img/logoukf.png') }}"></a>
 						
-						<a href="{{ url('/') }}"><img src="{{ asset('img/logoukf.png') }}"></a>
+				     </div>
+									
+						
+						
+						@auth
+						<div class="navbar-collapse collapse">						
+							
+						<ul class="nav navbar-nav" style="float:right;">	
+																
+							<li class="dropdown">
+								
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false"><img src="{{ asset('img/user.png') }}"></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">{{ Auth::user()->username }}</a>				
+								<ul class="dropdown-menu">
+									<li><a href="{{URL::to('profile')}}"><b>Profil</b></a></li>
+									<li><a href="components.html"><b>Nastavenia</b></a></li>
+									<li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><b>Odhlásiť sa</b></a></li>
+								</ul>
+
+							</li>
+							
+						</ul>						
+				
+					</div>
+					@endauth
 				
 
-							<!--
-							<li><input type="name" name ="meno" class="form-control" placeholder="Meno" id="UserName">
-							<li><input type="surname" name="priezvisko" class="form-control" placeholder="Heslo" id="Passwod">
-							<li> <button type="button" class="log-btn">
-							-->
-					</div>
-			</div>	
+
+				</div>
+			
+				</div>
 		</header>
 		<!-- end header -->
 		
+
 
 
 
@@ -88,7 +114,7 @@
 			<div class="container">
 	
 				<div class="row">
-	@if(count($user)>0)
+		@if(count($user)>0)
 
 
 
@@ -96,8 +122,12 @@
 		
 
 	  <form id="form1" runat="server">
-        <div style="width: 1100px; border: 1px solid black; padding: 2px">
-            <table id="datatable">
+     
+            <table id="datatable" class="table" style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+    		font-size: 14px;
+   			font-weight: 300;
+   			width:100%;
+   			">
                 <thead>
                     <tr>
                                           
@@ -121,11 +151,11 @@
                     @endforeach
                 </tbody>
             </table>
-        </div>
+      
     </form>
 		
     </div>
-</div>
+
 
 @else
 <p>
@@ -134,6 +164,8 @@ Chyba
 </h2>
 Nenašli sa žiadne výsledky.
 </p>
+  <!--   <div style="width: 1100px; border: 1px solid black; padding: 2px">-->
+    <!--  </div>-->	
 <br>
 <br>
 <br>
@@ -155,9 +187,8 @@ Nenašli sa žiadne výsledky.
 
 @endif
 
-<br>
-<br>
-<br>
+
+
 	<div class="form-group">
    <div class="col-md-8 col-md-offset-5">
                             <a href="{{ url('/') }}"><button style="height:40px; width:250px" class="btn btn-primary">
@@ -251,10 +282,39 @@ Nenašli sa žiadne výsledky.
 	<script src="{{ asset('js/jquery.flexslider.js') }}"></script>
 	<script src="{{ asset('js/animate.js') }}"></script>
 	<script src="{{ asset('js/custom.js') }}"></script>
-	<script type="text/javascript" charset="utf8" src="{{ asset('DataTables/datatables.js') }}"></script>	
+	<script src="{{ asset('DataTables/DataTables-1.10.16/js/jquery.dataTables.js') }}"></script>
+	<script type="text/javascript" charset="utf8" src="{{ asset('DataTables/DataTables-1.10.16/js/dataTables.bootstrap4.js') }}"></script>	
 	<script type="text/javascript">
-        $(document).ready(function () {
-            $('#datatable').dataTable();
+        $(document).ready(function ()
+        {
+            $('#datatable').dataTable(
+            	{
+                 "language": {
+                 "sEmptyTable":     "Nie sú k dispozícii žiadne dáta",
+    			 "sInfo":           "Záznamy _START_ až _END_ z celkom _TOTAL_",
+    			 "sInfoEmpty":      "Záznamy 0 až 0 z celkom 0 ",
+    			 "sInfoFiltered":   "(vyfiltrované spomedzi _MAX_ záznamov)",
+    			 "sInfoPostFix":    "",
+   				 "sInfoThousands":  ",",
+    			 "sLengthMenu":     "Zobraz _MENU_ záznamov",
+    			 "sLoadingRecords": "Načítavam...",
+    			 "sProcessing":     "Spracúvam...",
+    			 "sSearch":         "Hľadať:",
+    			 "sZeroRecords":    "Nenašli sa žiadne vyhovujúce záznamy",
+    			 "oPaginate": {
+        		 "sFirst":    "Prvá",
+        		 "sLast":     "Posledná",
+        		 "sNext":     "Nasledujúca",
+       			 "sPrevious": "Predchádzajúca"
+   				 },
+    			"oAria": {
+        			"sSortAscending":  ": aktivujte na zoradenie stĺpca vzostupne",
+       			    "sSortDescending": ": aktivujte na zoradenie stĺpca zostupne"
+   						 }
+                }
+                } 
+                );
+
         });
     </script>
 
