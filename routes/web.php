@@ -155,22 +155,13 @@ Route::get('/allrecords', [
 ]);
 
 
-Route::get('/test', function() {
-  
-
-    return view('test');
-    //return view('welcome');
-});
 
 
-Route::get('/profile', function() {                        // Will show login user Profile                              
+
+                            
 
 
-$user = Auth::User();
 
-return View("template", compact('user'));
-
-});
 
 
 
@@ -460,3 +451,7 @@ Route::post('searchActivity', array(
 Route::auth();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/profile', 'ProfileController@getview')->name('profile');
+
+Route::get('/projects', 'ProjectController@getview')->name('projects');

@@ -96,7 +96,7 @@
 					<div class="col-lg-12">
 						<div class="big-cta">
 							<div class="cta-text">
-								<h2>Projekty</h2>
+								<h2>Profil</h2>
 							</div>
 						</div>
 					</div>
@@ -115,21 +115,17 @@
 									
         <table style="width:50%">
             <tr>
-                <th><h4>Názov</h4></th>
-                <th><input type="text" size="40" name="title" value="{{ $projects->title }}"</th>
+                <th><h4>Popis</h4></th>
+                <th><input type="text" size="40" name="description" value="{{ $profile->description }}"</th>
             </tr>
             <tr>
-                <th><h4>Rok začatia</h4></th>
-                <th><input type="text" size="40" name="year_from" value="{{ $projects->year_from }}">
+                <th><h4>Konzultačné hodiny</h4></th>
+                <th><input type="text" size="40" name="consultation_hours" value="{{ $profile->consultation_hours }}">
                 </th>
             </tr>
             <tr>
-                <th><h4>Rok ukončenia</h4></th>
-                <th><input type="text" size="40" name="year_end" value="{{ $projects->year_end }}"></th>
-            </tr>
-            <tr>
-                <th><h4>Registračné číslo</h4></th>
-                <th><input type="text" size="40" name="reg_number" value="{{ $projects->reg_number }}"></th>
+                <th><h4>Vzdelanie</h4></th>
+                <th><input type="text" size="40" name="education" value="{{ $profile->education }}"></th>
             </tr>
         </table>
 <br> 

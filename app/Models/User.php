@@ -13,9 +13,8 @@ use Notifiable;
 
 protected $table = 'users';
 
-protected $fillable = ['id', 'username', 'password', 'email', 'role', 'remember_token'];
+
+protected $fillable = ['id', 'zamestnanec_id', 'username', 'password', 'email', 'role', 'remember_token'];
 
 
 }
-
-
