@@ -197,10 +197,19 @@ Nenašli sa žiadne výsledky.
                             </a>
    </div>					
  </div>
-                  	
+ 
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+              	
 
 
-	</div>
+	
 </div>	
 
 
