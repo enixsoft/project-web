@@ -28,12 +28,31 @@
     
 
     
-    
+    /*
     table,th {
     	border: 1px solid black; 
     	padding: 3px; 
     	background-color: #efefef;
-    }
+    }*/
+
+		.form-control {		
+		border: none;		
+		background: #fff;
+		color: #666;
+		-moz-border-radius: 4px;
+		-webkit-border-radius: 4px;
+		border: 2px solid #ddd;				
+		border-radius: 4px;
+		
+
+	}
+	
+	textarea {
+    resize: none;
+     width:100%;
+  height:100%; 
+  overflow: auto;
+   }
 
     h1 {
         color:white;
@@ -67,7 +86,7 @@
 						
 						
 						@auth
-						<div class="navbar-collapse collapse">						
+					<div class="navbar-collapse collapse">						
 							
 						<ul class="nav navbar-nav" style="float:right;">	
 																
@@ -75,12 +94,22 @@
 								
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false"><img src="{{ asset('img/user.png') }}"></a>
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">{{ Auth::user()->username }}</a>				
+								<ul class="dropdown-menu">									
+									<li><a href="{{ route('profile') }}"><b>Profil</b></a></li>
+									<li><a href="{{ route('profile') }}"><b>Publikácie</b></a></li>
+                                   	<li><a href="{{ route('projects') }}"><b>Projekty</b></a></li>
+									<li><a href="{{ route('profile') }}"><b>Aktivity</b></a></li>
+
 								
+									<li><a href="components.html"><b>Nastavenia</b></a></li>
+									<li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><b>Odhlásiť sa</b></a></li>
+								</ul>
+
 							</li>
 							
 						</ul>						
 				
-					    </div>
+					</div>
 					
 				        @endauth
 
@@ -89,6 +118,7 @@
 			</div>
 
 		</header>
+
 		@auth
 		<section class="callaction">
 			<div class="container">
@@ -111,31 +141,31 @@
 
 <div class="container">
 <div class="row">
-<div align="center">
+
 									
-        <table style="width:50%">
+        <table class="table">
             <tr>
                 <th><h4>Popis</h4></th>
-                <th><input type="text" size="40" name="description" value="{{ $profile->description }}"</th>
+                <td><textarea class="form-control" name="description" rows="7">{{ $profile->description }}</textarea></td>
             </tr>
             <tr>
                 <th><h4>Konzultačné hodiny</h4></th>
-                <th><input type="text" size="40" name="consultation_hours" value="{{ $profile->consultation_hours }}">
-                </th>
+                <td><textarea class="form-control" name="consultation_hours" rows="7">{{ $profile->consultation_hours }}</textarea></td>
             </tr>
             <tr>
                 <th><h4>Vzdelanie</h4></th>
-                <th><input type="text" size="40" name="education" value="{{ $profile->education }}"></th>
+                <td><textarea class="form-control" name="education"  rows="7">{{ $profile->education }}</textarea></td>
             </tr>
         </table>
 <br> 
 <br>
 <br>
 
+
 </div>
-</div>
-</div>
+
 @endauth
+
 <div class="form-group">
    <div class="col-md-8 col-md-offset-5">
                             <a href="{{ url('/') }}"><button style="height:40px; width:250px" class="btn btn-primary">
@@ -147,7 +177,13 @@
 <br>
 <br>
 <br>
+
+</div>
 </section>
+@auth   
+<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
+@endauth
+
 <footer>
 	<div class="container">
 			  <div class="row">
@@ -200,6 +236,25 @@
 				</div>
 			</div>
 		</footer>
+</div>
+
+	<a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
+	<!-- javascript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	
+
+	<script src="{{ asset('js/jquery.js') }}"></script>
+	<script src="{{ asset('js/jquery.easing.1.3.js') }}"></script>
+	<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+	<script src="{{ asset('js/jquery.fancybox.pack.js') }}"></script>
+	<script src="{{ asset('js/jquery.fancybox-media.js') }}"></script>
+	<script src="{{ asset('js/google-code-prettify/prettify.js') }}"></script>
+	<script src="{{ asset('js/portfolio/jquery.quicksand.js') }}"></script>
+	<script src="{{ asset('js/portfolio/setting.js') }}"></script>
+	<script src="{{ asset('js/jquery.flexslider.js') }}"></script>
+	<script src="{{ asset('js/animate.js') }}"></script>
+	<script src="{{ asset('js/custom.js') }}"></script>	
 
 
 </body>
