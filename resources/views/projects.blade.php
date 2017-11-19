@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sk">
 
 <head>
 	<meta charset="utf-8">
@@ -12,6 +12,10 @@
 	<link href="{{ asset('css/jcarousel.css') }}" type="text/css" rel="stylesheet" />
 	<link href="{{ asset('css/flexslider.css') }}" type="text/css" rel="stylesheet" />
 	<link href="{{ asset('css/style.css') }}" type="text/css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('DataTables/DataTables-1.10.16/css/dataTables.bootstrap4.css') }}">
+ 													
+
+  
 
 	<!-- Theme skin -->
 	<link href="{{ asset('skins/default.css') }}" type="text/css" rel="stylesheet" />
@@ -25,44 +29,32 @@
 
 </head>
 <style>
-    
 
-    
-    
-    table,th {
-    	border: 1px solid black; 
-    	padding: 3px; 
-    	background-color: #efefef;
-    }
+ /*table,th {border: 1px solid black; padding: 3px; background-color: #efefef;} 
+*/
 
-    h1 {
-        color:white;
-    }
 
-	.log-btn {
-		background: #87CEFA;
-		width: 130%;
-		font-size: 16px;
-		height: 40px;
-		color: #fff;
-		margin-left: 6px;
-		text-decoration: none;
-	}
-    
+
+	
+
+	
+
+
+
 </style>
+
 <body>
 	<div id="wrapper">
-		
-			<!-- start header -->
+		<!-- start header -->
 		<header>
-			<div class="navbar navbar-default navbar-static-top">
+				<div class="navbar navbar-default navbar-static-top">
 				<div class="container">
 					<div class="navbar-header">
 					
 
 					<a href="{{ url('/') }}"><img src="{{ asset('img/logoukf.png') }}"></a>
 						
-					</div>
+				     </div>
 									
 						
 						
@@ -75,21 +67,36 @@
 								
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false"><img src="{{ asset('img/user.png') }}"></a>
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">{{ Auth::user()->username }}</a>				
+								<ul class="dropdown-menu">
+									<li><a href="{{ route('profile') }}"><b>Profil</b></a></li>
+									<li><a href="{{ route('publications') }}"><b>Publikácie</b></a></li>
+                                   	<li><a href="{{ route('projects') }}"><b>Projekty</b></a></li>
+									<li><a href="{{ route('activities') }}"><b>Aktivity</b></a></li>
+
 								
+									<li><a href="components.html"><b>Nastavenia</b></a></li>
+									<li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><b>Odhlásiť sa</b></a></li>
+								</ul>
+
 							</li>
 							
 						</ul>						
 				
-					    </div>
-					
-				        @endauth
+					</div>
+					@endauth
+				
+
 
 				</div>
 			
-			</div>
-
+				</div>
 		</header>
-		@auth
+		<!-- end header -->
+		
+
+
+
+
 		<section class="callaction">
 			<div class="container">
 				<div class="row">
@@ -105,56 +112,120 @@
 		</section>
 
 
+
 <section id="content">
+			
+
+			<div class="container">
+	
+				<div class="row">
+		@if(count($user)>0)
 
 
 
-<div class="container">
-<div class="row">
-<div align="center">
-									
-        <table style="width:50%">
-            <tr>
-                <th><h4>Názov</h4></th>
-                <th><input type="text" size="40" name="title" value="{{ $projects->title }}"</th>
-            </tr>
-            <tr>
-                <th><h4>Rok začatia</h4></th>
-                <th><input type="text" size="40" name="year_from" value="{{ $projects->year_from }}">
-                </th>
-            </tr>
-            <tr>
-                <th><h4>Rok ukončenia</h4></th>
-                <th><input type="text" size="40" name="year_end" value="{{ $projects->year_end }}"></th>
-            </tr>
-            <tr>
-                <th><h4>Registračné číslo</h4></th>
-                <th><input type="text" size="40" name="reg_number" value="{{ $projects->reg_number }}"></th>
-            </tr>
-        </table>
-<br> 
+
+		
+
+	  <form id="form1" runat="server">
+     
+            <table id="datatable" class="table" style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+    		font-size: 14px;
+   			font-weight: 300;
+   			width:100%;
+   			">
+                <thead>
+                    <tr>
+                                          
+                      <th>{{$stlpec1}}</th>
+                      <th>{{$stlpec2}}</th>
+                      <th>{{$stlpec3}}</th>
+                      <th>{{$stlpec4}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                   @foreach ($user as $z)
+                      <tr>                
+                          
+                            <td>{{object_get($z, $variable1) }}</td>
+                            <td>{{object_get($z, $variable2) }}</td>
+                            <td>{{object_get($z, $variable3) }}</td>
+                            <td>{{object_get($z, $variable4) }}</td>                      
+
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+      
+    </form>
+		
+    </div>
+
+
+@else
+<p>
+<h2>
+Chyba
+</h2>
+Nenašli sa žiadne výsledky.
+</p>
+  <!--   <div style="width: 1100px; border: 1px solid black; padding: 2px">-->
+    <!--  </div>-->	
 <br>
 <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
-</div>
-</div>
-</div>
-@endauth
-<div class="form-group">
+
+
+
+@endif
+
+
+
+	<div class="form-group">
    <div class="col-md-8 col-md-offset-5">
                             <a href="{{ url('/') }}"><button style="height:40px; width:250px" class="btn btn-primary">
                                     Naspäť 
                                 </button>
                             </a>
    </div>					
-</div>
-<br>
-<br>
-<br>
+ </div>
+ 
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+              	
+
+
+	
+</div>	
+
+
 </section>
-<footer>
-	<div class="container">
-			  <div class="row">
+                   @auth   
+<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
+@endauth
+
+		<footer>
+			<div class="container">
+				<div class="row">
 					<div class="col-lg-3">
 						<div class="widget">
 							<h5 class="widgetheading">Autori</h5>
@@ -170,10 +241,12 @@
                         <br>
                         
                     </address>
-			           </div>
-		            </div>
-	           </div>
-	</div>
+						</div>
+					</div>
+		
+			
+					
+			</div>
 			<div id="sub-footer">
 				<div class="container">
 					<div class="row">
@@ -205,6 +278,62 @@
 			</div>
 		</footer>
 
+	</div>
+
+	<a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
+	<!-- javascript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	
+
+
+	<script src="{{ asset('js/jquery.js') }}"></script>
+	<script src="{{ asset('js/jquery.easing.1.3.js') }}"></script>
+	<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+	<script src="{{ asset('js/jquery.fancybox.pack.js') }}"></script>
+	<script src="{{ asset('js/jquery.fancybox-media.js') }}"></script>
+	<script src="{{ asset('js/google-code-prettify/prettify.js') }}"></script>
+	<script src="{{ asset('js/portfolio/jquery.quicksand.js') }}"></script>
+	<script src="{{ asset('js/portfolio/setting.js') }}"></script>
+	<script src="{{ asset('js/jquery.flexslider.js') }}"></script>
+	<script src="{{ asset('js/animate.js') }}"></script>
+	<script src="{{ asset('js/custom.js') }}"></script>
+	<script src="{{ asset('DataTables/DataTables-1.10.16/js/jquery.dataTables.js') }}"></script>
+	<script type="text/javascript" charset="utf8" src="{{ asset('DataTables/DataTables-1.10.16/js/dataTables.bootstrap4.js') }}"></script>	
+	<script type="text/javascript">
+        $(document).ready(function ()
+        {
+            $('#datatable').dataTable(
+            	{
+                 "language": {
+                 "sEmptyTable":     "Nie sú k dispozícii žiadne dáta",
+    			 "sInfo":           "Záznamy _START_ až _END_ z celkom _TOTAL_",
+    			 "sInfoEmpty":      "Záznamy 0 až 0 z celkom 0 ",
+    			 "sInfoFiltered":   "(vyfiltrované spomedzi _MAX_ záznamov)",
+    			 "sInfoPostFix":    "",
+   				 "sInfoThousands":  ",",
+    			 "sLengthMenu":     "Zobraz _MENU_ záznamov",
+    			 "sLoadingRecords": "Načítavam...",
+    			 "sProcessing":     "Spracúvam...",
+    			 "sSearch":         "Hľadať:",
+    			 "sZeroRecords":    "Nenašli sa žiadne vyhovujúce záznamy",
+    			 "oPaginate": {
+        		 "sFirst":    "Prvá",
+        		 "sLast":     "Posledná",
+        		 "sNext":     "Nasledujúca",
+       			 "sPrevious": "Predchádzajúca"
+   				 },
+    			"oAria": {
+        			"sSortAscending":  ": aktivujte na zoradenie stĺpca vzostupne",
+       			    "sSortDescending": ": aktivujte na zoradenie stĺpca zostupne"
+   						 }
+                }
+                } 
+                );
+
+        });
+    </script>
 
 </body>
+
 </html>
