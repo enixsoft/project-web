@@ -12,11 +12,31 @@ class PublicationsController extends Controller
 
    public function getview()
     {
-        $user = Auth::user();
-        $publications = DB::table('publications')->select('publications.zamestnanec_id','publications.ISBN','publications.title', 'publications.sub_title', 'publications.all_authors','publications.type', 'publications.publisher', 'publications.pages','publications.year', 'publications.code')->where('publications.zamestnanec_id', '=', $user->zamestnanec_id)
-            ->first();
+    	$stlpec1 = "Zamestnanec_ID";
+      	$stlpec2 = "ISBN";
+      	$stlpec3 = "Názov";
+      	$stlpec4 = "Vydavateľ";
+
+      	$variable1 = "zamestnanec_id";
+      	$variable2 = "ISBN";
+      	$variable3 = "title";
+      	$variable4 = "publisher";
+
+        $autentifikacia = Auth::user();
+        $user = DB::table('publications')->select('publications.zamestnanec_id','publications.ISBN','publications.title', 'publications.publisher')->where('publications.zamestnanec_id', '=', $autentifikacia->zamestnanec_id)
+            ->get();
             
-        return view("publications", ['publications' => $publications]);
+       	if(count($user)>0)
+        {
+            return view("publications", compact('user', 'stlpec1', 'stlpec2', 'stlpec3', 'stlpec4', 'variable1', 
+              'variable2', 'variable3', 'variable4'));
+        }
+
+        else
+       	{
+       		 return view("publications", compact('user', 'stlpec1', 'stlpec2', 'stlpec3', 'stlpec4', 'variable1', 
+              'variable2', 'variable3', 'variable4'));
+       	}
     }
 
 }

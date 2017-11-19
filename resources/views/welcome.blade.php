@@ -20,6 +20,35 @@
 	<!-- Theme skin -->
 	<link href="{{ asset('skins/default.css') }}" type="text/css" rel="stylesheet" />
 
+	<!--  script funntion of JavaScript -->
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script>
+	$(document).ready(function(){
+    $('.click_button').click(function(){
+        $('.my_buttons').toggle();
+
+         {document.getElementById("roztvor").style.display="none";}
+     {document.getElementById("roztvor_2").style.display="none";}       
+
+    });
+	});
+	</script>
+
+
+	<script>
+	$(document).ready(function(){
+
+		$('.click_button_2').click(function() {
+
+			{document.getElementById("roztvor").style.display="block";}
+			{document.getElementById("roztvor_2").style.display="block";}
+			{document.getElementById("skovaj").style.display="none";}
+		});
+	});
+</script>
+
+	
 	<!-- =======================================================
     Theme Name: Moderna
     Theme URL: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/
@@ -31,6 +60,18 @@
 
 </head>
 <style>
+
+	.my_buttons 
+	{
+		display: none;
+	}
+
+	.button_down
+	{
+		
+	}
+
+
 	.form-control {
 		width: 70%;
 		height: 40px;
@@ -200,7 +241,21 @@
 							<!--
 							Prihlasovacie rozhranie
 							-->
-								
+							<!--
+								<p>
+								<h2>Vyhľadávanie</h2>
+											<div class ="click_button" autocomplete=""><button>Hľadať podľa</button></div>
+											<div class ="my_buttons">
+												<br>
+												<br>
+											<button><a href="">Publikacia</a></button>
+											<button><a href="">Projekt</a></button>
+										</div>
+											
+
+							</p>
+
+						-->
 								<h2>Prihlásenie</h2>
 											
 					
@@ -297,7 +352,7 @@
 									<input type="hidden" name="_token" value="{{ csrf_token() }}">
 								</form>
 								-->
-
+								
 
 
 							<div class="row">
@@ -307,28 +362,69 @@
 
 							<p>
 								<h2>Vyhľadávanie zamestnanca</h2>
-											Napíšte ID a stlačte Enter.
+										
 							</p>
 
 								</div>
 								</div>
 
+					<div class ="click_button" id="roztvor"><button>Rozsirene</button></div>
+
+					<div id="roztvor_2">			
+
 				<div class="container">
-						
-							
-					 <form class="form-horizontal" method="POST" action="{{route('searchEmployee')}}">
-                       
-
+					
                         <div class="form-group">
-                            <label for="email" class="col-md-4 control-label">Meno:</label>
 
+                        	  
+                        	 
+
+                        	<form class="form-horizontal" method="POST" action="{{route('searchEmployee')}}"> 
+                            <label for="email" class="col-md-4 control-label">Meno:</label>
                             <div class="col-md-6">
                                 
                                 <input type="text" class="form-control" name="name">
                             
                             </div>
-                        </div>
+                            <br>
+                            <br>
+                              <div class="form-group">
+                            <div class="col-md-8 col-md-offset-5">
+                                <button style="height:40px; width:250px" type="submit" class="btn btn-primary" >
+                                    Hľadať v katalógu 
+                                </button>
+                          	</div>
+                        	</div>
 
+                        	<input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+                    		</form>	
+                    		</div>	
+                    	</div>
+                    </div>
+
+                    		
+                    
+                           
+					<div class ="my_buttons" id="skovaj">		<!-- tu sa vsetko zobrazi ako rozsirene -->
+						
+						<div class ="click_button_2"><button>Zakladne</button></div>
+						
+
+						<div id="schoval_rozsirene">
+
+						<div class="container">
+					
+                        <div class="form-group">						
+
+                       <form class="form-horizontal" method="POST" action="{{route('searchEmployee')}}"> 
+                        <label for="email" class="col-md-4 control-label">Meno:</label>
+                        <div class="col-md-6">      
+                      		<input type="text" class="form-control" name="name">
+                   		</div>
+                   		<br>
+                   		<br>
+                            
                        <div class="form-group">
                             <label for="email" class="col-md-4 control-label">Katedra:</label>
 
@@ -357,28 +453,32 @@
                                 <input type="text" class="form-control" name="description">
                             
                             </div>
+
                         </div>
-
-
-
-
-             
-             
 
 
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-5">
-                                <button style="height:40px; width:250px" type="submit" class="btn btn-primary">
+                                <button style="height:40px; width:250px" type="submit" class="btn btn-primary" >
                                     Hľadať v katalógu 
                                 </button>
                           </div>
                         </div>
 
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    </form>
+                    </form>	
+                </div>
 
-                    	<br>
-                 </div>
+                        </div>
+                    </div>
+
+									
+				</div>		
+
+
+
+					
+						
 
 
 							<div class="row">
@@ -506,6 +606,7 @@
 
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-5">
+                            	
                                 <button style="height:40px; width:250px" type="submit" class="btn btn-primary">
                                     Hľadať v katalógu 
                                 </button>
