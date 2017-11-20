@@ -23,13 +23,14 @@
 	<!--  script funntion of JavaScript -->
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<script>
+	
+	<script>
 	$(document).ready(function(){
-    $('.click_button').click(function(){
-        $('.my_buttons').toggle();
+    $('.zamestnanci_click_button').click(function(){
+        $('.zamestnanci_buttons').toggle();
 
-         {document.getElementById("roztvor").style.display="none";}
-     {document.getElementById("roztvor_2").style.display="none";}       
+          {document.getElementById("zamestnanci_viac_button").style.display="none";}
+          {document.getElementById("zamestnanci_menej_form").style.display="none";}       
 
     });
 	});
@@ -39,14 +40,90 @@
 	<script>
 	$(document).ready(function(){
 
-		$('.click_button_2').click(function() {
+		$('.zamestnanci_click_button_2').click(function() {
 
-			{document.getElementById("roztvor").style.display="block";}
-			{document.getElementById("roztvor_2").style.display="block";}
-			{document.getElementById("skovaj").style.display="none";}
+			{document.getElementById("zamestnanci_viac_button").style.display="block";}
+			{document.getElementById("zamestnanci_menej_form").style.display="block";}
+			{document.getElementById("zamestnanci_viac_form").style.display="none";}
 		});
 	});
-</script>
+   </script>
+
+   <script>
+	$(document).ready(function(){
+    $('.publikacie_click_button').click(function(){
+        $('.publikacie_buttons').toggle();
+
+         {document.getElementById("publikacie_viac_button").style.display="none";}
+         {document.getElementById("publikacie_menej_form").style.display="none";}       
+
+    });
+	});
+	</script>
+
+
+	<script>
+	$(document).ready(function(){
+
+		$('.publikacie_click_button_2').click(function() {
+
+			{document.getElementById("publikacie_viac_button").style.display="block";}
+			{document.getElementById("publikacie_menej_form").style.display="block";}
+			{document.getElementById("publikacie_viac_form").style.display="none";}
+		});
+	});
+   </script>
+
+      <script>
+	$(document).ready(function(){
+    $('.aktivity_click_button').click(function(){
+        $('.aktivity_buttons').toggle();
+
+         {document.getElementById("aktivity_viac_button").style.display="none";}
+         {document.getElementById("aktivity_menej_form").style.display="none";}       
+
+    });
+	});
+	</script>
+
+
+	<script>
+	$(document).ready(function(){
+
+		$('.aktivity_click_button_2').click(function() {
+
+			{document.getElementById("aktivity_viac_button").style.display="block";}
+			{document.getElementById("aktivity_menej_form").style.display="block";}
+			{document.getElementById("aktivity_viac_form").style.display="none";}
+		});
+	});
+   </script>
+
+          <script>
+	$(document).ready(function(){
+    $('.projekty_click_button').click(function(){
+        $('.projekty_buttons').toggle();
+
+         {document.getElementById("projekty_viac_button").style.display="none";}
+         {document.getElementById("projekty_menej_form").style.display="none";}       
+
+    });
+	});
+	</script>
+
+
+	<script>
+	$(document).ready(function(){
+
+		$('.projekty_click_button_2').click(function() {
+
+			{document.getElementById("projekty_viac_button").style.display="block";}
+			{document.getElementById("projekty_menej_form").style.display="block";}
+			{document.getElementById("projekty_viac_form").style.display="none";}
+		});
+	});
+   </script>
+
 
 	
 	<!-- =======================================================
@@ -61,7 +138,7 @@
 </head>
 <style>
 
-	.my_buttons 
+	.zamestnanci_buttons 
 	{
 		display: none;
 	}
@@ -238,24 +315,6 @@
 							
 							@guest
 
-							<!--
-							Prihlasovacie rozhranie
-							-->
-							<!--
-								<p>
-								<h2>Vyhľadávanie</h2>
-											<div class ="click_button" autocomplete=""><button>Hľadať podľa</button></div>
-											<div class ="my_buttons">
-												<br>
-												<br>
-											<button><a href="">Publikacia</a></button>
-											<button><a href="">Projekt</a></button>
-										</div>
-											
-
-							</p>
-
-						-->
 								<h2>Prihlásenie</h2>
 											
 					
@@ -316,7 +375,9 @@
 
 
                     	@endguest
-                    	<div class="container">
+     
+
+     <div class="container">
    						
 
                    @auth   
@@ -332,31 +393,12 @@
 
 	</div>			  
 								
-								<!--
-								STARE VYHLADAVANIE
-							
-								<form class="form-search" action="{{route('searchID')}}" method ="post">
-									 
-									<input style="width:100%"
-									class="form-control" type="text" placeholder="Vyhľadaj..." name = "id" type="text">
-									
-									<br>
-									 <div class="form-group">
-                           			 <div class="col-md-8 col-md-offset-5">
-
-									<button style="height:40px; width:250px" class="btn btn-primary" type="submit">Hľadať v katalógu</button>
-
-									  </div>
-                       				  </div>
-
-									<input type="hidden" name="_token" value="{{ csrf_token() }}">
-								</form>
-								-->
+								
 								
 
 
-							<div class="row">
-							<div class="container">
+				<div class="row">
+				<div class="container">
 
 
 
@@ -365,33 +407,49 @@
 										
 							</p>
 
-								</div>
-								</div>
+				</div>
+				</div>
 
-					<div class ="click_button" id="roztvor"><button>Rozsirene</button></div>
-
-					<div id="roztvor_2">			
-
-				<div class="container">
 					
-                        <div class="form-group">
+					
+
+					<div id="zamestnanci_menej_form">			
+						
+						<div class="container">
+					
+                        
 
                         	  
                         	 
 
                         	<form class="form-horizontal" method="POST" action="{{route('searchEmployee')}}"> 
+                            <div class="form-group">
                             <label for="email" class="col-md-4 control-label">Meno:</label>
                             <div class="col-md-6">
                                 
                                 <input type="text" class="form-control" name="name">
                             
                             </div>
-                            <br>
-                            <br>
+                            </div>
+
                               <div class="form-group">
+                             
+                                
+                                <div class ="zamestnanci_click_button col-md-8 col-md-offset-5" id="zamestnanci_viac_button">
+								<button type="button" style="height:40px; width:250px;" class="btn btn-link btn-md">
+							    <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+								Viac možností
+							    </button>
+								</div>
+                            
+                            
+                            </div>
+                           
+
+                            <div class="form-group">
                             <div class="col-md-8 col-md-offset-5">
                                 <button style="height:40px; width:250px" type="submit" class="btn btn-primary" >
-                                    Hľadať v katalógu 
+                                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Hľadať v katalógu 
                                 </button>
                           	</div>
                         	</div>
@@ -399,32 +457,38 @@
                         	<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                     		</form>	
-                    		</div>	
-                    	</div>
-                    </div>
+                    		
+                    		</div>
+
+                    		</div><!-- TU KONCI DIV ID  -->
+                   			
 
                    
                     		
                     
                            
-					<div class ="my_buttons" id="skovaj">		<!-- tu sa vsetko zobrazi ako rozsirene -->
+			<div class ="zamestnanci_buttons" id="zamestnanci_viac_form">		<!-- tu sa vsetko zobrazi ako rozsirene -->
 						
-						<div class ="click_button_2"><button>Zakladne</button></div>
-						
-
-						<div id="schoval_rozsirene">
-
-						<div class="container">
 					
-                        <div class="form-group">						
+				
+				
 
-                       <form class="form-horizontal" method="POST" action="{{route('searchEmployee')}}"> 
-                        <label for="email" class="col-md-4 control-label">Meno:</label>
-                        <div class="col-md-6">      
+				<div class="container">
+					
+                  					
+
+                      <form class="form-horizontal" method="POST" action="{{route('searchEmployee')}}"> 
+                        
+                      <div class="form-group">
+                        	<label for="email" class="col-md-4 control-label">Meno:</label>
+                        
+
+                        	<div class="col-md-6">      
                       		<input type="text" class="form-control" name="name">
-                   		</div>
-                   		<br>
-                   		<br>
+                   			</div>
+                   	 </div>
+
+                   		
                             
                        <div class="form-group">
                             <label for="email" class="col-md-4 control-label">Katedra:</label>
@@ -457,24 +521,37 @@
 
                         </div>
 
+                         <div class="form-group">
+                             
+                                
+                                <div class ="zamestnanci_click_button_2 col-md-8 col-md-offset-5" id="roztvor">
+								<button type="button" style="height:40px; width:250px;" class="btn btn-link btn-md">
+							    <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+								Menej možností
+							    </button>
+								</div>
+                            
+                            
+                          </div>
+
 
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-5">
                                 <button style="height:40px; width:250px" type="submit" class="btn btn-primary" >
-                                    Hľadať v katalógu 
+                                      <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Hľadať v katalógu  
                                 </button>
                           </div>
                         </div>
 
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     </form>	
-                </div>
+               
 
-                        </div>
-                    </div>
+              </div>
+             
 
 									
-				</div>		
+		</div>		
 
 
 
@@ -482,8 +559,8 @@
 						
 
 
-							<div class="row">
-							<div class="container">
+			<div class="row">
+			<div class="container">
 
 
 
@@ -492,8 +569,8 @@
 											Napíšte ID a stlačte Enter.
 							</p>
 
-								</div>
-								</div>
+			</div>
+			</div>
 
 
                  <div class="container">
@@ -609,7 +686,7 @@
                             <div class="col-md-8 col-md-offset-5">
                             	
                                 <button style="height:40px; width:250px" type="submit" class="btn btn-primary">
-                                    Hľadať v katalógu 
+                                      <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Hľadať v katalógu  
                                 </button>
                           </div>
                         </div>
@@ -620,7 +697,7 @@
                     	<br>
                  </div>
 
-                 					<div class="row">
+                 			<div class="row">
 							<div class="container">
 
 
@@ -630,8 +707,8 @@
 											Napíšte ID a stlačte Enter.
 							</p>
 
-								</div>
-								</div>
+							</div>
+							</div>
 
 
 
@@ -721,7 +798,7 @@
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-5">
                                 <button style="height:40px; width:250px" type="submit" class="btn btn-primary">
-                                    Hľadať v katalógu 
+                                      <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Hľadať v katalógu  
                                 </button>
                           </div>
                         </div>
@@ -814,7 +891,7 @@
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-5">
                                 <button style="height:40px; width:250px" type="submit" class="btn btn-primary">
-                                    Hľadať v katalógu 
+                                      <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Hľadať v katalógu  
                                 </button>
                           </div>
                         </div>

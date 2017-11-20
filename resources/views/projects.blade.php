@@ -196,10 +196,11 @@ Nenašli sa žiadne výsledky.
 
 	<div class="form-group">
    <div class="col-md-8 col-md-offset-5">
-                            <a href="{{ url('/') }}"><button style="height:40px; width:250px" class="btn btn-primary">
-                                    Naspäť 
-                                </button>
-                            </a>
+                        <a href="{{ url('/') }}"> 
+                            <button type="button" style="height:40px; width:250px" class="btn btn-default btn-lg">
+  							<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Naspäť
+							</button>
+						</a>
    </div>					
  </div>
  

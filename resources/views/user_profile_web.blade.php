@@ -157,7 +157,7 @@
                 <td><textarea class="form-control" name="description" rows="7">{{ $profile->description }}</textarea></td>
             </tr>
             <tr>
-                <th><h4>KOnzultacei</h4></th>
+                <th><h4>Konzultácie</h4></th>
                 <td><textarea class="form-control" name="consultation_hours" rows="7">{{ $profile->consultation_hours }}</textarea></td>
             </tr>
             <tr>
@@ -169,39 +169,47 @@
         <div class="form-group">
                             <div class="col-md-8 col-md-offset-5">
                                 <button style="height:40px; width:250px" type="submit" class="btn btn-primary" >
-                                    Uložiť
+                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Uložiť
                                 </button>
          					</div>
+        </div>
+
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         </form>
                         
-</div>
-</div>
 
 
-</div>
+
+
 
 @endauth
 
-				
- <br>
- <br>
+<br>
+<br>
+<br>
 
 
-<div class="form-group">
+
+   <div class="form-group">
    <div class="col-md-8 col-md-offset-5">
-                            <a href="{{ url('/') }}"><button style="height:40px; width:250px" class="btn btn-primary">
-                                    Naspäť 
-                                </button>
-                            </a>
-   </div>					
+                        <a href="{{ url('/') }}"> 
+                            <button type="button" style="height:40px; width:250px" class="btn btn-default btn-lg">
+  							<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Naspäť
+							</button>
+						</a>
+   </div>
+   </div>
+
 </div>
+</div>					
+
 <br>
 <br>
 <br>
 
-</div>
+
 </section>
+
 @auth   
 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
 @endauth
