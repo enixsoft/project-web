@@ -4,6 +4,12 @@ use App\Models\User;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 
+use Auth;
+
+use Validator;
+
+use Redirect;
+
 use DB;             // added due to using in function
 
 class UserController extends Controller
@@ -68,6 +74,7 @@ class UserController extends Controller
 
     }
 
+
     public function login(Request $req)
     {
         $username = $req->input('meno');
@@ -91,6 +98,37 @@ class UserController extends Controller
 
     }
 
+    public function store(Request $request)
+    {
+         $autentifikacia = Auth::user();
+
+
+        $validator = Validator::make($request->all(), [
+            'description' => 'required|string|min:2|max:750', //set it to whatever you like
+            'consultation_hours' => 'required|string|min:2|max:750',
+            'education' =>  'required|string|min:2|max:750'
+        ]);
+
+       
+/*
+            DB::table('profile')->insert(array(
+                'profile.zamestnanec_id' => $autentifikacia->zamestnanec_id,
+                'profile.description' => $request->get('description'),
+                'profile.consultation_hours' => $request->get('consultation_hours'),
+                'profile.education' => $request->get('education'),
+            )) ->where('profile.zamestnanec_id', '=', $autentifikacia->zamestnanec_id);
+
+*/
+            DB::table('profile')
+            ->where('profile.zamestnanec_id', '=', $autentifikacia->zamestnanec_id)
+            ->update(['profile.description' => $request->get('description'), 'profile.consultation_hours' => $request->get('consultation_hours'), 'profile.education' => $request->get('education')]);
+
+
+          return back()->with('success', 'Thank you for your hard work!');
+         
+     }
+
+    
 
 
 
@@ -99,5 +137,3 @@ class UserController extends Controller
 
 
 
-
-?>
