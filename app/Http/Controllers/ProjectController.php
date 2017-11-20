@@ -12,7 +12,7 @@ class ProjectController extends Controller
 
    public function getview()
     {
-  		$stlpec1 = "Zamestnanec_ID";
+  		  $stlpec1 = "Zamestnanec_ID";
       	$stlpec2 = "Názov";
       	$stlpec3 = "Rok Vydania";
       	$stlpec4 = "Registračné číslo";

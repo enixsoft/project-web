@@ -46,6 +46,13 @@
 		
 
 	}
+
+	input{
+    height:500px;
+    width:500px;
+    word-break: break-word;
+}
+
 	
 	textarea {
     resize: none;
@@ -142,14 +149,15 @@
 <div class="container">
 <div class="row">
 
-									
+			
+        <form class="form-horizontal" method="POST" action="{{ action('UserController@store') }}"> 						
         <table class="table">
             <tr>
                 <th><h4>Popis</h4></th>
                 <td><textarea class="form-control" name="description" rows="7">{{ $profile->description }}</textarea></td>
             </tr>
             <tr>
-                <th><h4>Konzultačné hodiny</h4></th>
+                <th><h4>KOnzultacei</h4></th>
                 <td><textarea class="form-control" name="consultation_hours" rows="7">{{ $profile->consultation_hours }}</textarea></td>
             </tr>
             <tr>
@@ -157,14 +165,28 @@
                 <td><textarea class="form-control" name="education"  rows="7">{{ $profile->education }}</textarea></td>
             </tr>
         </table>
-<br> 
-<br>
-<br>
+
+        <div class="form-group">
+                            <div class="col-md-8 col-md-offset-5">
+                                <button style="height:40px; width:250px" type="submit" class="btn btn-primary" >
+                                    Uložiť
+                                </button>
+         					</div>
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        </form>
+                        
+</div>
+</div>
 
 
 </div>
 
 @endauth
+
+				
+ <br>
+ <br>
+
 
 <div class="form-group">
    <div class="col-md-8 col-md-offset-5">

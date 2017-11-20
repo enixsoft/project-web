@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Input;
 
 use App\Models\User;
 
+use Illuminate\Support\Facades\Textarea;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -427,11 +429,37 @@ Route::post('searchActivity', array(
 
 ));
 
+/*
+
+Route::post('insert_user_info', array(
+
+    'as' => 'insert_user_info',
+
+    function() {
+
+      $autentifikacia = Auth::user();
+
+      $popis = Textarea::get('description');  
+      $konzultacne_hodiny = Textarea::get('consultation_hours');  
+      $vzdelalanie = Textarea::get('education');
+
+      DB::inset('insert into profile (description), (consultation_hours), (education) values(?)(?)(?)', [$popis], [$konzultacne_hodiny], [$vzdelalanie]) ->where('profile.zamestnanec_id', '=', $autentifikacia->zamestnanec_id);
+
+
+      return Redirect::to('project-web/insert_user_info');
 
 
 
+ }
+
+
+));
+
+*/
 
 /*
+
+
     // Authentication Routes...
     Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
     Route::post('login', 'Auth\LoginController@login');
@@ -455,6 +483,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile', 'ProfileController@getview')->name('profile');
 
 Route::get('/projects', 'ProjectController@getview')->name('projects');
+
+Route::post('/insert_user_info', 'UserController@store')->name('insert_user_info');
+
 
 Route::get('/publications', 'PublicationsController@getview')->name('publications');
 
