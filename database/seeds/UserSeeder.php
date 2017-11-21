@@ -14,16 +14,17 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        /*
-        DB::table('users')->insert([
-            'zamestnanec_id' => "1087",
-            'username' => "peterkondrla",
+        
+        
+
+        DB::table('users')->insert([            
+            'username' => "admin",
             'password' => bcrypt('heslo123'),
-            'email' => "peter@peter.sk",
+            'email' => "admin@ukf.sk",
             'role' => "admin",
             'remember_token' => null,         
         ]);
-        */
+        
 
         $arrayidzamestnanci = DB::select('select id, name from zamestnanci', [1]);
 
@@ -34,12 +35,24 @@ class UserSeeder extends Seeder
             $idzamNewName = $this->clean($idzamNewName);
             $idzamEmail = $this->createEmail($idzamNewName);
 
+            $emailDuplicateCheck = DB::table('users')
+                        ->where('email', '=', $idzamEmail)
+                        ->get();
+
+            if(count($emailDuplicateCheck)>0)
+            {
+               $idzamEmail=$idzamEmail . "2"; 
+            }
+            
+
+
+
         DB::table('users')->insert([
             'zamestnanec_id' => $idzam->id,
             'username' => $idzamNewName,
             'password' => bcrypt('heslo123'),
             'email' => $idzamEmail . "@ukf.sk",
-            'role' => "admin",
+            'role' => "user",
             'remember_token' => null,         
         ]);
 

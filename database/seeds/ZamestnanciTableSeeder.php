@@ -14,7 +14,9 @@ class ZamestnanciTableSeeder extends Seeder
     {
         //
 
-            $json = File::get("public/json.txt");
+            
+            $json = file_get_contents("https://ukfprofil.teacher.sk/get-teachers");
+           
             $data = json_decode($json);
 
             foreach($data as $obj)

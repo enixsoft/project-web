@@ -22,7 +22,7 @@ class MultiSeeder extends Seeder
         //
             
 
-            $arrayidzamestnanci = DB::select('select id from zamestnanci where id < 2416 or id > 2416', [1]);
+            $arrayidzamestnanci = DB::select('select id from zamestnanci', [1]);
 
             //
             //2416 NEFUNGUJE

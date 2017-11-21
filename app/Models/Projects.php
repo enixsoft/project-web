@@ -8,7 +8,7 @@ class Projects extends Model
 {
     protected $table = 'projects';
 
-    protected $fillable = ['zamestnanec_id', 'title', 'year_from', 'year_end', 'reg_number'];
+    protected $fillable = ['zamestnanec_id', 'id', 'title', 'year_from', 'year_end', 'reg_number'];
 
 
 }

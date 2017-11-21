@@ -15,6 +15,7 @@ class CreatePublicationsTable extends Migration
     {
         Schema::create('publications', function (Blueprint $table) {
             $table->integer('zamestnanec_id')->unsigned();
+            $table->increments('id');
             $table->text('ISBN');
             $table->text('title');
             $table->text('sub_title');
