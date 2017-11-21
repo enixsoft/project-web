@@ -15,7 +15,7 @@ class AdminSeeder extends Seeder
             'zamestnanec_id' => null,
             'username' => "peterkondrla",
             'password' => bcrypt('heslo123'),
-            'email' => "peter@peter.sk",
+            'email' => "admin1@ukf.sk",
             'role' => "admin",
             'remember_token' => null,         
         ]);
