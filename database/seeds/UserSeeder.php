@@ -36,12 +36,12 @@ class UserSeeder extends Seeder
             $idzamEmail = $this->createEmail($idzamNewName);
 
             $emailDuplicateCheck = DB::table('users')
-                        ->where('email', '=', $idzamEmail)
+                        ->where('email', '=', $idzamEmail . "@ukf.sk")
                         ->get();
 
             if(count($emailDuplicateCheck)>0)
             {
-               $idzamEmail=$idzamEmail . "2"; 
+               $idzamEmail .= "2"; 
             }
             
 
