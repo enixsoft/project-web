@@ -4,6 +4,7 @@ use App\Models\User;
 use App\Models\Publications;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Validator;
 use Auth;
 use DB;             // added due to using in function
@@ -105,7 +106,7 @@ class PublicationController extends Controller
     public function update_record(Request $request)
     {
         //$previous_room = url()->previous();
-
+      
           $validator = Validator::make($request->all(), [
             'textarea1' => 'required|string|min:2|max:750',        //set it to whatever you like
             'textarea2' => 'required|string|min:2|max:750',
@@ -119,23 +120,49 @@ class PublicationController extends Controller
             //'textarea_three' =>  'required|string|min:2|max:750'
         ]);
 
+       $textAreas =  array ($textarea1 = $request->get('textarea1'),       
+       $textarea2 = $request->get('textarea2'), 
+       $textarea3 = $request->get('textarea3'),
+       $textarea4 = $request->get('textarea4'),
+       $textarea5 = $request->get('textarea5'),
+       $textarea6 = $request->get('textarea6'),
+       $textarea7 = $request->get('textarea7'),
+       $textarea8 = $request->get('textarea8'),
+       $textarea9 = $request->get('textarea9')
+                            );
 
-  //      switch ($previous_room) {
 
-    //    case 'http://localhost/project-web/public/'.'publications':
+     //NULL znefunkcni vyhladavanie 
 
-          DB::table('publications')
+      foreach ($textAreas as $key => &$value) 
+       {
+                      
+              if (is_null($value)) 
+               {
+                  $value = "";
+        
+               }
+        
+       }
+
+
+      
+           DB::table('publications')
             ->where('publications.id', '=', $request->get('id'))
-            ->update(['publications.id' => $request->get('id'), 'publications.ISBN' => $request->get('textarea1'), 'publications.title' => $request->get('textarea2'),
-              'publications.sub_title' => $request->get('textarea3'), 'publications.all_authors' => $request->get('textarea4'), 'publications.type' => $request->get('textarea5'),
-              'publications.publisher' => $request->get('textarea6'), 'publications.pages' => $request->get('textarea7'), 'publications.year' => $request->get('textarea8'),
-              'publications.code' => $request->get('textarea9')
+            ->update(['publications.id' => $request->get('id'), 'publications.ISBN' => $textAreas[0], 'publications.title' => $textAreas[1],
+              'publications.sub_title' => $textAreas[2], 'publications.all_authors' => $textAreas[3], 'publications.type' => $textAreas[4],
+              'publications.publisher' => $textAreas[5], 'publications.pages' => $textAreas[6], 'publications.year' => $textAreas[7],
+              'publications.code' => $textAreas[8]
+
 
 
 
           ]);
+         
+          
 
-
+         
+          
 
        return Redirect::back();
 }

@@ -4,6 +4,7 @@ use App\Models\User;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Redirect;
 use Auth;
 
 use App\Models\Publications;

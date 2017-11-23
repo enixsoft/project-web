@@ -14,7 +14,7 @@
     		echo $publikacia['ISBN'] . "<br/>";
 			}
 				*/
-
+            /*
 		    $idzamEmail="martincapay@ukf.sk";
 			$emailDuplicateCheck = DB::table('users')
                         ->where('email', '=', $idzamEmail)
@@ -33,7 +33,45 @@
             {
                echo $idzamEmail . "2"; 
             }
-            
+                */
+
+
+               $textAreas =  
+               array($textarea1 = "1",       
+       $textarea2 = NULL, 
+       $textarea3 = "3",   
+                            );
+
+/*
+       foreach ($textAreas as $user) 
+       {
+         if (is_null($user)) 
+         {
+         $user = "bol null";
+        
+         }
+          echo $user. "<br/>";
+       }
+  */         
+
+           foreach ($textAreas as $key => &$value) 
+           {
+                       //  ^ reference
+   
+     if (is_null($value)) 
+         {
+         $value = "bol null";
+        
+         }
+          echo $value. "<br/>";
+}
+
+              
+            foreach($textAreas as $user)
+            {
+            echo $user. "<br/>";
+            } 
+          
 
 ?>
 

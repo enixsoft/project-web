@@ -16,15 +16,15 @@ class CreatePublicationsTable extends Migration
         Schema::create('publications', function (Blueprint $table) {
             $table->integer('zamestnanec_id')->unsigned();
             $table->increments('id');
-            $table->text('ISBN')->nullable();
-            $table->text('title')->nullable();  
-            $table->text('sub_title')->nullable();  
-            $table->text('all_authors')->nullable();  
-            $table->text('type')->nullable();  
-            $table->text('publisher')->nullable();  
-            $table->text('pages')->nullable();  
-            $table->text('year')->nullable();  
-            $table->text('code')->nullable();  
+            $table->text('ISBN');
+            $table->text('title'); 
+            $table->text('sub_title'); 
+            $table->text('all_authors'); 
+            $table->text('type');
+            $table->text('publisher');
+            $table->text('pages');
+            $table->text('year');
+            $table->text('code');
             $table->timestamps();
         });
 

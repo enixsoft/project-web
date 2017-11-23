@@ -16,10 +16,10 @@ class CreateProjectsTable extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->integer('zamestnanec_id')->unsigned();          
             $table->increments('id');
-            $table->text('title')->nullable();  
-            $table->text('year_from')->nullable();  
-            $table->text('year_end')->nullable();  
-            $table->text('reg_number')->nullable();  
+            $table->text('title');  
+            $table->text('year_from');  
+            $table->text('year_end');  
+            $table->text('reg_number');  
             $table->timestamps();
         });
 

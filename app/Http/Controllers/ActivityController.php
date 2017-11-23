@@ -4,6 +4,7 @@ use App\Models\User;
 use App\Models\Activities;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Auth;
 use DB;             // added due to using in function
 

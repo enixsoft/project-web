@@ -16,13 +16,13 @@ class CreateActivitiesTable extends Migration
         Schema::create('activities', function (Blueprint $table) {
             $table->integer('zamestnanec_id')->unsigned();          
             $table->increments('id_aktivita');
-            $table->string('ID')->nullable();  
-            $table->string('date')->nullable();  
-            $table->text('title')->nullable();  
-            $table->string('country')->nullable();  
-            $table->string('type')->nullable();  
-            $table->text('category')->nullable();  
-            $table->text('all_authors')->nullable();  
+            $table->string('ID');  
+            $table->string('date');  
+            $table->text('title');  
+            $table->string('country');  
+            $table->string('type');  
+            $table->text('category');  
+            $table->text('all_authors');  
             $table->timestamps();
         });
     
