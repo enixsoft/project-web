@@ -233,7 +233,7 @@
 									<li><a href="{{ route('activities') }}"><b>Aktivity</b></a></li>
 
 								
-									<li><a href="components.html"><b>Nastavenia</b></a></li>
+									<li><a href="{{ route('statistics') }}"><b>Nastavenia</b></a></li>
 									<li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><b>Odhlásiť sa</b></a></li>
 								</ul>
 

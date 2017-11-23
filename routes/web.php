@@ -517,3 +517,4 @@ Route::post('/update_data_record', 'UserController@update_record')->name('update
 // tato funkcia bude upravovat zaznamy z tabuliek Publikacie, Projekty, Aktivity
 
 
+Route::get('/statistics', 'StatisticsController@showChart')->name('statistics');
