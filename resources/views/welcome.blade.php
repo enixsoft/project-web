@@ -143,6 +143,21 @@
 		display: none;
 	}
 
+	.publikacie_buttons
+	{
+		display: none;
+	}
+
+	.aktivity_buttons
+	{
+		display: none;
+	}
+
+	.projekty_buttons
+	{
+		display: none;
+	}
+
 	.button_down
 	{
 		
@@ -410,16 +425,11 @@
 				</div>
 				</div>
 
-					
-					
 
 					<div id="zamestnanci_menej_form">			
 						
 						<div class="container">
-					
-                        
-
-                        	  
+					              	  
                         	 
 
                         	<form class="form-horizontal" method="POST" action="{{route('searchEmployee')}}"> 
@@ -469,9 +479,7 @@
                            
 			<div class ="zamestnanci_buttons" id="zamestnanci_viac_form">		<!-- tu sa vsetko zobrazi ako rozsirene -->
 						
-					
-				
-				
+						
 
 				<div class="container">
 					
@@ -566,13 +574,12 @@
 
 							<p>
 								<h2>Vyhľadávanie publikácií</h2>
-											Napíšte ID a stlačte Enter.
 							</p>
 
 			</div>
 			</div>
 
-
+				<div id="publikacie_menej_form">
                  <div class="container">
 						
 						
@@ -590,6 +597,52 @@
                         </div>
 
                        <div class="form-group">
+
+                       	<div class ="publikacie_click_button col-md-8 col-md-offset-5" id="publikacie_viac_button">
+								<button type="button" style="height:40px; width:250px;" class="btn btn-link btn-md">
+							    <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+								Viac možností
+							    </button>
+								</div>
+                            
+                            
+                            </div>
+
+                         <div class="form-group">
+                            <div class="col-md-8 col-md-offset-5">
+                                <button style="height:40px; width:250px" type="submit" class="btn btn-primary" >
+                                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Hľadať v katalógu 
+                                </button>
+                          	</div>
+                        	</div>
+
+                        	<input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+                    		</form>	
+                    		
+                    		</div>
+
+                    		</div><!-- TU KONCI DIV ID  --> 	
+
+
+              <div class ="publikacie_buttons" id="publikacie_viac_form">		<!-- tu sa vsetko zobrazi ako rozsirene -->
+
+
+                  <div class="container">
+
+                    	<form class="form-horizontal" method="POST" action="{{route('searchPublication')}}">
+
+                    	<div class="form-group">
+                            <label for="email" class="col-md-4 control-label">ISBN:</label>
+
+                            <div class="col-md-6">
+                                
+                                <input type="text" class="form-control" name="ISBN">
+                            
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             <label for="email" class="col-md-4 control-label">Titul:</label>
 
                             <div class="col-md-6">
@@ -649,8 +702,6 @@
                             </div>
                         </div>
 
-                   
-
                         <div class="form-group">
                             <label for="email" class="col-md-4 control-label">Rok:</label>
 
@@ -660,10 +711,6 @@
                             
                             </div>
                         </div>
-
-              
-                     
-
 
                         <div class="form-group">
                             <label for="email" class="col-md-4 control-label">Kód:</label>
@@ -675,12 +722,17 @@
                             </div>
                         </div>
 
-
-
-
-             
-             
-
+                        <div class="form-group">
+                             
+                                
+                                <div class ="publikacie_click_button_2 col-md-8 col-md-offset-5" id="roztvor">
+								<button type="button" style="height:40px; width:250px;" class="btn btn-link btn-md">
+							    <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+								Menej možností
+							    </button>
+								</div>
+                            
+                        </div>
 
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-5">
@@ -694,8 +746,11 @@
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     </form>
 
-                    	<br>
+                  
                  </div>
+             </div>			<!-- konci rozsirene vyhladavanie publikacii -->
+
+                 			
 
                  			<div class="row">
 							<div class="container">
@@ -704,14 +759,13 @@
 
 							<p>
 								<h2>Vyhľadávanie aktivít</h2>
-											Napíšte ID a stlačte Enter.
 							</p>
 
 							</div>
 							</div>
 
 
-
+				<div id="aktivity_menej_form">
                   <div class="container">
 						
 						
@@ -728,7 +782,53 @@
                             </div>
                         </div>
 
-                       <div class="form-group">
+                        <div class="form-group">
+                             
+                                <div class ="aktivity_click_button col-md-8 col-md-offset-5" id="aktivity_viac_button">
+								<button type="button" style="height:40px; width:250px;" class="btn btn-link btn-md">
+							    <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+								Viac možností
+							    </button>
+								</div>
+                            
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-md-8 col-md-offset-5">
+                                <button style="height:40px; width:250px" type="submit" class="btn btn-primary" >
+                                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Hľadať v katalógu 
+                                </button>
+                          	</div>
+                        	</div>
+
+                        	<input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+                    		</form>	
+                    		
+                    </div>
+
+                 </div><!-- TU KONCI DIV ID  -->
+
+                <div class ="aktivity_buttons" id="aktivity_viac_form">		<!-- tu sa vsetko zobrazi ako rozsirene -->
+						
+
+						<div class="container">
+
+						<form class="form-horizontal" method="POST" action="{{route('searchActivity')}}"> 
+
+						 <div class="form-group">
+                            <label for="email" class="col-md-4 control-label">Zamestnanec:</label>
+
+                            <div class="col-md-6">
+                                
+                                <input type="text" class="form-control" name="zamestnanec_id">
+                            
+                            </div>
+                        </div>
+
+
+                       	<div class="form-group">
                             <label for="email" class="col-md-4 control-label">Dátum:</label>
 
                             <div class="col-md-6">
@@ -788,26 +888,37 @@
                             </div>
                         </div>
                 
-
-           
-
-             
-             
-
-
                         <div class="form-group">
+                             
+                                
+                                <div class ="aktivity_click_button_2 col-md-8 col-md-offset-5" id="roztvor">
+								<button type="button" style="height:40px; width:250px;" class="btn btn-link btn-md">
+							    <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+								Menej možností
+							    </button>
+								</div>
+                            
+                            
+                          </div>
+           
+                          <div class="form-group">
                             <div class="col-md-8 col-md-offset-5">
-                                <button style="height:40px; width:250px" type="submit" class="btn btn-primary">
+                                <button style="height:40px; width:250px" type="submit" class="btn btn-primary" >
                                       <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Hľadať v katalógu  
                                 </button>
                           </div>
                         </div>
 
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    </form>
+                    	</form>	
+               
+              			</div>		
+					</div>		<!-- tu konci rozsirene vyhladavanie aktivit -->
+             
+             
 
-                    	<br>
-                 </div>
+
+                        
 
                             <div class="row">
 							<div class="container">
@@ -816,14 +927,14 @@
 
 							<p>
 								<h2>Vyhľadávanie projektov</h2>
-											Napíšte ID a stlačte Enter.
 							</p>
 
 								</div>
 								</div>
 
 
-
+			<div id="projekty_menej_form">
+							
                   <div class="container">
 						
 						
@@ -839,6 +950,50 @@
                             
                             </div>
                         </div>
+
+
+                        <div class ="projekty_click_button col-md-8 col-md-offset-5" id="projekty_viac_button">
+								<button type="button" style="height:40px; width:250px;" class="btn btn-link btn-md">
+							    <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+								Viac možností
+							    </button>
+						</div>
+                          
+                       
+                           
+                        <div class="form-group">
+                            <div class="col-md-8 col-md-offset-5">
+                                <button style="height:40px; width:250px" type="submit" class="btn btn-primary" >
+                                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Hľadať v katalógu 
+                                </button>
+                          	</div>
+                        	</div>
+
+                        	<input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+                    		</form>	
+                    		
+                    		</div>
+
+                    		</div><!-- TU KONCI DIV ID  -->
+
+
+            <div class ="projekty_buttons" id="projekty_viac_form">		<!-- tu sa vsetko zobrazi ako rozsirene -->
+						
+					<div class="container">
+
+					<form class="form-horizontal" method="POST" action="{{route('searchEmployee')}}">     			
+
+						<div class="form-group">
+                            <label for="email" class="col-md-4 control-label">Zamestnanec_ID:</label>
+
+                            <div class="col-md-6">
+                                
+                                <input type="text" class="form-control" name="zamestnanec">
+                            
+                            </div>
+                        </div>
+                       
 
                        <div class="form-group">
                             <label for="email" class="col-md-4 control-label">Titul:</label>
@@ -880,38 +1035,36 @@
                             </div>
                         </div>
 
-                            
-                     
-
-
-             
-             
-
-
                         <div class="form-group">
+                             
+                                
+                                <div class ="projekty_click_button_2 col-md-8 col-md-offset-5" id="roztvor">
+								<button type="button" style="height:40px; width:250px;" class="btn btn-link btn-md">
+							    <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+								Menej možností
+							    </button>
+								</div>
+                            
+           
+                        </div>
+    
+                     	<div class="form-group">
                             <div class="col-md-8 col-md-offset-5">
-                                <button style="height:40px; width:250px" type="submit" class="btn btn-primary">
+                                <button style="height:40px; width:250px" type="submit" class="btn btn-primary" >
                                       <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Hľadať v katalógu  
                                 </button>
                           </div>
                         </div>
 
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    </form>
+                    </form>	
+               
 
-                    	<br>
-                 </div>
-
-
-
-                    	
+              </div>
+          </div>
 
 
-                    	
-	
-
-
-
+          
 
 	</div>
 

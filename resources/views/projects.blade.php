@@ -140,6 +140,7 @@
                       <th>{{$stlpec2}}</th>
                       <th>{{$stlpec3}}</th>
                       <th>{{$stlpec4}}</th>
+                      <th>Informácie</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -147,10 +148,11 @@
                    @foreach ($user as $z)
                       <tr>                
                           
-                            <td>{{object_get($z, $variable1) }}</td>
+                            <td>{{$over_id = object_get($z, $variable1) }}</td>
                             <td>{{object_get($z, $variable2) }}</td>
                             <td>{{object_get($z, $variable3) }}</td>
-                            <td>{{object_get($z, $variable4) }}</td>                      
+                            <td>{{object_get($z, $variable4) }}</td>
+                            <td> <a href= "{{route('details', ['internalId' => $over_id]) }}"> Detail</a></td>                      
 
                     </tr>
                     @endforeach

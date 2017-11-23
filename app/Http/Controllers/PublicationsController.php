@@ -12,18 +12,20 @@ class PublicationsController extends Controller
 
    public function getview()
     {
-    	$stlpec1 = "Zamestnanec_ID";
+    	//$stlpec1 = "Zamestnanec_ID";
+        $stlpec1 = "poradove ID";
       	$stlpec2 = "ISBN";
       	$stlpec3 = "Názov";
       	$stlpec4 = "Vydavateľ";
 
-      	$variable1 = "zamestnanec_id";
+       // $variable1 = "zamestnanec_id";
+      	$variable1 = "id";
       	$variable2 = "ISBN";
       	$variable3 = "title";
       	$variable4 = "publisher";
 
         $autentifikacia = Auth::user();
-        $user = DB::table('publications')->select('publications.zamestnanec_id','publications.ISBN','publications.title', 'publications.publisher')->where('publications.zamestnanec_id', '=', $autentifikacia->zamestnanec_id)
+        $user = DB::table('publications')->select('publications.id','publications.ISBN','publications.title', 'publications.publisher')->where('publications.zamestnanec_id', '=', $autentifikacia->zamestnanec_id)
             ->get();
             
        	if(count($user)>0)
