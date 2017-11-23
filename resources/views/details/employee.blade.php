@@ -126,14 +126,16 @@
 
 		</header>
 
-		@auth
+		
 		<section class="callaction">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="big-cta">
 							<div class="cta-text">
-								<h2>Profil</h2>
+								@foreach ($zaznam as $z)
+								<h2><span>Zamestnanec</span> {{ $z->$premenna2 }}</h2>
+								  @endforeach
 							</div>
 						</div>
 					</div>
@@ -150,22 +152,46 @@
 <div class="container">
 <div class="row">
 
-			
-        <form class="form-horizontal" method="POST" action="{{ action('UserController@store') }}"> 						
+@auth
+@if(Auth::user()->zamestnanec_id == $premenna0 || Auth::user()->role == "admin" )
+	 	
+      <form class="form-horizontal" method="POST" action="{{ $controller }}"> 				
         <table class="table">
+        	  @foreach ($zaznam as $z)
             <tr>
-                <th><h4>Popis</h4></th>
-                <td><textarea class="form-control" name="description" rows="7">{{ $profile->description }}</textarea></td>
+                <th><h4>{{$stlpec1}}</h4></th>
+                <td><input readonly class="form-control" name="id" value="{{ object_get($z, $premenna1) }}"></input></td>
             </tr>
             <tr>
-                <th><h4>Konzultácie</h4></th>
-                <td><textarea class="form-control" name="consultation_hours" rows="7">{{ $profile->consultation_hours }}</textarea></td>
+                <th><h4>{{$stlpec2}}</h4></th>
+                <td><textarea class="form-control" name="textarea1" rows="5">{{ object_get($z, $premenna2) }}</textarea></td>
             </tr>
             <tr>
-                <th><h4>Vzdelanie</h4></th>
-                <td><textarea class="form-control" name="education"  rows="7">{{ $profile->education }}</textarea></td>
+                <th><h4>{{$stlpec3}}</h4></th>
+                <td><textarea class="form-control" name="textarea2"  rows="5">{{ object_get($z, $premenna3) }}</textarea></td>
             </tr>
+            <tr>
+                <th><h4>{{$stlpec4}}</h4></th>
+                <td><textarea class="form-control" name="textarea3"  rows="5">{{ object_get($z, $premenna4) }}</textarea></td>
+            </tr>
+            <tr>
+                <th><h4>{{$stlpec5}}</h4></th>
+                <td><textarea class="form-control" name="textarea4"  rows="5">{{ object_get($z, $premenna5) }}</textarea></td>
+            </tr>
+            <tr>
+                <th><h4>{{$stlpec6}}</h4></th>
+                <td><textarea class="form-control" name="textarea5"  rows="5">{{ object_get($z, $premenna6) }}</textarea></td>
+            </tr>
+            <tr>
+                <th><h4>{{$stlpec7}}</h4></th>
+                <td><textarea class="form-control" name="textarea6"  rows="5">{{ object_get($z, $premenna7) }}</textarea></td>
+            </tr>
+
+
+
+            @endforeach
         </table>
+
 
         <div class="form-group">
                             <div class="col-md-8 col-md-offset-5">
@@ -176,14 +202,80 @@
         </div>
 
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-        </form>
-                        
+      </form>
+@else
 
-
-
-
-
+ <table class="table">
+        	  @foreach ($zaznam as $z)
+            <tr>
+                <th><h4>{{$stlpec1}}</h4></th>
+                <td><input readonly class="form-control" value="{{ object_get($z, $premenna1) }}"></input></td>
+            </tr>
+            <tr>
+                <th><h4>{{$stlpec2}}</h4></th>
+                <td><textarea class="form-control" name="textarea1" rows="5">{{ object_get($z, $premenna2) }}</textarea></td>
+            </tr>
+            <tr>
+                <th><h4>{{$stlpec3}}</h4></th>
+                <td><textarea class="form-control" name="textarea2"  rows="5">{{ object_get($z, $premenna3) }}</textarea></td>
+            </tr>
+            <tr>
+                <th><h4>{{$stlpec4}}</h4></th>
+                <td><textarea class="form-control" name="textarea3"  rows="5">{{ object_get($z, $premenna4) }}</textarea></td>
+            </tr>
+            <tr>
+                <th><h4>{{$stlpec5}}</h4></th>
+                <td><textarea class="form-control" name="textarea4"  rows="5">{{ object_get($z, $premenna5) }}</textarea></td>
+            </tr>
+            <tr>
+                <th><h4>{{$stlpec6}}</h4></th>
+                <td><textarea class="form-control" name="textarea5"  rows="5">{{ object_get($z, $premenna6) }}</textarea></td>
+            </tr>
+            <tr>
+                <th><h4>{{$stlpec7}}</h4></th>
+                <td><textarea class="form-control" name="textarea6"  rows="5">{{ object_get($z, $premenna7) }}</textarea></td>
+            </tr>
+            @endforeach
+        </table>
+@endif                   
 @endauth
+@guest
+
+ <table class="table">
+        	  @foreach ($zaznam as $z)
+            <tr>
+                <th><h4>{{$stlpec1}}</h4></th>
+                 <td><input readonly class="form-control" value="{{ object_get($z, $premenna1) }}"></input></td>
+            </tr>
+            <tr>
+                <th><h4>{{$stlpec2}}</h4></th>
+                <td><textarea class="form-control" name="textarea1" rows="5">{{ object_get($z, $premenna2) }}</textarea></td>
+            </tr>
+            <tr>
+                <th><h4>{{$stlpec3}}</h4></th>
+                <td><textarea class="form-control" name="textarea2"  rows="5">{{ object_get($z, $premenna3) }}</textarea></td>
+            </tr>
+            <tr>
+                <th><h4>{{$stlpec4}}</h4></th>
+                <td><textarea class="form-control" name="textarea3"  rows="5">{{ object_get($z, $premenna4) }}</textarea></td>
+            </tr>
+            <tr>
+                <th><h4>{{$stlpec5}}</h4></th>
+                <td><textarea class="form-control" name="textarea4"  rows="5">{{ object_get($z, $premenna5) }}</textarea></td>
+            </tr>
+            <tr>
+                <th><h4>{{$stlpec6}}</h4></th>
+                <td><textarea class="form-control" name="textarea5"  rows="5">{{ object_get($z, $premenna6) }}</textarea></td>
+            </tr>
+            <tr>
+                <th><h4>{{$stlpec7}}</h4></th>
+                <td><textarea class="form-control" name="textarea6"  rows="5">{{ object_get($z, $premenna7) }}</textarea></td>
+            </tr>
+            @endforeach
+        </table>
+
+@endguest
+
 
 <br>
 <br>

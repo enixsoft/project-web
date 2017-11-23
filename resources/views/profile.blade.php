@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="sk">
+<html lang="en">
 
 <head>
 	<meta charset="utf-8">
@@ -12,10 +12,6 @@
 	<link href="{{ asset('css/jcarousel.css') }}" type="text/css" rel="stylesheet" />
 	<link href="{{ asset('css/flexslider.css') }}" type="text/css" rel="stylesheet" />
 	<link href="{{ asset('css/style.css') }}" type="text/css" rel="stylesheet" />
-	<link rel="stylesheet" type="text/css" href="{{ asset('DataTables/DataTables-1.10.16/css/dataTables.bootstrap4.css') }}">
- 													
-
-  
 
 	<!-- Theme skin -->
 	<link href="{{ asset('skins/default.css') }}" type="text/css" rel="stylesheet" />
@@ -29,37 +25,75 @@
 
 </head>
 <style>
+    
 
- /*table,th {border: 1px solid black; padding: 3px; background-color: #efefef;} 
-*/
+    
+    /*
+    table,th {
+    	border: 1px solid black; 
+    	padding: 3px; 
+    	background-color: #efefef;
+    }*/
 
+		.form-control {		
+		border: none;		
+		background: #fff;
+		color: #666;
+		-moz-border-radius: 4px;
+		-webkit-border-radius: 4px;
+		border: 2px solid #ddd;				
+		border-radius: 4px;
+		
 
+	}
+
+	input{
+    height:500px;
+    width:500px;
+    word-break: break-word;
+}
 
 	
+	textarea {
+    resize: none;
+     width:100%;
+  height:100%; 
+  overflow: auto;
+   }
 
-	
+    h1 {
+        color:white;
+    }
 
-
-
+	.log-btn {
+		background: #87CEFA;
+		width: 130%;
+		font-size: 16px;
+		height: 40px;
+		color: #fff;
+		margin-left: 6px;
+		text-decoration: none;
+	}
+    
 </style>
-
 <body>
 	<div id="wrapper">
-		<!-- start header -->
+		
+			<!-- start header -->
 		<header>
-				<div class="navbar navbar-default navbar-static-top">
+			<div class="navbar navbar-default navbar-static-top">
 				<div class="container">
 					<div class="navbar-header">
 					
 
 					<a href="{{ url('/') }}"><img src="{{ asset('img/logoukf.png') }}"></a>
 						
-				     </div>
+					</div>
 									
 						
 						
 						@auth
-						<div class="navbar-collapse collapse">						
+					<div class="navbar-collapse collapse">						
 							
 						<ul class="nav navbar-nav" style="float:right;">	
 																
@@ -67,7 +101,7 @@
 								
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false"><img src="{{ asset('img/user.png') }}"></a>
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">{{ Auth::user()->username }}</a>				
-								<ul class="dropdown-menu">
+								<ul class="dropdown-menu">									
 									<li><a href="{{ route('profile') }}"><b>Profil</b></a></li>
 									<li><a href="{{ route('publications') }}"><b>Publikácie</b></a></li>
                                    	<li><a href="{{ route('projects') }}"><b>Projekty</b></a></li>
@@ -83,154 +117,109 @@
 						</ul>						
 				
 					</div>
-					@endauth
-				
-
+					
+				        @endauth
 
 				</div>
 			
-				</div>
+			</div>
+
 		</header>
-		<!-- end header -->
-		
 
-
-
-
+		@auth
 		<section class="callaction">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="big-cta">
 							<div class="cta-text">
-								<h2><span>Publikácie</span></h2>
+								<h2><span>Profil</span></h2>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</section>
-
+	
 
 
 <section id="content">
+
+
+
+<div class="container">
+<div class="row">
+
 			
+        <form class="form-horizontal" method="POST" action="{{ action('UserController@store') }}"> 						
+        <table class="table">
+            <tr>
+                <th><h4>Popis</h4></th>
+                <td><textarea class="form-control" name="description" rows="7">{{ $profile->description }}</textarea></td>
+            </tr>
+            <tr>
+                <th><h4>Konzultácie</h4></th>
+                <td><textarea class="form-control" name="consultation_hours" rows="7">{{ $profile->consultation_hours }}</textarea></td>
+            </tr>
+            <tr>
+                <th><h4>Vzdelanie</h4></th>
+                <td><textarea class="form-control" name="education"  rows="7">{{ $profile->education }}</textarea></td>
+            </tr>
 
-			<div class="container">
-	
-				<div class="row">
-		@if(count($user)>0)
 
+        </table>
 
+        <div class="form-group">
+                            <div class="col-md-8 col-md-offset-5">
+                                <button style="height:40px; width:250px" type="submit" class="btn btn-primary" >
+                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Uložiť
+                                </button>
+         					</div>
+        </div>
 
-
-		
-
-	  <form id="form1" runat="server">
-     
-            <table id="datatable" class="table" style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
-    		font-size: 14px;
-   			font-weight: 300;
-   			width:100%;
-   			">
-                <thead>
-                    <tr>                                         
-                     
-                      <th>{{$stlpec2}}</th>
-                      <th>{{$stlpec3}}</th>
-                      <th>{{$stlpec4}}</th>
-                     
-                    </tr>
-                </thead>
-                <tbody>
-
-                   @foreach ($user as $z)
-                   
-                      <tr>                      	   
-                                                      
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        </form>
                         
-                            <td>{{object_get($z, $variable2) }}</td>
-                            <td> <a href="{{ url('/') }}/publications/{{ $z->$variable1 }}">{{ $z->$variable3 }}</a></td>
-                            <td>{{object_get($z, $variable4) }}</td>
-                            
-                                       
-
-                    </tr>
-                
-                    @endforeach
-                </tbody>
-            </table>
-      
-    </form>
-		
-    </div>
 
 
-@else
-<p>
-<h2>
-Chyba
-</h2>
-Nenašli sa žiadne výsledky.
-</p>
-  <!--   <div style="width: 1100px; border: 1px solid black; padding: 2px">-->
-    <!--  </div>-->	
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
+
+
+@endauth
+
 <br>
 <br>
 <br>
 
 
 
-
-@endif
-
-
-
-	<div class="form-group">
+   <div class="form-group">
    <div class="col-md-8 col-md-offset-5">
                         <a href="{{ url('/') }}"> 
                             <button type="button" style="height:40px; width:250px" class="btn btn-default btn-lg">
   							<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Naspäť
 							</button>
 						</a>
-   </div>					
- </div>
- 
- <br>
- <br>
- <br>
- <br>
- <br>
- <br>
- <br>
- <br>
-              	
+   </div>
+   </div>
 
+</div>
+</div>					
 
-	
-</div>	
+<br>
+<br>
+<br>
 
 
 </section>
-                   @auth   
+
+@auth   
 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
 @endauth
 
-		<footer>
-			<div class="container">
-				<div class="row">
+<footer>
+	<div class="container">
+			  <div class="row">
 					<div class="col-lg-3">
 						<div class="widget">
 							<h5 class="widgetheading">Autori</h5>
@@ -246,12 +235,10 @@ Nenašli sa žiadne výsledky.
                         <br>
                         
                     </address>
-						</div>
-					</div>
-		
-			
-					
-			</div>
+			           </div>
+		            </div>
+	           </div>
+	</div>
 			<div id="sub-footer">
 				<div class="container">
 					<div class="row">
@@ -282,15 +269,13 @@ Nenašli sa žiadne výsledky.
 				</div>
 			</div>
 		</footer>
-
-	</div>
+</div>
 
 	<a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
 	<!-- javascript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
 	
-
 
 	<script src="{{ asset('js/jquery.js') }}"></script>
 	<script src="{{ asset('js/jquery.easing.1.3.js') }}"></script>
@@ -302,43 +287,8 @@ Nenašli sa žiadne výsledky.
 	<script src="{{ asset('js/portfolio/setting.js') }}"></script>
 	<script src="{{ asset('js/jquery.flexslider.js') }}"></script>
 	<script src="{{ asset('js/animate.js') }}"></script>
-	<script src="{{ asset('js/custom.js') }}"></script>
-	<script src="{{ asset('DataTables/DataTables-1.10.16/js/jquery.dataTables.js') }}"></script>
-	<script type="text/javascript" charset="utf8" src="{{ asset('DataTables/DataTables-1.10.16/js/dataTables.bootstrap4.js') }}"></script>	
-	<script type="text/javascript">
-        $(document).ready(function ()
-        {
-            $('#datatable').dataTable(
-            	{
-                 "language": {
-                 "sEmptyTable":     "Nie sú k dispozícii žiadne dáta",
-    			 "sInfo":           "Záznamy _START_ až _END_ z celkom _TOTAL_",
-    			 "sInfoEmpty":      "Záznamy 0 až 0 z celkom 0 ",
-    			 "sInfoFiltered":   "(vyfiltrované spomedzi _MAX_ záznamov)",
-    			 "sInfoPostFix":    "",
-   				 "sInfoThousands":  ",",
-    			 "sLengthMenu":     "Zobraz _MENU_ záznamov",
-    			 "sLoadingRecords": "Načítavam...",
-    			 "sProcessing":     "Spracúvam...",
-    			 "sSearch":         "Hľadať:",
-    			 "sZeroRecords":    "Nenašli sa žiadne vyhovujúce záznamy",
-    			 "oPaginate": {
-        		 "sFirst":    "Prvá",
-        		 "sLast":     "Posledná",
-        		 "sNext":     "Nasledujúca",
-       			 "sPrevious": "Predchádzajúca"
-   				 },
-    			"oAria": {
-        			"sSortAscending":  ": aktivujte na zoradenie stĺpca vzostupne",
-       			    "sSortDescending": ": aktivujte na zoradenie stĺpca zostupne"
-   						 }
-                }
-                } 
-                );
+	<script src="{{ asset('js/custom.js') }}"></script>	
 
-        });
-    </script>
 
 </body>
-
 </html>

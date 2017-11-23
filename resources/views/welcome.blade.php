@@ -418,7 +418,7 @@
 
 
 							<p>
-								<h2>Vyhľadávanie zamestnanca</h2>
+								<h2>Vyhľadávanie zamestnancov</h2>
 										
 							</p>
 
@@ -773,7 +773,7 @@
                        
 
                         <div class="form-group">
-                            <label for="email" class="col-md-4 control-label">Zamestnanec:</label>
+                            <label for="email" class="col-md-4 control-label">Zamestnanec (ID):</label>
 
                             <div class="col-md-6">
                                 
@@ -818,7 +818,7 @@
 						<form class="form-horizontal" method="POST" action="{{route('searchActivity')}}"> 
 
 						 <div class="form-group">
-                            <label for="email" class="col-md-4 control-label">Zamestnanec:</label>
+                            <label for="email" class="col-md-4 control-label">Zamestnanec (ID):</label>
 
                             <div class="col-md-6">
                                 
@@ -942,7 +942,7 @@
                        
 
                         <div class="form-group">
-                            <label for="email" class="col-md-4 control-label">Zamestnanec_ID:</label>
+                            <label for="email" class="col-md-4 control-label">Zamestnanec (ID):</label>
 
                             <div class="col-md-6">
                                 
@@ -982,10 +982,10 @@
 						
 					<div class="container">
 
-					<form class="form-horizontal" method="POST" action="{{route('searchEmployee')}}">     			
+					<form class="form-horizontal" method="POST" action="{{route('searchProject')}}">     			
 
 						<div class="form-group">
-                            <label for="email" class="col-md-4 control-label">Zamestnanec_ID:</label>
+                            <label for="email" class="col-md-4 control-label">Zamestnanec (ID):</label>
 
                             <div class="col-md-6">
                                 

@@ -15,9 +15,9 @@ class CreateProfileTable extends Migration
     {
         Schema::create('profile', function (Blueprint $table) {
             $table->integer('zamestnanec_id')->unsigned();
-            $table->text('description');
-            $table->text('consultation_hours');
-            $table->text('education');            
+            $table->text('description')->nullable();  
+            $table->text('consultation_hours')->nullable();  
+            $table->text('education')->nullable();             
             $table->timestamps();
         });
 

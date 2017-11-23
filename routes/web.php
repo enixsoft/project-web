@@ -204,15 +204,18 @@ Route::post('searchProject', array(       // treba oddelit okrem stlpcov aj jedn
 
     function() {
 
-      $stlpec1 = "Zamestnanec_ID";
-      $stlpec2 = "Názov";
-      $stlpec3 = "Rok Vydania";
-      $stlpec4 = "Registračné číslo";
+      $resultCategory="projects";
 
-      $variable1 = "zamestnanec_id";
-      $variable2 = "title";
+      $stlpec1 = "Názov";
+      $stlpec2 = "ID Zamestnanca";
+      $stlpec3 = "Od roku";
+      $stlpec4 = "Do roku";
+
+      $variable0 = "id";
+      $variable1 = "title";
+      $variable2 = "zamestnanec_id";
       $variable3 = "year_from";
-      $variable4 = "reg_number";
+      $variable4 = "year_end";
 
 
        $Zamestnanec = Input::get('zamestnanec');
@@ -223,7 +226,7 @@ Route::post('searchProject', array(       // treba oddelit okrem stlpcov aj jedn
 
 
 
-        $user = DB::table('projects') ->select('zamestnanec_id', 'title','year_from', 'reg_number')       // SQL query
+        $user = DB::table('projects') ->select('zamestnanec_id', 'id', 'title','year_from', 'year_end')       // SQL query
             ->where('zamestnanec_id', 'like','%'.$Zamestnanec.'%')
             ->where('title', 'like', '%'.$Title.'%')
             ->where('year_from', 'like', '%'.$Year_from.'%')
@@ -233,19 +236,9 @@ Route::post('searchProject', array(       // treba oddelit okrem stlpcov aj jedn
 
              
 
-         if(count($user)>0)
-        {
-            return view("searchresults2", compact('user', 'stlpec1', 'stlpec2', 'stlpec3', 'stlpec4', 'variable1', 
-              'variable2', 'variable3', 'variable4'));
-        }
+            return view("searchresults2", compact('user', 'stlpec1', 'stlpec2', 'stlpec3', 'stlpec4', 'variable0', 'variable1', 
+              'variable2', 'variable3', 'variable4', 'resultCategory'));
 
-        // return view('template', compact('user'));
-        else
-            {
-                 //return view("searchresults2", ['user' => $user]);
-               return view("searchresults2", compact('user', 'stlpec1', 'stlpec2', 'stlpec3', 'stlpec4', 'variable1', 
-              'variable2', 'variable3', 'variable4'));
-            }
     }
 
 
@@ -259,11 +252,14 @@ Route::post('searchEmployee', array(    // vyhlada zamestnanca
 
     function() {
 
+      $resultCategory="employees";
+      
       $stlpec1 = "Meno";
       $stlpec2 = "Katedra";
       $stlpec3 = "Fakulta";
       $stlpec4 = "Popis";
 
+      $variable0 = "id";
       $variable1 = "name";
       $variable2 = "department";
       $variable3 = "faculty";
@@ -277,7 +273,7 @@ Route::post('searchEmployee', array(    // vyhlada zamestnanca
 
 
 
-        $user = DB::table('zamestnanci') ->select('name', 'department','faculty', 'description')       // SQL query
+        $user = DB::table('zamestnanci') ->select('id', 'name', 'department','faculty', 'description')       // SQL query
             ->where('name', 'like','%'.$Name.'%')
             ->where('department', 'like', '%'.$Department.'%')
             ->where('faculty', 'like', '%'.$Faculty.'%')
@@ -287,19 +283,10 @@ Route::post('searchEmployee', array(    // vyhlada zamestnanca
 
              
 
-        if(count($user)>0)
-        {
-            return view("searchresults2", compact('user', 'stlpec1', 'stlpec2', 'stlpec3', 'stlpec4', 'variable1', 
-              'variable2', 'variable3', 'variable4'));
-        }
-
-        // return view('template', compact('user'));
-        else
-            {
-                 //return view("searchresults2", ['user' => $user]);
-               return view("searchresults2", compact('user', 'stlpec1', 'stlpec2', 'stlpec3', 'stlpec4', 'variable1', 
-              'variable2', 'variable3', 'variable4'));
-            }
+      
+               return view("searchresults2", compact('user', 'stlpec1', 'stlpec2', 'stlpec3', 'stlpec4', 'variable0', 'variable1', 
+              'variable2', 'variable3', 'variable4', 'resultCategory'));
+            
 
     }
 
@@ -314,18 +301,20 @@ Route::post('searchPublication', array(
     function() {
 
 
+       $resultCategory="publications";
+
      //   $stlpec1 = "Zamestnanec_ID";
 
-        $stlpec1 = "poradove ID";
+        $stlpec1 = "Názov";
         $stlpec2 = "ISBN";
-        $stlpec3 = "Názov";
+        $stlpec3 = "Autori";
         $stlpec4 = "Vydavateľ";
 
       //  $variable1 = "zamestnanec_id";
-
-        $variable1 = "id";
+        $variable0 = "id";
+        $variable1 = "title";
         $variable2 = "ISBN";
-        $variable3 = "title";
+        $variable3 = "all_authors";
         $variable4 = "publisher";
 
    //   $variable4 = "publisher";
@@ -343,7 +332,7 @@ Route::post('searchPublication', array(
 
 
 
-        $user = DB::table('publications') ->select('id', 'ISBN','title', 'all_authors')       // SQL query
+        $user = DB::table('publications') ->select('id', 'ISBN','title', 'all_authors', 'publisher')       // SQL query
             ->where('ISBN', 'like','%'.$isbn.'%')
             ->where('title', 'like', '%'.$Title.'%')
             ->where('sub_title', 'like', '%'.$Sub_title.'%')
@@ -358,19 +347,8 @@ Route::post('searchPublication', array(
 
              
 
-        if(count($user)>0)
-        {
-            return view("searchresults2", compact('user', 'stlpec1', 'stlpec2', 'stlpec3', 'stlpec4', 'variable1', 
-              'variable2', 'variable3', 'variable4'));
-        }
-
-        // return view('template', compact('user'));
-        else
-            {
-                 //return view("searchresults2", ['user' => $user]);
-               return view("searchresults2", compact('user', 'stlpec1', 'stlpec2', 'stlpec3', 'stlpec4', 'variable1', 
-              'variable2', 'variable3', 'variable4'));
-            }
+     return view("searchresults2", compact('user', 'stlpec1', 'stlpec2', 'stlpec3', 'stlpec4', 'variable0', 'variable1', 
+              'variable2', 'variable3', 'variable4', 'resultCategory'));
 
     }
 
@@ -384,11 +362,15 @@ Route::post('searchActivity', array(
 
     function() {
 
+      $resultCategory="activities";
+
+      
       $stlpec1 = "ID";
       $stlpec2 = "Dátum";
       $stlpec3 = "Typ";
       $stlpec4 = "Autori";
 
+      $variable0 = "id_aktivita";
       $variable1 = "ID";
       $variable2 = "date";
       $variable3 = "type";
@@ -406,7 +388,7 @@ Route::post('searchActivity', array(
 
 
 
-        $user = DB::table('activities') ->select('ID', 'date','type', 'all_authors')       // SQL query
+        $user = DB::table('activities') ->select('id_aktivita', 'ID', 'date','type', 'all_authors')       // SQL query
             ->where('zamestnanec_id', 'like','%'.$Zamestnanec_id.'%')
             ->where('date', 'like', '%'.$Date.'%')
             ->where('title', 'like', '%'.$Title.'%')
@@ -419,19 +401,9 @@ Route::post('searchActivity', array(
 
              
 
-        if(count($user)>0)
-        {
-            return view("searchresults2", compact('user', 'stlpec1', 'stlpec2', 'stlpec3', 'stlpec4', 'variable1', 
-              'variable2', 'variable3', 'variable4'));
-        }
+         return view("searchresults2", compact('user', 'stlpec1', 'stlpec2', 'stlpec3', 'stlpec4', 'variable0', 'variable1', 
+              'variable2', 'variable3', 'variable4', 'resultCategory'));
 
-        // return view('template', compact('user'));
-        else
-            {
-                 //return view("searchresults2", ['user' => $user]);
-               return view("searchresults2", compact('user', 'stlpec1', 'stlpec2', 'stlpec3', 'stlpec4', 'variable1', 
-              'variable2', 'variable3', 'variable4'));
-            }
 
     }
 
@@ -502,18 +474,37 @@ Route::post('/insert_user_info', 'UserController@store')->name('insert_user_info
 // tato funkcia nas prehodi do osobneho profilu usera, kde mozeme upravovat data
 
 
-Route::get('/publications', 'PublicationsController@getview')->name('publications');
+Route::get('/publications', 'PublicationController@getview')->name('publications');
 
-Route::get('/activities', 'ActivitiesController@getview')->name('activities');
-
-
+Route::get('/activities', 'ActivityController@getview')->name('activities');
 
 
 
-Route::get('/details/{internalId}', ['as' => 'details', 'uses' => 'UserController@detail_about_record']);   // funkcia na rozkliknutie zaznamu z tabulky
+
+
+Route::get('/details/{internalId}', ['as' => 'details', 'uses' => 'UserController@detail_about_record']);
+   // funkcia na rozkliknutie zaznamu z tabulky
+
 
 
 Route::post('/update_data_record', 'UserController@update_record')->name('update_data_record');
 // tato funkcia bude upravovat zaznamy z tabuliek Publikacie, Projekty, Aktivity
+
+//-----------------------------------------------------------------------------------------------------------
+
+Route::get('/employees/{internalId}', ['as' => 'details', 'uses' => 'EmployeeController@detail_about_record']);
+Route::post('/employees/EmployeeController@update_record', 'EmployeeController@update_record')->name('update_data_record');
+
+
+Route::get('/publications/{internalId}', ['as' => 'details', 'uses' => 'PublicationController@detail_about_record']);
+Route::post('/publications/PublicationController@update_record', 'PublicationController@update_record')->name('update_data_record');
+
+Route::get('/activities/{internalId}', ['as' => 'details', 'uses' => 'ActivityController@detail_about_record']);
+Route::post('/activities/ActivityController@update_record', 'ActivityController@update_record')->name('update_data_record');
+
+
+Route::get('/projects/{internalId}', ['as' => 'details', 'uses' => 'ProjectController@detail_about_record']);
+Route::post('/projects/ProjectController@update_record', 'ProjectController@update_record')->name('update_data_record');
+
 
 

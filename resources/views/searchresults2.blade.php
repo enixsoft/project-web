@@ -67,8 +67,11 @@
 								
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false"><img src="{{ asset('img/user.png') }}"></a>
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">{{ Auth::user()->username }}</a>				
-								<ul class="dropdown-menu">
-									<li><a href="{{URL::to('profile')}}"><b>Profil</b></a></li>
+								<ul class="dropdown-menu">									
+									<li><a href="{{ route('profile') }}"><b>Profil</b></a></li>
+									<li><a href="{{ route('publications') }}"><b>Publikácie</b></a></li>
+                                   	<li><a href="{{ route('projects') }}"><b>Projekty</b></a></li>
+									<li><a href="{{ route('activities') }}"><b>Aktivity</b></a></li>								
 									<li><a href="components.html"><b>Nastavenia</b></a></li>
 									<li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><b>Odhlásiť sa</b></a></li>
 								</ul>
@@ -142,10 +145,11 @@
                    @foreach ($user as $z)
                       <tr>                
                           
-                            <td>{{object_get($z, $variable1) }}</td>
-                            <td>{{object_get($z, $variable2) }}</td>
-                            <td>{{object_get($z, $variable3) }}</td>
-                            <td>{{object_get($z, $variable4) }}</td>                      
+                            <td> <a href="{{ url('/') }}/{{ $resultCategory }}/{{ $z->$variable0 }}">{{ $z->$variable1 }}</a></td>            
+                            <td>{{ $z->$variable2 }}</td>
+                            <td>{{ $z->$variable3 }}</td>
+                            <td>{{ $z->$variable4 }}</td>
+                                                
 
                     </tr>
                     @endforeach

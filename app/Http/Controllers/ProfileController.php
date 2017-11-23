@@ -15,7 +15,7 @@ class ProfileController extends Controller
         $user = Auth::user();
         $profile = DB::table('profile')->select('profile.zamestnanec_id','profile.description','profile.consultation_hours', 'profile.education')->where('profile.zamestnanec_id', '=', $user->zamestnanec_id)
             ->first();
-        return view("user_profile_web", ['profile' => $profile]);
+        return view("profile", ['profile' => $profile]);
     }
 
 }
