@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use Auth;
 
+use App\Models\Publications;
+
+
 use Validator;
 
 use Redirect;
@@ -128,12 +131,121 @@ class UserController extends Controller
          
      }
 
+
+    public function detail_about_record($over_id)
+    {
+
+        //$previous_room = url()->previous();
+
+      // switch ($previous_room) {
+
+     //  case 'http://localhost/project-web/public/'.'publications':
+                
+            $nazov_popisu = "Publikácie";
+            $tabulka = 'publications';
+
+
+            $stlpec1 = "ID záznamu";
+            $stlpec2 = "Názov";
+            $stlpec3 = "Všetci autori"; 
+
+            $premenna1 = "id";
+            $premenna2 = "title";
+            $premenna3 = "all_authors";        //  break;
+/*
+        case 'http://localhost/project-web/public/'.'projects';
+
+           
+            $nazov_popisu = "Projekty";
+            $tabulka = 'projects';
+
+            $stlpec1 = "ID projektu";
+            $stlpec2 = "Názov";
+            $stlpec3 = "Rok Vydania"; 
+
+            $premenna1 = "id";
+            $premenna2 = "title";
+            $premenna3 = "year_from";  break;
+
+            default:
+                
+                return view("details_of_record");
+                break;
+        }
+*/
+
+
+    
+            $zaznam = DB::table("publications")
+            ->where('id', '=', $over_id)
+            ->get();
+        
+
+
+        if(count($zaznam)>0)
+        {        
+          return view("details_of_record", compact('zaznam', 'nazov_popisu', 'stlpec1', 'stlpec2', 'stlpec3', 'premenna1', 'premenna2', 'premenna3'));
+        }
+
+        else
+        {
+          
+         return view("details_of_record", compact('zaznam', 'nazov_popisu', 'stlpec1', 'stlpec2', 'stlpec3', 'premenna1', 'premenna2', 'premenna3'));
+          //  dd($profile->ISBN);
+        }
+    }
+
+
+
+    public function update_record(Request $request)
+    {
+        //$previous_room = url()->previous();
+
+          $validator = Validator::make($request->all(), [
+            'textarea_one_id_record' => 'required|string|min:2|max:750',        //set it to whatever you like
+            'textarea_two' => 'required|string|min:2|max:750',
+            'textarea_three' =>  'required|string|min:2|max:750'
+        ]);
+
+
+  //      switch ($previous_room) {
+
+    //    case 'http://localhost/project-web/public/'.'publications':
+
+          DB::table('publications')
+            ->where('publications.id', '=', $request->get('textarea_one_id_record'))
+            ->update(['publications.id' => $request->get('textarea_one_id_record'), 'publications.title' => $request->get('textarea_two'), 'publications.all_authors' => $request->get('textarea_three')]);
+/*
+        break;
+
+         case 'http://localhost/project-web/public/'.'projects':
+
+
+          DB::table('projects')
+            ->where('projects.id', '=', $request->get('textarea_one_id_record'))
+            ->update(['projects.id' => $request->get('textarea_one_id_record'), 'projects.title' => $request->get('textarea_two'), 'projects.year_from' => $request->get('textarea_three')]);
+
+        break;
+        
+         */
+
+
+     //   }   
+
+
+       return Redirect::back();
+}
+
+
+   
+
     
 
 
 
+       
+
+
+
+
 }
-
-
-
-

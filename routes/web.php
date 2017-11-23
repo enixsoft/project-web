@@ -313,15 +313,22 @@ Route::post('searchPublication', array(
 
     function() {
 
-      $stlpec1 = "ISBN";
-      $stlpec2 = "Popis";
-      $stlpec3 = "Všetci autori";
-      $stlpec4 = "Popis";
 
-      $variable1 = "ISBN";
-      $variable2 = "title";
-      $variable3 = "all_authors";
-      $variable4 = "publisher";
+     //   $stlpec1 = "Zamestnanec_ID";
+
+        $stlpec1 = "poradove ID";
+        $stlpec2 = "ISBN";
+        $stlpec3 = "Názov";
+        $stlpec4 = "Vydavateľ";
+
+      //  $variable1 = "zamestnanec_id";
+
+        $variable1 = "id";
+        $variable2 = "ISBN";
+        $variable3 = "title";
+        $variable4 = "publisher";
+
+   //   $variable4 = "publisher";
 
 
        $isbn = Input::get('ISBN');
@@ -336,7 +343,7 @@ Route::post('searchPublication', array(
 
 
 
-        $user = DB::table('publications') ->select('ISBN', 'title','all_authors', 'publisher')       // SQL query
+        $user = DB::table('publications') ->select('id', 'ISBN','title', 'all_authors')       // SQL query
             ->where('ISBN', 'like','%'.$isbn.'%')
             ->where('title', 'like', '%'.$Title.'%')
             ->where('sub_title', 'like', '%'.$Sub_title.'%')
@@ -477,18 +484,36 @@ Route::post('insert_user_info', array(
     Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
     Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 */
+
+
+
     
 Route::auth();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
 Route::get('/profile', 'ProfileController@getview')->name('profile');
 
 Route::get('/projects', 'ProjectController@getview')->name('projects');
 
-Route::post('/insert_user_info', 'UserController@store')->name('insert_user_info');
+Route::post('/insert_user_info', 'UserController@store')->name('insert_user_info');   
+
+// tato funkcia nas prehodi do osobneho profilu usera, kde mozeme upravovat data
 
 
 Route::get('/publications', 'PublicationsController@getview')->name('publications');
 
 Route::get('/activities', 'ActivitiesController@getview')->name('activities');
+
+
+
+
+
+Route::get('/details/{internalId}', ['as' => 'details', 'uses' => 'UserController@detail_about_record']);   // funkcia na rozkliknutie zaznamu z tabulky
+
+
+Route::post('/update_data_record', 'UserController@update_record')->name('update_data_record');
+// tato funkcia bude upravovat zaznamy z tabuliek Publikacie, Projekty, Aktivity
+
+
