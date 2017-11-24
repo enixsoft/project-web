@@ -508,3 +508,4 @@ Route::post('/projects/ProjectController@update_record', 'ProjectController@upda
 
 
 
+Route::get('bar-chart', 'ChartController@index')->name('bar-chart');
