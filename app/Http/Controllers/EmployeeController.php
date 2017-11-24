@@ -12,7 +12,7 @@ use App\Models\Publications;
 
 use Validator;
 
-use Redirect;
+
 
 use DB;             // added due to using in function
 
