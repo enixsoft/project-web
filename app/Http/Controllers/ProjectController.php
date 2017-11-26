@@ -110,15 +110,33 @@ class ProjectController extends Controller
             //'textarea_three' =>  'required|string|min:2|max:750'
         ]);
 
+       $textAreas =  array ($textarea1 = $request->get('textarea1'),       
+       $textarea2 = $request->get('textarea2'), 
+       $textarea3 = $request->get('textarea3'),
+       $textarea4 = $request->get('textarea4')
+                            );
 
-  //      switch ($previous_room) {
 
-    //    case 'http://localhost/project-web/public/'.'publications':
+     //NULL znefunkcni vyhladavanie 
+
+      foreach ($textAreas as $key => &$value) 
+       {
+                      
+              if (is_null($value)) 
+               {
+                  $value = "";
+        
+               }
+        
+       }
+
+
+  
 
           DB::table('projects')
             ->where('projects.id', '=', $request->get('id'))
-            ->update(['projects.id' => $request->get('id'), 'projects.title' => $request->get('textarea1'), 'projects.year_from' => $request->get('textarea2'),
-              'projects.year_end' => $request->get('textarea3'), 'projects.reg_number' => $request->get('textarea4')
+            ->update(['projects.id' => $request->get('id'), 'projects.title' => $textAreas[0], 'projects.year_from' => $textAreas[1],
+              'projects.year_end' => $textAreas[2], 'projects.reg_number' => $textAreas[3]
 
 
 

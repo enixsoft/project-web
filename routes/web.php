@@ -506,5 +506,9 @@ Route::post('/activities/ActivityController@update_record', 'ActivityController@
 Route::get('/projects/{internalId}', ['as' => 'details', 'uses' => 'ProjectController@detail_about_record']);
 Route::post('/projects/ProjectController@update_record', 'ProjectController@update_record')->name('update_data_record');
 
+Route::post('/projects/ProfileController@update_record', 'ProfileController@update_record')->name('update_data_record');
+
+
+
 
 
