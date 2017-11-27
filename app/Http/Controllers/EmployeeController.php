@@ -82,6 +82,110 @@ class EmployeeController extends Controller
 
 
 
+     public function get_employee_publications($over_id)
+    {
+
+        $resultCategory="publications";    
+        
+
+        $stlpec1 = "Názov";
+        $stlpec2 = "ISBN";
+        $stlpec3 = "Autori";
+        $stlpec4 = "Vydavateľ";
+
+      //  $variable1 = "zamestnanec_id";
+        $variable0 = "id";
+        $variable1 = "title";
+        $variable2 = "ISBN";
+        $variable3 = "all_authors";
+        $variable4 = "publisher";
+
+   //   $variable4 = "publisher";
+
+
+
+        $user = DB::table('publications') ->select('id', 'ISBN','title', 'all_authors', 'publisher')       // SQL query
+            ->where('zamestnanec_id', '=', $over_id)
+            ->get();
+           
+
+             
+
+     return view("searchresults2", compact('user', 'stlpec1', 'stlpec2', 'stlpec3', 'stlpec4', 'variable0', 'variable1', 
+              'variable2', 'variable3', 'variable4', 'resultCategory'));
+        
+    }
+
+    public function get_employee_projects($over_id)
+    {
+
+      $resultCategory="projects";
+
+      $stlpec1 = "Názov";
+      $stlpec2 = "ID Zamestnanca";
+      $stlpec3 = "Od roku";
+      $stlpec4 = "Do roku";
+
+      $variable0 = "id";
+      $variable1 = "title";
+      $variable2 = "zamestnanec_id";
+      $variable3 = "year_from";
+      $variable4 = "year_end";
+
+
+
+
+        $user = DB::table('projects') ->select('zamestnanec_id', 'id', 'title','year_from', 'year_end')       // SQL query
+            ->where('zamestnanec_id', '=', $over_id)   
+            ->get();
+           
+
+             
+
+            return view("searchresults2", compact('user', 'stlpec1', 'stlpec2', 'stlpec3', 'stlpec4', 'variable0', 'variable1', 
+              'variable2', 'variable3', 'variable4', 'resultCategory'));
+        
+    }
+
+
+        public function get_employee_activities($over_id)
+    {
+
+      $resultCategory="activities";
+
+       
+      $stlpec1 = "ID";
+      $stlpec2 = "Dátum";
+      $stlpec3 = "Typ";
+      $stlpec4 = "Autori";
+
+      $variable0 = "id_aktivita";
+      $variable1 = "ID";
+      $variable2 = "date";
+      $variable3 = "type";
+      $variable4 = "all_authors";
+
+
+
+        $user = DB::table('activities') ->select('id_aktivita', 'ID', 'date','type', 'all_authors')       // SQL query
+            ->where('zamestnanec_id', '=', $over_id)   
+            ->get();
+           
+           
+
+             
+
+         return view("searchresults2", compact('user', 'stlpec1', 'stlpec2', 'stlpec3', 'stlpec4', 'variable0', 'variable1', 
+              'variable2', 'variable3', 'variable4', 'resultCategory'));
+        
+    }
+
+
+
+
+
+
+
     public function update_record(Request $request)
     {
         //$previous_room = url()->previous();

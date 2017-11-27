@@ -148,9 +148,9 @@
 				</div>
                 <div class="navbar-collapse collapse">
                             <ul class="nav navbar-nav">                           
-                            <li><a href="{{ url('/') }}"><b>Publikácie</b></a></li>                       
-                            <li><a href="{{ url('portfolio') }}"><b>Projekty</b></a></li>                                                                        
-                            <li><a href="{{ url('portfolio') }}"><b>Aktivity</b></a></li>  
+                            <li><a href="{{ url('/')}}/employees/{{ $premenna0 }}/publications"><b>Zamestnancove publikácie</b></a></li>                                                              
+                            <li><a href="{{ url('/')}}/employees/{{ $premenna0 }}/projects"><b>Zamestnancove projekty</b></a></li>                                                                        
+                            <li><a href="{{ url('/')}}/employees/{{ $premenna0 }}/activities"><b>Zamestnancove aktivity</b></a></li>  
                         </ul>
 
                     </div>
@@ -382,7 +382,7 @@
 
    <div class="form-group">
    <div class="col-md-8 col-md-offset-5">
-                        <a href="{{ url('/') }}"> 
+                        <a href="{{ url()->previous() }}"> 
                             <button type="button" style="height:40px; width:250px" class="btn btn-default btn-lg">
   							<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Naspäť
 							</button>

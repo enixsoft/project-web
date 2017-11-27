@@ -493,6 +493,11 @@ Route::post('/update_data_record', 'UserController@update_record')->name('update
 //-----------------------------------------------------------------------------------------------------------
 
 Route::get('/employees/{internalId}', ['as' => 'details', 'uses' => 'EmployeeController@detail_about_record']);
+
+Route::get('/employees/{internalId}/publications', ['as' => 'details', 'uses' => 'EmployeeController@get_employee_publications']);
+Route::get('/employees/{internalId}/projects', ['as' => 'details', 'uses' => 'EmployeeController@get_employee_projects']);
+Route::get('/employees/{internalId}/activities', ['as' => 'details', 'uses' => 'EmployeeController@get_employee_activities']);
+
 Route::post('/employees/EmployeeController@update_record', 'EmployeeController@update_record')->name('update_data_record');
 
 
@@ -501,7 +506,6 @@ Route::post('/publications/PublicationController@update_record', 'PublicationCon
 
 Route::get('/activities/{internalId}', ['as' => 'details', 'uses' => 'ActivityController@detail_about_record']);
 Route::post('/activities/ActivityController@update_record', 'ActivityController@update_record')->name('update_data_record');
-
 
 Route::get('/projects/{internalId}', ['as' => 'details', 'uses' => 'ProjectController@detail_about_record']);
 Route::post('/projects/ProjectController@update_record', 'ProjectController@update_record')->name('update_data_record');
