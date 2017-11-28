@@ -217,7 +217,7 @@ class ChartController extends Controller
                 $count_jazykove_centrum++;
             }
 
-            else if($element->department == "FF - Katedra  translatológie")
+            else if($element->department == "FF - Katedra  translatológie")
             {
                 $count_translatologia++;
             }
@@ -488,8 +488,6 @@ class ChartController extends Controller
         $count_doktorandske_studium_fss = 0;
 
 
-
-
         foreach($all_users as $element)
         {
             if($element->department == "FSŠ - Dekanát FSŠ")
@@ -502,7 +500,7 @@ class ChartController extends Controller
                 $count_ruch++;
             }
 
-            else if($element->department == "FSŠ - Ústav maď.jazykovedy  a lit. vedy")
+            else if($element->department == "FSŠ - Ústav maď.jazykovedy  a lit. vedy")
             {
                 $count_jazykoveda++;
             }
@@ -523,8 +521,6 @@ class ChartController extends Controller
             }
 
         }
-
-
 
         return view('statistics_fss_faculty', compact('count_dekanat_fss', 'count_ruch', 'count_jazykoveda', 'count_vzdelavanie', 'count_jazyk', 'count_doktorandske_studium_fss'));
     }
