@@ -126,8 +126,8 @@ canvas
         
         
             <div class="graph">
-                <div align="center">
-            <h1> Štatistika zamestnancov Fakulty prírodných Vied </h1>
+              <div align="center">
+            <h1> Štatistika zamestnancov Pedagogickej Fakulty </h1>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
 
             <div style="width: 600px; height: 600px">
@@ -143,18 +143,16 @@ canvas
 <script>
 var canvasP = document.getElementById("pieChart");
 
-   var dekanat = {!! json_encode($count_dekanat) !!};
-   var botanika = {!! json_encode($count_botanika) !!};
-   var chemia = {!! json_encode($count_chemia)!!};
-   var ekologia = {!! json_encode($count_ekologia)!!};
-   var fyzika = {!! json_encode($count_fyzika) !!};
-   var geografia = {!! json_encode($count_geografia) !!};
-   var inf_technologie = {!! json_encode($count_inf_techn)!!};
-   var matika = {!! json_encode($count_matika)!!};
-   var zoologia = {!! json_encode($count_zoologia) !!};
-   var ekonomika = {!! json_encode($count_ekonomika) !!};
-   var gemologicky_ustav = {!! json_encode($count_gemologicky_ustav)!!};
+   var dekanat_pf = {!! json_encode($count_dekanat_pf) !!};
+   var hudba = {!! json_encode($count_hudba) !!};
+   var studie = {!! json_encode($count_studie)!!};
+   var psychologia = {!! json_encode($count_psychologia)!!};
+   var pedagogika = {!! json_encode($count_pedagogika) !!};
+   var technika = {!! json_encode($count_technika) !!};
+   var sport = {!! json_encode($count_sport)!!};
+   var vychova = {!! json_encode($count_vychova)!!};
    var doktorandske_studium = {!! json_encode($count_doktorandske_studium)!!};
+   
   
 
 
@@ -167,10 +165,10 @@ var canvasP = document.getElementById("pieChart");
    
    title: { text: 'Mychart'},
    data: {
-      labels: ["FPV - Dekanát Fakulty prírodných vied", "FPV - Katedra botaniky a genetiky", "FPV - Katedra chémie", "FPV - Katedra ekológie a environment.", "FPV - Katedra fyziky", "FPV - Katedra geografie a reg. rozvoja", "FPV - Katedra informatiky", "FPV - Katedra matematiky", "FPV - Katedra zoológie a antropológie", "FPV - Ústav  ekonomiky a manažmentu", "FPV - Gemologický ústav", "FPV - doktorandské štúdium"],
+      labels: ["PF - Dekanát Pedagogickej fakulty", "PF - Katedra hudby", "PF - Katedra lingvodid.a interkult.štúdi", "PF - Katedra pedag. a škol. psychológie", "PF - Katedra pedagogiky", "PF - Katedra techniky a inf. technológií", "PF - Katedra telesnej výchovy a športu", "PF - Katedra výtvarnej tvorby a výchovy", "PF - doktorandské štúdium"],
       datasets: [{
-         data: [dekanat, botanika, chemia, ekologia, fyzika, geografia, inf_technologie, matika, zoologia, ekonomika, gemologicky_ustav, doktorandske_studium],
-         backgroundColor: ["#2196F3", "#F44336", "#FFC107", "#8D7373", "#F08080", "#E0FFFF", "#FF00FF", "#DAA520", "#4B0082", "#FF69B4", "#20B2AA ", "#800000"],
+         data: [dekanat_pf, hudba, studie, psychologia, pedagogika, technika, sport, vychova, doktorandske_studium ],
+         backgroundColor: ["#2196F3", "#F44336", "#FFC107", "#8D7373", "#F08080", "#E0FFFF", "#FF00FF", "#DAA520", "#4B0082"],
         // hoverBackgroundColor: ["#B2EBF2", "#FFCCBC", "#4DD0E1", "#FF8A65", "#00BCD4"]
       }]
    },
@@ -227,7 +225,8 @@ canvasP.onclick = function(e) {
 }
 </script>
     
-       </div>
+    </div>
+       
 
 
         

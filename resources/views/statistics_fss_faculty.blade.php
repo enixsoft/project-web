@@ -126,8 +126,8 @@ canvas
         
         
             <div class="graph">
-                <div align="center">
-            <h1> Štatistika zamestnancov Fakulty prírodných Vied </h1>
+              <div align="center">
+            <h1> Štatistika zamestnancov Fakulty Stredoeurópskych Štúdií </h1>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
 
             <div style="width: 600px; height: 600px">
@@ -143,22 +143,13 @@ canvas
 <script>
 var canvasP = document.getElementById("pieChart");
 
-   var dekanat = {!! json_encode($count_dekanat) !!};
-   var botanika = {!! json_encode($count_botanika) !!};
-   var chemia = {!! json_encode($count_chemia)!!};
-   var ekologia = {!! json_encode($count_ekologia)!!};
-   var fyzika = {!! json_encode($count_fyzika) !!};
-   var geografia = {!! json_encode($count_geografia) !!};
-   var inf_technologie = {!! json_encode($count_inf_techn)!!};
-   var matika = {!! json_encode($count_matika)!!};
-   var zoologia = {!! json_encode($count_zoologia) !!};
-   var ekonomika = {!! json_encode($count_ekonomika) !!};
-   var gemologicky_ustav = {!! json_encode($count_gemologicky_ustav)!!};
-   var doktorandske_studium = {!! json_encode($count_doktorandske_studium)!!};
-  
-
-
-    
+   var dekanat_fss = {!! json_encode($count_dekanat_fss) !!};
+   var ruch = {!! json_encode($count_ruch) !!};
+   var jazykoveda = {!! json_encode($count_jazykoveda) !!};
+   var vzdelavanie = {!! json_encode($count_vzdelavanie) !!};
+   var jazyk = {!! json_encode($count_jazyk) !!};
+   var doktorandske_studium = {!! json_encode($count_doktorandske_studium) !!};
+   
 
    var ctxP = canvasP.getContext('2d');
    var myPieChart = new Chart(ctxP, {
@@ -167,10 +158,10 @@ var canvasP = document.getElementById("pieChart");
    
    title: { text: 'Mychart'},
    data: {
-      labels: ["FPV - Dekanát Fakulty prírodných vied", "FPV - Katedra botaniky a genetiky", "FPV - Katedra chémie", "FPV - Katedra ekológie a environment.", "FPV - Katedra fyziky", "FPV - Katedra geografie a reg. rozvoja", "FPV - Katedra informatiky", "FPV - Katedra matematiky", "FPV - Katedra zoológie a antropológie", "FPV - Ústav  ekonomiky a manažmentu", "FPV - Gemologický ústav", "FPV - doktorandské štúdium"],
+      labels: ["FSŠ - Dekanát FSŠ", "FSŠ - Katedra cestovného ruchu", "FSŠ - Ústav maď.jazykovedy  a lit. vedy", "FSŠ - ústav pre vzdelávanie pedagógov", "FSŠ - Ústav stredoeur.jazykov a kultúr", "FSŠ - doktorandské štúdium"],
       datasets: [{
-         data: [dekanat, botanika, chemia, ekologia, fyzika, geografia, inf_technologie, matika, zoologia, ekonomika, gemologicky_ustav, doktorandske_studium],
-         backgroundColor: ["#2196F3", "#F44336", "#FFC107", "#8D7373", "#F08080", "#E0FFFF", "#FF00FF", "#DAA520", "#4B0082", "#FF69B4", "#20B2AA ", "#800000"],
+         data: [dekanat_fss, ruch, jazykoveda, vzdelavanie, jazyk, doktorandske_studium],
+         backgroundColor: ["#2196F3", "#F44336", "#FFC107", "#8D7373", "#F08080", "#E0FFFF"],
         // hoverBackgroundColor: ["#B2EBF2", "#FFCCBC", "#4DD0E1", "#FF8A65", "#00BCD4"]
       }]
    },
@@ -227,7 +218,7 @@ canvasP.onclick = function(e) {
 }
 </script>
     
-       </div>
+   </div>    
 
 
         

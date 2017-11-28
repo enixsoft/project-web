@@ -124,8 +124,9 @@ canvas
         <br>
         <br>
         
-        
+            
             <div class="graph">
+            <div align="center">
             <h1> Štatistika zamestnancov UKF, podľa rozdelenia fakúlt </h1>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
 
@@ -137,7 +138,8 @@ canvas
               
 
                    
-          
+
+        
 
 <script>
 var canvasP = document.getElementById("pieChart");
@@ -187,14 +189,36 @@ canvasP.onclick = function(e) {
         break;
 
       case 'Filozofická fakulta':
-         alert('clicked on slice 6');
-         window.load('www.example.com/bar');
+         // alert('clicked on slice 6');
+         // window.load('www.example.com/bar');
+       var url = "{{ route('stastistics-ff')}}";
+       window.location.replace(url);
          break;
-      // add rests ...
+
+      case 'Pedagogická fakulta':
+         // alert('clicked on slice 6');
+         // window.load('www.example.com/bar');
+       var url = "{{ route('stastistics-pf')}}";
+       window.location.replace(url);
+         break;
+
+       case 'Fakulta stredoeurópskych Štúdií':
+         // alert('clicked on slice 6');
+         // window.load('www.example.com/bar');
+       var url = "{{ route('stastistics-fss')}}";
+       window.location.replace(url);
+         break;
+
+      case 'Fakulta sociál.vied a zdravotníctva':
+         // alert('clicked on slice 6');
+         // window.load('www.example.com/bar');
+       var url = "{{ route('stastistics-fsvz')}}";
+       window.location.replace(url);
+         break;
    }
 }
 </script>
-    
+   </div> 
        
 
 

@@ -127,7 +127,7 @@ canvas
         
             <div class="graph">
                 <div align="center">
-            <h1> Štatistika zamestnancov Fakulty prírodných Vied </h1>
+            <h1> Štatistika zamestnancov Filozofickej Fakulty </h1>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
 
             <div style="width: 600px; height: 600px">
@@ -143,18 +143,32 @@ canvas
 <script>
 var canvasP = document.getElementById("pieChart");
 
-   var dekanat = {!! json_encode($count_dekanat) !!};
-   var botanika = {!! json_encode($count_botanika) !!};
-   var chemia = {!! json_encode($count_chemia)!!};
-   var ekologia = {!! json_encode($count_ekologia)!!};
-   var fyzika = {!! json_encode($count_fyzika) !!};
-   var geografia = {!! json_encode($count_geografia) !!};
-   var inf_technologie = {!! json_encode($count_inf_techn)!!};
-   var matika = {!! json_encode($count_matika)!!};
-   var zoologia = {!! json_encode($count_zoologia) !!};
-   var ekonomika = {!! json_encode($count_ekonomika) !!};
-   var gemologicky_ustav = {!! json_encode($count_gemologicky_ustav)!!};
+   var dekanat_ff = {!! json_encode($count_dekanat_ff) !!};
+   var jazykove_centrum = {!! json_encode($count_jazykove_centrum) !!};
+   var translatologia = {!! json_encode($count_translatologia)!!};
+   var anglistika = {!! json_encode($count_anglistika)!!};
+   var archeologia = {!! json_encode($count_archeologia) !!};
+   var etnologia = {!! json_encode($count_etnologia) !!};
+   var filozofia = {!! json_encode($count_filozofia)!!};
+   var germanistika = {!! json_encode($count_germanistika)!!};
+   var historia = {!! json_encode($count_historia) !!};
+   var kulturologia = {!! json_encode($count_kulturologia) !!};
+   var manazment = {!! json_encode($count_manazment)!!};
+   var reklama = {!! json_encode($count_reklama)!!};
+   var muzeologia = {!! json_encode($count_muzeologia) !!};
+   var nabozenstvo = {!! json_encode($count_nabozenstvo) !!};
+   var politologia = {!! json_encode($count_politologia)!!};
+   var romanistika = {!! json_encode($count_romanistika)!!};
+   var rusistika = {!! json_encode($count_rusistika) !!};
+   var literatura = {!! json_encode($count_literatura) !!};
+   var sociologia = {!! json_encode($count_sociologia)!!};
+   var etiketa = {!! json_encode($count_etiketa)!!};
+   var zurnalistika = {!! json_encode($count_zurnalistika)!!};
+   var komunikacia = {!! json_encode($count_komunikacia)!!};
+   var metoda = {!! json_encode($count_metoda) !!};
+   var medialne_centrum = {!! json_encode($count_medialne_centrum) !!};
    var doktorandske_studium = {!! json_encode($count_doktorandske_studium)!!};
+   
   
 
 
@@ -167,10 +181,10 @@ var canvasP = document.getElementById("pieChart");
    
    title: { text: 'Mychart'},
    data: {
-      labels: ["FPV - Dekanát Fakulty prírodných vied", "FPV - Katedra botaniky a genetiky", "FPV - Katedra chémie", "FPV - Katedra ekológie a environment.", "FPV - Katedra fyziky", "FPV - Katedra geografie a reg. rozvoja", "FPV - Katedra informatiky", "FPV - Katedra matematiky", "FPV - Katedra zoológie a antropológie", "FPV - Ústav  ekonomiky a manažmentu", "FPV - Gemologický ústav", "FPV - doktorandské štúdium"],
+      labels: ["FF - Dekanát Filozofickej fakulty", "FF - Jazykové centrum", "FF - Katedra  translatológie", "FF - Katedra anglistiky a amerikanistiky", "FF - Katedra archeológie", "FF - Katedra etnológie a folkloristiky", "FF - Katedra filozofie", "FF - Katedra germanistiky", "FF - Katedra histórie", "FF - Katedra kulturológie", "FF - Katedra manažmentu kult.a turizmu", "FF - Katedra masm. komunikácie a reklamy", "FF - Katedra muzeológie", "FF - Katedra náboženských štúdií", "FF - Katedra politológie a euroáz.štúdií", "FF - Katedra romanistiky", "FF - Katedra rusistiky", "FF - Katedra slovenského jazyka a litera", "FF - Katedra sociológie", "FF - Katedra všeob. a aplikovanej etiky", "FF - Katedra žurnalistiky", "FF - Ústav lit. a umeleckej komunikácie", "FF - Ústav pre v. k. d. Konšt. a Metoda", "FF - Mediálne centrum", "FF - doktorandské štúdium" ],
       datasets: [{
-         data: [dekanat, botanika, chemia, ekologia, fyzika, geografia, inf_technologie, matika, zoologia, ekonomika, gemologicky_ustav, doktorandske_studium],
-         backgroundColor: ["#2196F3", "#F44336", "#FFC107", "#8D7373", "#F08080", "#E0FFFF", "#FF00FF", "#DAA520", "#4B0082", "#FF69B4", "#20B2AA ", "#800000"],
+         data: [dekanat_ff, jazykove_centrum, translatologia, anglistika, archeologia, etnologia, filozofia, germanistika, historia, kulturologia, manazment, reklama, muzeologia, nabozenstvo, politologia, romanistika, rusistika, literatura, sociologia, etiketa, zurnalistika, komunikacia, metoda, medialne_centrum, doktorandske_studium],
+         backgroundColor: ["#2196F3", "#F44336", "#FFC107", "#8D7373", "#F08080", "#E0FFFF", "#FF00FF", "#DAA520", "#4B0082", "#FF69B4", "#20B2AA ", "#800000", "#0000CD", "#3CB371 ", "#BA55D3", "#6B8E23", "#FA8072 ", "#87CEEB", "#9ACD32", "#000000", "#40E0D0", "#00FF00", "#F0E68C", "#2F4F4F", "#BDB76B"],
         // hoverBackgroundColor: ["#B2EBF2", "#FFCCBC", "#4DD0E1", "#FF8A65", "#00BCD4"]
       }]
    },
@@ -227,7 +241,7 @@ canvasP.onclick = function(e) {
 }
 </script>
     
-       </div>
+      </div> 
 
 
         
