@@ -69,7 +69,30 @@ canvas
                         
                      </div>
                                     
-                        
+                    @guest
+                    <div class="navbar-collapse collapse">                      
+                            
+                        <ul class="nav navbar-nav" style="float:right;">    
+                                                                
+                            <li class="dropdown">
+                                
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false"><img src="{{ asset('img/statistiky.jpg') }}"></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">Klik pre štatistiky</a>   
+                                    
+                                <ul class="dropdown-menu">  
+                                                                
+                                    <li><a href="{{ route('bar-chart') }}"><b>Podľa fakulty</b></a></li>
+                                    <li><a href="{{ route('bar-chart2') }}"><b>Podľa pozície</b></a></li>
+                                    
+                                </ul>           
+                                
+
+                            </li>
+                            
+                        </ul>                       
+                
+                    </div>
+                    @endguest
                         
                         @auth
                         <div class="navbar-collapse collapse">                      
@@ -127,7 +150,7 @@ canvas
             
             <div class="graph">
             <div align="center">
-            <h1> Štatistika zamestnancov UKF, podľa rozdelenia fakúlt </h1>
+            <h3> Štatistika zamestnancov UKF podľa rozdelenia fakúlt </h3>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
 
             <div style="width: 600px; height: 600px">

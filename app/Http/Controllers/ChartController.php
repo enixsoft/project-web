@@ -485,7 +485,7 @@ class ChartController extends Controller
         $count_jazykoveda = 0;
         $count_vzdelavanie = 0;
         $count_jazyk = 0;
-        $count_doktorandske_studium = 0;
+        $count_doktorandske_studium_fss = 0;
 
 
 
@@ -519,14 +519,14 @@ class ChartController extends Controller
 
             else if($element->department == "FSŠ-doktorandské štúdium")
             {
-                $count_doktorandske_studium++;
+                $count_doktorandske_studium_fss++;
             }
 
         }
 
 
 
-        return view('statistics_fss_faculty', compact('count_dekanat_fss', 'count_ruch', 'count_jazykoveda', 'count_vzdelavanie', 'count_jazyk', 'count_doktorandske_studium'));
+        return view('statistics_fss_faculty', compact('count_dekanat_fss', 'count_ruch', 'count_jazykoveda', 'count_vzdelavanie', 'count_jazyk', 'count_doktorandske_studium_fss'));
     }
 
 

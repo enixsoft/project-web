@@ -20,11 +20,6 @@
     <!-- Theme skin -->
     <link href="{{ asset('skins/default.css') }}" type="text/css" rel="stylesheet" />
 
-
-
-
-
-
     <!-- =======================================================
     Theme Name: Moderna
     Theme URL: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/
@@ -41,14 +36,9 @@
 
 h4
 {
-    text-align: center;
+    text-align: center;:
 }
     
-canvas 
-{
-    cursor: pointer;
-}
-
 
     
 
@@ -68,9 +58,11 @@ canvas
                     <a href="{{ url('/') }}"><img src="{{ asset('img/logoukf.png') }}"></a>
                         
                      </div>
-                      
+                                    
+                        
+                        
                     @guest
-                      <div class="navbar-collapse collapse">                      
+                    <div class="navbar-collapse collapse">                      
                             
                         <ul class="nav navbar-nav" style="float:right;">    
                                                                 
@@ -92,35 +84,7 @@ canvas
                         </ul>                       
                 
                     </div>
-                    @endguest           
-                        
-                        
-                        @auth
-                        <div class="navbar-collapse collapse">                      
-                            
-                        <ul class="nav navbar-nav" style="float:right;">    
-                                                                
-                            <li class="dropdown">
-                                
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false"><img src="{{ asset('img/user.png') }}"></a>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">{{ Auth::user()->username }}</a>              
-                                <ul class="dropdown-menu">
-                                    <li><a href="{{ route('profile') }}"><b>Profil</b></a></li>
-                                    <li><a href="{{ route('publications') }}"><b>Publikácie</b></a></li>
-                                    <li><a href="{{ route('projects') }}"><b>Projekty</b></a></li>
-                                    <li><a href="{{ route('activities') }}"><b>Aktivity</b></a></li>
-
-                                
-                                    <li><a href="components.html"><b>Nastavenia</b></a></li>
-                                    <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><b>Odhlásiť sa</b></a></li>
-                                </ul>
-
-                            </li>
-                            
-                        </ul>                       
-                
-                    </div>
-                    @endauth
+                    @endguest
                 
 
 
@@ -136,7 +100,7 @@ canvas
                     <div class="col-lg-12">
                         <div class="big-cta">
                             <div class="cta-text">
-                                <h2><span>Štatistiky zamestnancov UKF</span></h2>
+                                <h2><span>Štatistiky</span></h2>
                             </div>
                         </div>
                     </div>
@@ -148,124 +112,26 @@ canvas
         <br>
         <br>
         
-        
-            <div class="graph">
-                <div align="center">
-            <h3> Štatistika zamestnancov Filozofickej Fakulty </h3>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+        <div class="container">
+        <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading"></div>
+                <div align="center"> 
+                {!! $charts->html() !!}
 
-            <div style="width: 600px; height: 600px">
-            <canvas id="pieChart"></canvas>
+                <div class="panel-body">
+                 </div> 
+                </div>
             </div>
-            </div>
-                
-              
-
-                   
-          
-
-<script>
-var canvasP = document.getElementById("pieChart");
-
-   var dekanat_ff = {!! json_encode($count_dekanat_ff) !!};
-   var jazykove_centrum = {!! json_encode($count_jazykove_centrum) !!};
-   var translatologia = {!! json_encode($count_translatologia)!!};
-   var anglistika = {!! json_encode($count_anglistika)!!};
-   var archeologia = {!! json_encode($count_archeologia) !!};
-   var etnologia = {!! json_encode($count_etnologia) !!};
-   var filozofia = {!! json_encode($count_filozofia)!!};
-   var germanistika = {!! json_encode($count_germanistika)!!};
-   var historia = {!! json_encode($count_historia) !!};
-   var kulturologia = {!! json_encode($count_kulturologia) !!};
-   var manazment = {!! json_encode($count_manazment)!!};
-   var reklama = {!! json_encode($count_reklama)!!};
-   var muzeologia = {!! json_encode($count_muzeologia) !!};
-   var nabozenstvo = {!! json_encode($count_nabozenstvo) !!};
-   var politologia = {!! json_encode($count_politologia)!!};
-   var romanistika = {!! json_encode($count_romanistika)!!};
-   var rusistika = {!! json_encode($count_rusistika) !!};
-   var literatura = {!! json_encode($count_literatura) !!};
-   var sociologia = {!! json_encode($count_sociologia)!!};
-   var etiketa = {!! json_encode($count_etiketa)!!};
-   var zurnalistika = {!! json_encode($count_zurnalistika)!!};
-   var komunikacia = {!! json_encode($count_komunikacia)!!};
-   var metoda = {!! json_encode($count_metoda) !!};
-   var medialne_centrum = {!! json_encode($count_medialne_centrum) !!};
-   var doktorandske_studium = {!! json_encode($count_doktorandske_studium)!!};
-   
-  
-
-
+        </div>
+        </div>
+        </div>
     
+        {!! Charts::scripts() !!}
+        {!! $charts->script() !!}
 
-   var ctxP = canvasP.getContext('2d');
-   var myPieChart = new Chart(ctxP, {
-   type: 'pie',
-   //tooltip: { pointFormat: '{data.labels}: <b>{point.percentage:.1f}%</b>'},
-   
-   title: { text: 'Mychart'},
-   data: {
-      labels: ["FF - Dekanát Filozofickej fakulty", "FF - Jazykové centrum", "FF - Katedra  translatológie", "FF - Katedra anglistiky a amerikanistiky", "FF - Katedra archeológie", "FF - Katedra etnológie a folkloristiky", "FF - Katedra filozofie", "FF - Katedra germanistiky", "FF - Katedra histórie", "FF - Katedra kulturológie", "FF - Katedra manažmentu kult.a turizmu", "FF - Katedra masm. komunikácie a reklamy", "FF - Katedra muzeológie", "FF - Katedra náboženských štúdií", "FF - Katedra politológie a euroáz.štúdií", "FF - Katedra romanistiky", "FF - Katedra rusistiky", "FF - Katedra slovenského jazyka a litera", "FF - Katedra sociológie", "FF - Katedra všeob. a aplikovanej etiky", "FF - Katedra žurnalistiky", "FF - Ústav lit. a umeleckej komunikácie", "FF - Ústav pre v. k. d. Konšt. a Metoda", "FF - Mediálne centrum", "FF - doktorandské štúdium" ],
-      datasets: [{
-         data: [dekanat_ff, jazykove_centrum, translatologia, anglistika, archeologia, etnologia, filozofia, germanistika, historia, kulturologia, manazment, reklama, muzeologia, nabozenstvo, politologia, romanistika, rusistika, literatura, sociologia, etiketa, zurnalistika, komunikacia, metoda, medialne_centrum, doktorandske_studium],
-         backgroundColor: ["#2196F3", "#F44336", "#FFC107", "#8D7373", "#F08080", "#E0FFFF", "#FF00FF", "#DAA520", "#4B0082", "#FF69B4", "#20B2AA ", "#800000", "#0000CD", "#3CB371 ", "#BA55D3", "#6B8E23", "#FA8072 ", "#87CEEB", "#9ACD32", "#000000", "#40E0D0", "#00FF00", "#F0E68C", "#2F4F4F", "#BDB76B"],
-        // hoverBackgroundColor: ["#B2EBF2", "#FFCCBC", "#4DD0E1", "#FF8A65", "#00BCD4"]
-      }]
-   },
-   options: {
-      legend: {
         
-        
-         position: "right"
-      }
-   }
-});
-
-canvasP.onclick = function(e) {
-   var slice = myPieChart.getElementAtEvent(e);
-   if (!slice.length) return; // return if not clicked on slice
-   var label = slice[0]._model.label;
-   switch (label) {
-      // add case for each label/slice
-      case 'Fakulta prírodných Vied':
-         //alert('clicked on slice 5');
-       //  "{{ URL::to('zone') }}"
-       var url = "{{ route('stastistics-fpv')}}";
-       window.location.replace(url);
-        break;
-
-      case 'Filozofická fakulta':
-         // alert('clicked on slice 6');
-         // window.load('www.example.com/bar');
-       var url = "{{ route('stastistics-ff')}}";
-       window.location.replace(url);
-         break;
-
-      case 'Pedagogická fakulta':
-         // alert('clicked on slice 6');
-         // window.load('www.example.com/bar');
-       var url = "{{ route('stastistics-pf')}}";
-       window.location.replace(url);
-         break;
-
-       case 'Fakulta stredoeurópskych Štúdií':
-         // alert('clicked on slice 6');
-         // window.load('www.example.com/bar');
-       var url = "{{ route('stastistics-fss')}}";
-       window.location.replace(url);
-         break;
-
-      case 'Fakulta sociál.vied a zdravotníctva':
-         // alert('clicked on slice 6');
-         // window.load('www.example.com/bar');
-       var url = "{{ route('stastistics-fsvz')}}";
-       window.location.replace(url);
-         break;
-   }
-}
-</script>
-    
-      </div> 
 
 
         
@@ -277,13 +143,18 @@ canvasP.onclick = function(e) {
 <br>
 <br>
 <br>
+<br>
+<br>
+<br>
+
+
 
 
 
 
     <div class="form-group">
    <div class="col-md-8 col-md-offset-5">
-                        <a href="{{ url('/bar-chart') }}"> 
+                        <a href="{{ url('/') }}"> 
                             <button type="button" style="height:40px; width:250px" class="btn btn-default btn-lg">
                             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Naspäť
                             </button>

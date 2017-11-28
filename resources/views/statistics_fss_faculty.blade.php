@@ -69,7 +69,30 @@ canvas
                         
                      </div>
                                     
-                        
+                    @guest
+                    <div class="navbar-collapse collapse">                      
+                            
+                        <ul class="nav navbar-nav" style="float:right;">    
+                                                                
+                            <li class="dropdown">
+                                
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false"><img src="{{ asset('img/statistiky.jpg') }}"></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">Klik pre štatistiky</a>   
+                                    
+                                <ul class="dropdown-menu">  
+                                                                
+                                    <li><a href="{{ route('bar-chart') }}"><b>Podľa fakulty</b></a></li>
+                                    <li><a href="{{ route('bar-chart2') }}"><b>Podľa pozície</b></a></li>
+                                    
+                                </ul>           
+                                
+
+                            </li>
+                            
+                        </ul>                       
+                
+                    </div>
+                    @endguest   
                         
                         @auth
                         <div class="navbar-collapse collapse">                      
@@ -126,8 +149,8 @@ canvas
         
         
             <div class="graph">
-              <div align="center">
-            <h1> Štatistika zamestnancov Fakulty Stredoeurópskych Štúdií </h1>
+            <div align="center">
+            <h3> Štatistika zamestnancov Fakulty Stredoeurópskych Štúdií </h3>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
 
             <div style="width: 600px; height: 600px">
@@ -148,7 +171,7 @@ var canvasP = document.getElementById("pieChart");
    var jazykoveda = {!! json_encode($count_jazykoveda) !!};
    var vzdelavanie = {!! json_encode($count_vzdelavanie) !!};
    var jazyk = {!! json_encode($count_jazyk) !!};
-   var doktorandske_studium = {!! json_encode($count_doktorandske_studium) !!};
+   var doktorandske_studium_fss = {!! json_encode($count_doktorandske_studium_fss) !!};
    
 
    var ctxP = canvasP.getContext('2d');
@@ -160,7 +183,7 @@ var canvasP = document.getElementById("pieChart");
    data: {
       labels: ["FSŠ - Dekanát FSŠ", "FSŠ - Katedra cestovného ruchu", "FSŠ - Ústav maď.jazykovedy  a lit. vedy", "FSŠ - ústav pre vzdelávanie pedagógov", "FSŠ - Ústav stredoeur.jazykov a kultúr", "FSŠ - doktorandské štúdium"],
       datasets: [{
-         data: [dekanat_fss, ruch, jazykoveda, vzdelavanie, jazyk, doktorandske_studium],
+         data: [dekanat_fss, ruch, jazykoveda, vzdelavanie, jazyk, doktorandske_studium_fss],
          backgroundColor: ["#2196F3", "#F44336", "#FFC107", "#8D7373", "#F08080", "#E0FFFF"],
         // hoverBackgroundColor: ["#B2EBF2", "#FFCCBC", "#4DD0E1", "#FF8A65", "#00BCD4"]
       }]
