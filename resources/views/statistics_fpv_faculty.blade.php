@@ -126,7 +126,7 @@ canvas
         
         
             <div class="graph">
-            <h1> Štatistika zamestnancov UKF, podľa rozdelenia fakúlt </h1>
+            <h1> Štatistika zamestnancov Fakulty prírodných Vied </h1>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
 
             <div style="width: 600px; height: 600px">
@@ -142,11 +142,12 @@ canvas
 <script>
 var canvasP = document.getElementById("pieChart");
 
-   var prirodne_vedy = {!! json_encode($count_prirodne_vedy) !!};
-   var stredoeuropske_studie = {!! json_encode($count_stredoeuropske_studie) !!};
-   var filozoficka_fakulta = {!! json_encode($count_filozoficka_fakulta)!!};
-   var pedagogicka_fakulta = {!! json_encode($count_pedagogicka_fakulta)!!};
-   var social_vedy_a_zdrav = {!! json_encode($count_socialne_vedy_a_zdrav)!!};
+   var dekanat = {!! json_encode($count_dekanat) !!};
+   var botanika = {!! json_encode($count_botanika) !!};
+   var chemia = {!! json_encode($count_chemia)!!};
+   var ekologia = {!! json_encode($count_ekologia)!!};
+  
+
 
     
 
@@ -157,10 +158,10 @@ var canvasP = document.getElementById("pieChart");
    
    title: { text: 'Mychart'},
    data: {
-      labels: ["Fakulta prírodných Vied", "Fakulta stredoeurópskych Štúdií", "Filozofická fakulta", "Pedagogická fakulta", "Fakulta sociál.vied a zdravotníctva"],
+      labels: ["FPV - Dekanát Fakulty prírodných vied", "FPV - Katedra botaniky a genetiky", "FPV - Katedra chémie", "FPV - Katedra ekológie a environment."],
       datasets: [{
-         data: [prirodne_vedy, stredoeuropske_studie, filozoficka_fakulta, pedagogicka_fakulta, social_vedy_a_zdrav],
-         backgroundColor: ["#2196F3", "#F44336", "#FFC107", "#8D7373", "#201A48"],
+         data: [dekanat, botanika, chemia, ekologia],
+         backgroundColor: ["#2196F3", "#F44336", "#FFC107", "#8D7373"],
         // hoverBackgroundColor: ["#B2EBF2", "#FFCCBC", "#4DD0E1", "#FF8A65", "#00BCD4"]
       }]
    },
@@ -186,7 +187,7 @@ canvasP.onclick = function(e) {
        window.location.replace(url);
         break;
 
-      case 'Filozofická fakulta':
+      case 'Värde 6':
          alert('clicked on slice 6');
          window.load('www.example.com/bar');
          break;
@@ -213,7 +214,7 @@ canvasP.onclick = function(e) {
 
     <div class="form-group">
    <div class="col-md-8 col-md-offset-5">
-                        <a href="{{ url('/') }}"> 
+                        <a href="{{ url('/bar-chart') }}"> 
                             <button type="button" style="height:40px; width:250px" class="btn btn-default btn-lg">
                             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Naspäť
                             </button>
