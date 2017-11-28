@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Input;
 
 use App\Models\User;
+use App\Models\Zamestnanec;
+
 
 use Illuminate\Support\Facades\Textarea;
 
@@ -158,7 +160,12 @@ Route::get('/allrecords', [
 
 
 Route::get('/test', function() {
-    return view('test');
+    
+     
+
+     //$t= '*' . str_replace(' ', '*', $term) . '*';
+    
+    return view('test', ['user' => $t]);
 });
 
 
@@ -252,6 +259,8 @@ Route::post('searchEmployee', array(    // vyhlada zamestnanca
 
     function() {
 
+      
+
       $resultCategory="employees";
       
       $stlpec1 = "Meno";
@@ -266,19 +275,33 @@ Route::post('searchEmployee', array(    // vyhlada zamestnanca
       $variable4 = "description";
 
 
+       $Fulltext = Input::get('fulltext'); 
        $Name = Input::get('name');
        $Department = Input::get('department'); 
        $Faculty = Input::get('faculty');
        $Description = Input::get('description');
 
+       //povodne vyhladavanie
 
-
-        $user = DB::table('zamestnanci') ->select('id', 'name', 'department','faculty', 'description')       // SQL query
+          if (is_null($Fulltext)) 
+          {
+            $user = DB::table('zamestnanci') ->select('id', 'name', 'department','faculty', 'description')       // SQL query
             ->where('name', 'like','%'.$Name.'%')
             ->where('department', 'like', '%'.$Department.'%')
             ->where('faculty', 'like', '%'.$Faculty.'%')
             ->where('description', 'like', '%'.$Description.'%')
             ->get();
+        
+          }
+
+          else //Full-text vyhladavanie         
+          {
+
+                
+            $user=Zamestnanec::search($Fulltext)     
+            ->get();
+         }
+
            
 
              

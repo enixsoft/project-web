@@ -34,7 +34,7 @@
                echo $idzamEmail . "2"; 
             }
                 */
-
+            /*
 
                $textAreas =  
                array($textarea1 = "1",       
@@ -52,7 +52,7 @@
          }
           echo $user. "<br/>";
        }
-  */         
+          
 
            foreach ($textAreas as $key => &$value) 
            {
@@ -65,13 +65,13 @@
          }
           echo $value. "<br/>";
 }
-
+        */
               
-            foreach($textAreas as $user)
-            {
+            //foreach($user as $u)
+            //{
             echo $user. "<br/>";
-            } 
-          
+            //} 
+        
 
 ?>
 

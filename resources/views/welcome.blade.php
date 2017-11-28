@@ -247,7 +247,7 @@
 
 					<ul class="nav navbar-nav">
 							<li class="active"><a href="{{ url('/') }}">Domovská stránka</a></li>						
-							<li><a href="{{ url('portfolio') }}">Štatistiky</a></li>	
+							<li><a href="{{ url('statistics') }}">Štatistiky</a></li>	
 						
                             						
 							
@@ -277,7 +277,7 @@
 					<div class="navbar-collapse collapse">
 						<ul class="nav navbar-nav">
 							<li class="active"><a href="{{ url('/') }}">Domovská stránka</a></li>						
-							<li><a href="{{ url('portfolio') }}">Štatistiky</a></li>						                           						
+							<li><a href="{{ url('statistics') }}">Štatistiky</a></li>						                           						
 							
 						</ul>
 
@@ -510,10 +510,10 @@
 
                         	<form class="form-horizontal" method="POST" action="{{route('searchEmployee')}}"> 
                             <div class="form-group">
-                            <label for="email" class="col-md-4 control-label">Meno:</label>
+                            <label for="email" class="col-md-4 control-label"></label>
                             <div class="col-md-6">
                                 
-                                <input type="text" class="form-control" name="name">
+                                <input type="text" class="form-control" name="fulltext">
                             
                             </div>
                             </div>
@@ -524,7 +524,7 @@
                                 <div class ="zamestnanci_click_button col-md-8 col-md-offset-5" id="zamestnanci_viac_button">
 								<button type="button" style="height:40px; width:250px;" class="btn btn-link btn-md">
 							    <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-								Viac možností
+								Kategorické vyhľadávanie
 							    </button>
 								</div>
                             
@@ -611,7 +611,7 @@
                                 <div class ="zamestnanci_click_button_2 col-md-8 col-md-offset-5" id="roztvor">
 								<button type="button" style="height:40px; width:250px;" class="btn btn-link btn-md">
 							    <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
-								Menej možností
+								Full-text vyhľadávanie
 							    </button>
 								</div>
                             

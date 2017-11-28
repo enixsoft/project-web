@@ -146,7 +146,7 @@ class ActivityController extends Controller
 
           DB::table('activities')
             ->where('activities.id_aktivita', '=', $request->get('id'))
-            ->update(['activities.id_aktivita' => $request->get('id'), 'activities.ID' => $textAreas[0], 'activities.date' => $textAreas[],
+            ->update(['activities.id_aktivita' => $request->get('id'), 'activities.ID' => $textAreas[0], 'activities.date' => $textAreas[1],
               'activities.title' => $textAreas[2], 'activities.country' => $textAreas[3], 'activities.type' => $textAreas[4],
               'activities.category' => $textAreas[5], 'activities.all_authors' => $textAreas[6]
 
