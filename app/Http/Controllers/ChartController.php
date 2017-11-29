@@ -502,7 +502,7 @@ class ChartController extends Controller
                 $count_ruch++;
             }
 
-            else if($element->department == "FSŠ - Ústav maď.jazykovedy  a lit. vedy")
+            else if($element->department == "FSŠ - Ústav maď.jazykovedy  a lit. vedy")
             {
                 $count_jazykoveda++;
             }

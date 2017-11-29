@@ -184,7 +184,7 @@ var canvasP = document.getElementById("pieChart");
       labels: ["FSŠ - Dekanát FSŠ", "FSŠ - Katedra cestovného ruchu", "FSŠ - Ústav maď.jazykovedy  a lit. vedy", "FSŠ - ústav pre vzdelávanie pedagógov", "FSŠ - Ústav stredoeur.jazykov a kultúr", "FSŠ - doktorandské štúdium"],
       datasets: [{
          data: [dekanat_fss, ruch, jazykoveda, vzdelavanie, jazyk, doktorandske_studium_fss],
-         backgroundColor: ["#2196F3", "#F44336", "#FFC107", "#8D7373", "#F08080", "#E0FFFF"],
+         backgroundColor: ["#2196F3", "#F44336", "#FFF000", "#8D7373", "#F08080", "#E0FFFF"],
         // hoverBackgroundColor: ["#B2EBF2", "#FFCCBC", "#4DD0E1", "#FF8A65", "#00BCD4"]
       }]
    },
