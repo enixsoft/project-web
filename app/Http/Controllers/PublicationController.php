@@ -106,7 +106,7 @@ class PublicationController extends Controller
     public function update_record(Request $request)
     {
         //$previous_room = url()->previous();
-      
+      /*
           $validator = Validator::make($request->all(), [
             'textarea1' => 'required|string|min:2|max:750',        //set it to whatever you like
             'textarea2' => 'required|string|min:2|max:750',
@@ -119,7 +119,8 @@ class PublicationController extends Controller
             'textarea9' => 'required|string|min:2|max:750'
             //'textarea_three' =>  'required|string|min:2|max:750'
         ]);
-
+        */
+        
        $textAreas =  array ($textarea1 = $request->get('textarea1'),       
        $textarea2 = $request->get('textarea2'), 
        $textarea3 = $request->get('textarea3'),

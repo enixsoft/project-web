@@ -74,6 +74,10 @@
 		margin-left: 6px;
 		text-decoration: none;
 	}
+
+    p {
+            white-space: pre-wrap;
+    }
     
 </style>
 <body>
@@ -81,50 +85,99 @@
 		
 			<!-- start header -->
 		<header>
-			<div class="navbar navbar-default navbar-static-top">
-				<div class="container">
-					<div class="navbar-header">
-					
+            <div class="navbar navbar-default navbar-static-top">
+                <div class="container">
+                
+                    
+                    <div class="navbar-header">
+                    
 
-					<a href="{{ url('/') }}"><img src="{{ asset('img/logoukf.png') }}"></a>
-						
-					</div>
-									
-						
-						
-						@auth
-					<div class="navbar-collapse collapse">						
-							
-						<ul class="nav navbar-nav" style="float:right;">	
-																
-							<li class="dropdown">
-								
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false"><img src="{{ asset('img/user.png') }}"></a>
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">{{ Auth::user()->username }}</a>				
-								<ul class="dropdown-menu">									
-									<li><a href="{{ route('profile') }}"><b>Profil</b></a></li>
-									<li><a href="{{ route('publications') }}"><b>Publikácie</b></a></li>
-                                   	<li><a href="{{ route('projects') }}"><b>Projekty</b></a></li>
-									<li><a href="{{ route('activities') }}"><b>Aktivity</b></a></li>
+                    <a href="{{ url('/') }}"><img src="{{ asset('img/logoukf.png') }}"></a>
+                        
+                    </div>
+                                    
+                        
+                        
+                    @auth
+                        <div class="navbar-collapse collapse">                      
+                            
+                        <ul class="nav navbar-nav" style="float:right;">    
+                                                                
+                            <li class="dropdown">
+                                
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false"><img src="{{ asset('img/user.png') }}"></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">{{ Auth::user()->username }}</a>              
+                                <ul class="dropdown-menu">                                  
+                                    <li><a href="{{ route('profile') }}"><b>Profil</b></a></li>
+                                    <li><a href="{{ route('publications') }}"><b>Publikácie</b></a></li>
+                                    <li><a href="{{ route('projects') }}"><b>Projekty</b></a></li>
+                                    <li><a href="{{ route('activities') }}"><b>Aktivity</b></a></li>
 
-								
-									<li><a href="components.html"><b>Nastavenia</b></a></li>
-									<li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><b>Odhlásiť sa</b></a></li>
-								</ul>
+                                
+                                    <li><a href="components.html"><b>Nastavenia</b></a></li>
+                                    <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><b>Odhlásiť sa</b></a></li>
+                                </ul>
 
-							</li>
-							
-						</ul>						
-				
-					</div>
-					
-				        @endauth
+                            </li>
+                            
+                        </ul>                       
+                
+                    </div>
 
-				</div>
-			
-			</div>
+                   <ul class="nav navbar-nav">
+                            <li><a href="{{ url('/') }}">Domovská stránka</a></li>                       
+                            <li><a href="{{ url('statistics') }}">Štatistiky</a></li>    
+                        
+                                                    
+                            
+                        </ul>
 
-		</header>
+                    @endauth
+                    @guest
+
+                    <div class="navbar-collapse collapse" style="visibility: hidden;">                      
+                            
+                        <ul class="nav navbar-nav" style="float:right;">    
+                                                                
+                            <li class="dropdown">
+                                
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false"><img src="{{ asset('img/user.png') }}"></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">Username</a>              
+                                
+                            </li>
+                            
+                        </ul>                       
+                
+                    </div>
+
+
+
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="{{ url('/') }}">Domovská stránka</a></li>                       
+                            <li><a href="{{ url('statistics') }}">Štatistiky</a></li>    
+                        
+                                                    
+                            
+                        </ul>
+
+                    </div>
+                    @endguest   
+                
+                        
+                
+
+
+                </div>
+
+            
+                </div>
+
+            
+        </header>
+
+
+
 
 		
 		<section class="callaction">
@@ -139,7 +192,17 @@
 							</div>
 						</div>
 					</div>
+
+
 				</div>
+                <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">                           
+                            <li><a href="{{ url('/')}}/employees/{{ $premenna0 }}/publications"><b>Zamestnancove publikácie</b></a></li>                                                              
+                            <li><a href="{{ url('/')}}/employees/{{ $premenna0 }}/projects"><b>Zamestnancove projekty</b></a></li>                                                                        
+                            <li><a href="{{ url('/')}}/employees/{{ $premenna0 }}/activities"><b>Zamestnancove aktivity</b></a></li>  
+                        </ul>
+
+                    </div>
 			</div>
 		</section>
 	
@@ -186,6 +249,20 @@
                 <th><h4>{{$stlpec7}}</h4></th>
                 <td><textarea class="form-control" name="textarea6"  rows="5">{{ object_get($z, $premenna7) }}</textarea></td>
             </tr>
+            @endforeach
+            @foreach ($profile as $z)
+              <tr>
+                <th><h4>{{$stlpec8}}</h4></th>
+                <td><textarea class="form-control" name="textarea7"  rows="5">{{ object_get($z, $premenna8) }}</textarea></td>
+            </tr>
+              <tr>
+                <th><h4>{{$stlpec9}}</h4></th>
+                <td><textarea class="form-control" name="textarea8"  rows="5">{{ object_get($z, $premenna9) }}</textarea></td>
+            </tr>
+              <tr>
+                <th><h4>{{$stlpec10}}</h4></th>
+                <td><textarea class="form-control" name="textarea9"  rows="5">{{ object_get($z, $premenna10) }}</textarea></td>
+            </tr>
 
 
 
@@ -205,11 +282,11 @@
       </form>
 @else
 
- <table class="table">
-        	  @foreach ($zaznam as $z)
+            <table class="table">
+              @foreach ($zaznam as $z)
             <tr>
                 <th><h4>{{$stlpec1}}</h4></th>
-                <td><input readonly class="form-control" value="{{ object_get($z, $premenna1) }}"></input></td>
+                <td><input readonly class="form-control" name="id" value="{{ object_get($z, $premenna1) }}"></input></td>
             </tr>
             <tr>
                 <th><h4>{{$stlpec2}}</h4></th>
@@ -235,17 +312,35 @@
                 <th><h4>{{$stlpec7}}</h4></th>
                 <td><textarea class="form-control" name="textarea6"  rows="5">{{ object_get($z, $premenna7) }}</textarea></td>
             </tr>
+            @endforeach
+            @foreach ($profile as $z)
+              <tr>
+                <th><h4>{{$stlpec8}}</h4></th>
+                <td><textarea class="form-control" name="textarea7"  rows="5">{{ object_get($z, $premenna8) }}</textarea></td>
+            </tr>
+              <tr>
+                <th><h4>{{$stlpec9}}</h4></th>
+                <td><textarea class="form-control" name="textarea8"  rows="5">{{ object_get($z, $premenna9) }}</textarea></td>
+            </tr>
+              <tr>
+                <th><h4>{{$stlpec10}}</h4></th>
+                <td><textarea class="form-control" name="textarea9"  rows="5">{{ object_get($z, $premenna10) }}</textarea></td>
+            </tr>
+
+
+
             @endforeach
         </table>
 @endif                   
 @endauth
 @guest
 
- <table class="table">
-        	  @foreach ($zaznam as $z)
+        
+        <table class="table">
+              @foreach ($zaznam as $z)
             <tr>
                 <th><h4>{{$stlpec1}}</h4></th>
-                 <td><input readonly class="form-control" value="{{ object_get($z, $premenna1) }}"></input></td>
+                <td><input readonly class="form-control" name="id" value="{{ object_get($z, $premenna1) }}"></input></td>
             </tr>
             <tr>
                 <th><h4>{{$stlpec2}}</h4></th>
@@ -272,7 +367,58 @@
                 <td><textarea class="form-control" name="textarea6"  rows="5">{{ object_get($z, $premenna7) }}</textarea></td>
             </tr>
             @endforeach
+            @foreach ($profile as $z)
+              <tr>
+                <th><h4>{{$stlpec8}}</h4></th>
+                <td><textarea class="form-control" name="textarea7"  rows="5">{{ object_get($z, $premenna8) }}</textarea></td>
+            </tr>
+              <tr>
+                <th><h4>{{$stlpec9}}</h4></th>
+                <td><textarea class="form-control" name="textarea8"  rows="5">{{ object_get($z, $premenna9) }}</textarea></td>
+            </tr>
+              <tr>
+                <th><h4>{{$stlpec10}}</h4></th>
+                <td><textarea class="form-control" name="textarea9"  rows="5">{{ object_get($z, $premenna10) }}</textarea></td>
+            </tr>
+
+
+
+            @endforeach
         </table>
+
+    <!--
+    @foreach ($zaznam as $z)
+    <div class="container">
+    
+    <h4> {{$stlpec1}} </h4>
+    <p> {{ object_get($z, $premenna1) }} </p>
+     
+    <h4>{{$stlpec2}}</h4>
+    <p>{{ object_get($z, $premenna2) }}</p>
+    
+    <h4>{{$stlpec3}}</h4>
+    <p>{{ object_get($z, $premenna3) }}</p>
+    <h4>{{$stlpec4}}</h4>
+    <p>{{ object_get($z, $premenna4) }}</p>
+     <h4>{{$stlpec5}}</h4>
+    <p>{{ object_get($z, $premenna5) }}</p>
+     <h4>{{$stlpec6}}</h4>
+    <p>{{ object_get($z, $premenna6) }}</p>
+     <h4>{{$stlpec7}}</h4>
+    <p>{{ object_get($z, $premenna7) }}</p>  
+     @endforeach
+    @foreach ($profile as $z)
+    <h4>{{$stlpec8}}</h4>
+    <p>{{ object_get($z, $premenna8) }}</p>  
+    <h4>{{$stlpec9}}</h4>
+    <p>{{ object_get($z, $premenna9) }}</p>  
+    <h4>{{$stlpec10}}</h4>
+    <p>{{ object_get($z, $premenna10) }}</p>  
+
+    @endforeach
+    </div>
+     -->
+
 
 @endguest
 
@@ -285,7 +431,7 @@
 
    <div class="form-group">
    <div class="col-md-8 col-md-offset-5">
-                        <a href="{{ url('/') }}"> 
+                        <a href="{{ url()->previous() }}"> 
                             <button type="button" style="height:40px; width:250px" class="btn btn-default btn-lg">
   							<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Naspäť
 							</button>

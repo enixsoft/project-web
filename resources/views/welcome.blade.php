@@ -208,40 +208,18 @@
 		<header>
 			<div class="navbar navbar-default navbar-static-top">
 				<div class="container">
+				
+					
 					<div class="navbar-header">
 					
 
 					<a href="{{ url('/') }}"><img src="{{ asset('img/logoukf.png') }}"></a>
 						
-						</div>
-					
-					@guest
-                        <div class="navbar-collapse collapse">                      
-                            
-                        <ul class="nav navbar-nav" style="float:right;">    
-                                                                
-                            <li class="dropdown">
-                                
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false"><img src="{{ asset('img/statistiky.jpg') }}"></a>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">Klik pre štatistiky</a>   
-                                    
-                                <ul class="dropdown-menu">  
-                                                                
-                                    <li><a href="{{ route('bar-chart') }}"><b>Podľa fakulty</b></a></li>
-                                    <li><a href="{{ route('bar-chart2') }}"><b>Podľa pozície</b></a></li>
-                                    
-                                </ul>           
-                                
-
-                            </li>
-                            
-                        </ul>                       
-                
-                    </div>
-                    @endguest		
+				    </div>
+									
 						
 						
-						@auth
+					@auth
 						<div class="navbar-collapse collapse">						
 							
 						<ul class="nav navbar-nav" style="float:right;">	
@@ -257,7 +235,7 @@
 									<li><a href="{{ route('activities') }}"><b>Aktivity</b></a></li>
 
 								
-									<li><a href="{{ route('bar-chart') }}"><b>Nastavenia</b></a></li>
+									<li><a href="components.html"><b>Nastavenia</b></a></li>
 									<li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><b>Odhlásiť sa</b></a></li>
 								</ul>
 
@@ -266,17 +244,57 @@
 						</ul>						
 				
 					</div>
+
+					<ul class="nav navbar-nav">
+							<li class="active"><a href="{{ url('/') }}">Domovská stránka</a></li>						
+							<li><a href="{{ url('statistics') }}">Štatistiky</a></li>	
+						
+                            						
+							
+						</ul>
+
+
 					@endauth
+					@guest
+
+					<div class="navbar-collapse collapse" style="visibility: hidden;">						
+							
+						<ul class="nav navbar-nav" style="float:right;">	
+																
+							<li class="dropdown">
+								
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false"><img src="{{ asset('img/user.png') }}"></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">Username</a>				
+								
+							</li>
+							
+						</ul>						
+				
+					</div>
+
+
+
+					<div class="navbar-collapse collapse">
+						<ul class="nav navbar-nav">
+							<li class="active"><a href="{{ url('/') }}">Domovská stránka</a></li>						
+							<li><a href="{{ url('statistics') }}">Štatistiky</a></li>						                           						
+							
+						</ul>
+
+					</div>
+					@endguest	
+				
+						
 				
 
 
 				</div>
+
 			
 				</div>
 
 			
 		</header>
-
 
 
 
@@ -341,9 +359,42 @@
 							</div>
 						</div>
 					</div>
+						<!--
+						<div class="navbar-collapse collapse ">
+						<ul class="nav navbar-nav">
+							<li class="active"><a href="{{ url('/') }}">Domovská stránka</a></li>						
+							<li><a href="{{ url('portfolio') }}">Štatistiky</a></li>							
+							
+						</ul>
+					</div>
+						-->
+				
 				</div>
+
 			</div>
+
+
+
+				<!--
+				<div class="container">					
+
+					<div class="navbar-collapse collapse ">
+						<ul class="nav navbar-nav">
+							<li class="active"><a href="{{ url('/') }}">Domovská stránka</a></li>						
+							<li><a href="{{ url('portfolio') }}">Štatistiky</a></li>							
+							
+						</ul>
+					</div>
+				</div>
+			-->
+			
+
 		</section>
+
+		
+
+
+
 
 		<section id="content">
 			<div class="container">
@@ -458,10 +509,10 @@
 
                         	<form class="form-horizontal" method="POST" action="{{route('searchEmployee')}}"> 
                             <div class="form-group">
-                            <label for="email" class="col-md-4 control-label">Meno:</label>
+                            <label for="email" class="col-md-4 control-label"></label>
                             <div class="col-md-6">
                                 
-                                <input type="text" class="form-control" name="name">
+                                <input type="text" class="form-control" name="fulltext">
                             
                             </div>
                             </div>
@@ -472,7 +523,7 @@
                                 <div class ="zamestnanci_click_button col-md-8 col-md-offset-5" id="zamestnanci_viac_button">
 								<button type="button" style="height:40px; width:250px;" class="btn btn-link btn-md">
 							    <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-								Viac možností
+								Kategorické vyhľadávanie
 							    </button>
 								</div>
                             
@@ -559,7 +610,7 @@
                                 <div class ="zamestnanci_click_button_2 col-md-8 col-md-offset-5" id="roztvor">
 								<button type="button" style="height:40px; width:250px;" class="btn btn-link btn-md">
 							    <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
-								Menej možností
+								Full-text vyhľadávanie
 							    </button>
 								</div>
                             

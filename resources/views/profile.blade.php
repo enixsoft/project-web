@@ -83,17 +83,19 @@
 		<header>
 			<div class="navbar navbar-default navbar-static-top">
 				<div class="container">
+				
+					
 					<div class="navbar-header">
 					
 
 					<a href="{{ url('/') }}"><img src="{{ asset('img/logoukf.png') }}"></a>
 						
-					</div>
+				    </div>
 									
 						
 						
-						@auth
-					<div class="navbar-collapse collapse">						
+					@auth
+						<div class="navbar-collapse collapse">						
 							
 						<ul class="nav navbar-nav" style="float:right;">	
 																
@@ -117,14 +119,62 @@
 						</ul>						
 				
 					</div>
-					
-				        @endauth
+
+				 <ul class="nav navbar-nav">
+                            <li><a href="{{ url('/') }}">Domovská stránka</a></li>                       
+                            <li><a href="{{ url('statistics') }}">Štatistiky</a></li>    
+                        
+                                                    
+                            
+                        </ul>
+
+
+					@endauth
+					@guest
+
+					<div class="navbar-collapse collapse" style="visibility: hidden;">						
+							
+						<ul class="nav navbar-nav" style="float:right;">	
+																
+							<li class="dropdown">
+								
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false"><img src="{{ asset('img/user.png') }}"></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">Username</a>				
+								
+							</li>
+							
+						</ul>						
+				
+					</div>
+
+
+
+					<div class="navbar-collapse collapse">
+					 <ul class="nav navbar-nav">
+                            <li><a href="{{ url('/') }}">Domovská stránka</a></li>                       
+                            <li><a href="{{ url('statistics') }}">Štatistiky</a></li>    
+                        
+                                                    
+                            
+                        </ul>
+
+					</div>
+					@endguest	
+				
+						
+				
+
 
 				</div>
-			
-			</div>
 
+			
+				</div>
+
+			
 		</header>
+
+
+
 
 		@auth
 		<section class="callaction">
@@ -151,19 +201,19 @@
 <div class="row">
 
 			
-        <form class="form-horizontal" method="POST" action="{{ action('UserController@store') }}"> 						
+        <form class="form-horizontal" method="POST" action="{{ action('ProfileController@update_record') }}"> 						
         <table class="table">
             <tr>
                 <th><h4>Popis</h4></th>
-                <td><textarea class="form-control" name="description" rows="7">{{ $profile->description }}</textarea></td>
+                <td><textarea class="form-control" name="textarea1" rows="7">{{ $profile->description }}</textarea></td>
             </tr>
             <tr>
                 <th><h4>Konzultácie</h4></th>
-                <td><textarea class="form-control" name="consultation_hours" rows="7">{{ $profile->consultation_hours }}</textarea></td>
+                <td><textarea class="form-control" name="textarea2" rows="7">{{ $profile->consultation_hours }}</textarea></td>
             </tr>
             <tr>
                 <th><h4>Vzdelanie</h4></th>
-                <td><textarea class="form-control" name="education"  rows="7">{{ $profile->education }}</textarea></td>
+                <td><textarea class="form-control" name="textarea3"  rows="7">{{ $profile->education }}</textarea></td>
             </tr>
 
 

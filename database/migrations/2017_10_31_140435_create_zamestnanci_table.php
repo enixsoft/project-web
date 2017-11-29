@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\DB;
 
 class CreateZamestnanciTable extends Migration
 {
@@ -24,6 +25,9 @@ class CreateZamestnanciTable extends Migration
             $table->string('description');
             $table->timestamps();
         });
+
+
+        DB::statement('ALTER TABLE zamestnanci ADD FULLTEXT fulltext_index (name, department, faculty, description)');
     }
 
     /**
@@ -32,7 +36,14 @@ class CreateZamestnanciTable extends Migration
      * @return void
      */
     public function down()
-    {
+      {
+         Schema::table('zamestnanci', function($table) {
+
+            $table->dropIndex('fulltext_index');
+
+        });
+
         Schema::dropIfExists('zamestnanci');
+
     }
 }

@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Input;
 
 use App\Models\User;
+use App\Models\Zamestnanec;
+
 
 use Illuminate\Support\Facades\Textarea;
 
@@ -158,7 +160,12 @@ Route::get('/allrecords', [
 
 
 Route::get('/test', function() {
-    return view('test');
+    
+     
+
+     //$t= '*' . str_replace(' ', '*', $term) . '*';
+    
+    return view('test', ['user' => $t]);
 });
 
 
@@ -252,6 +259,8 @@ Route::post('searchEmployee', array(    // vyhlada zamestnanca
 
     function() {
 
+      
+
       $resultCategory="employees";
       
       $stlpec1 = "Meno";
@@ -266,19 +275,33 @@ Route::post('searchEmployee', array(    // vyhlada zamestnanca
       $variable4 = "description";
 
 
+       $Fulltext = Input::get('fulltext'); 
        $Name = Input::get('name');
        $Department = Input::get('department'); 
        $Faculty = Input::get('faculty');
        $Description = Input::get('description');
 
+       //povodne vyhladavanie
 
-
-        $user = DB::table('zamestnanci') ->select('id', 'name', 'department','faculty', 'description')       // SQL query
+          if (is_null($Fulltext)) 
+          {
+            $user = DB::table('zamestnanci') ->select('id', 'name', 'department','faculty', 'description')       // SQL query
             ->where('name', 'like','%'.$Name.'%')
             ->where('department', 'like', '%'.$Department.'%')
             ->where('faculty', 'like', '%'.$Faculty.'%')
             ->where('description', 'like', '%'.$Description.'%')
             ->get();
+        
+          }
+
+          else //Full-text vyhladavanie         
+          {
+
+                
+            $user=Zamestnanec::search($Fulltext)     
+            ->get();
+         }
+
            
 
              
@@ -493,6 +516,11 @@ Route::post('/update_data_record', 'UserController@update_record')->name('update
 //-----------------------------------------------------------------------------------------------------------
 
 Route::get('/employees/{internalId}', ['as' => 'details', 'uses' => 'EmployeeController@detail_about_record']);
+
+Route::get('/employees/{internalId}/publications', ['as' => 'details', 'uses' => 'EmployeeController@get_employee_publications']);
+Route::get('/employees/{internalId}/projects', ['as' => 'details', 'uses' => 'EmployeeController@get_employee_projects']);
+Route::get('/employees/{internalId}/activities', ['as' => 'details', 'uses' => 'EmployeeController@get_employee_activities']);
+
 Route::post('/employees/EmployeeController@update_record', 'EmployeeController@update_record')->name('update_data_record');
 
 
@@ -502,9 +530,12 @@ Route::post('/publications/PublicationController@update_record', 'PublicationCon
 Route::get('/activities/{internalId}', ['as' => 'details', 'uses' => 'ActivityController@detail_about_record']);
 Route::post('/activities/ActivityController@update_record', 'ActivityController@update_record')->name('update_data_record');
 
-
 Route::get('/projects/{internalId}', ['as' => 'details', 'uses' => 'ProjectController@detail_about_record']);
 Route::post('/projects/ProjectController@update_record', 'ProjectController@update_record')->name('update_data_record');
+
+Route::post('/projects/ProfileController@update_record', 'ProfileController@update_record')->name('update_data_record');
+
+
 
 
 

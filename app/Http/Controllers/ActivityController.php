@@ -105,7 +105,7 @@ class ActivityController extends Controller
     public function update_record(Request $request)
     {
         //$previous_room = url()->previous();
-
+        /*
           $validator = Validator::make($request->all(), [
             'textarea1' => 'required|string|min:2|max:750',        //set it to whatever you like
             'textarea2' => 'required|string|min:2|max:750',
@@ -119,16 +119,36 @@ class ActivityController extends Controller
             //'textarea_three' =>  'required|string|min:2|max:750'
         ]);
 
+        */
+               $textAreas =  array ($textarea1 = $request->get('textarea1'),       
+       $textarea2 = $request->get('textarea2'), 
+       $textarea3 = $request->get('textarea3'),
+       $textarea4 = $request->get('textarea4'),
+       $textarea5 = $request->get('textarea5'),
+       $textarea6 = $request->get('textarea6'),
+       $textarea7 = $request->get('textarea7')
+                            );
 
-  //      switch ($previous_room) {
 
-    //    case 'http://localhost/project-web/public/'.'publications':
+     //NULL znefunkcni vyhladavanie 
+
+      foreach ($textAreas as $key => &$value) 
+       {
+                      
+              if (is_null($value)) 
+               {
+                  $value = "";
+        
+               }
+        
+       }
+  
 
           DB::table('activities')
             ->where('activities.id_aktivita', '=', $request->get('id'))
-            ->update(['activities.id_aktivita' => $request->get('id'), 'activities.ID' => $request->get('textarea1'), 'activities.date' => $request->get('textarea2'),
-              'activities.title' => $request->get('textarea3'), 'activities.country' => $request->get('textarea4'), 'activities.type' => $request->get('textarea5'),
-              'activities.category' => $request->get('textarea6'), 'activities.all_authors' => $request->get('textarea7')
+            ->update(['activities.id_aktivita' => $request->get('id'), 'activities.ID' => $textAreas[0], 'activities.date' => $textAreas[1],
+              'activities.title' => $textAreas[2], 'activities.country' => $textAreas[3], 'activities.type' => $textAreas[4],
+              'activities.category' => $textAreas[5], 'activities.all_authors' => $textAreas[6]
 
 
 

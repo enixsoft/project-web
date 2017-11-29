@@ -46,19 +46,21 @@
 <body>
 	<div id="wrapper">
 		<!-- start header -->
-		<header>
-				<div class="navbar navbar-default navbar-static-top">
+	<header>
+			<div class="navbar navbar-default navbar-static-top">
 				<div class="container">
+				
+					
 					<div class="navbar-header">
 					
 
 					<a href="{{ url('/') }}"><img src="{{ asset('img/logoukf.png') }}"></a>
 						
-				     </div>
+				    </div>
 									
 						
 						
-						@auth
+					@auth
 						<div class="navbar-collapse collapse">						
 							
 						<ul class="nav navbar-nav" style="float:right;">	
@@ -71,7 +73,9 @@
 									<li><a href="{{ route('profile') }}"><b>Profil</b></a></li>
 									<li><a href="{{ route('publications') }}"><b>Publikácie</b></a></li>
                                    	<li><a href="{{ route('projects') }}"><b>Projekty</b></a></li>
-									<li><a href="{{ route('activities') }}"><b>Aktivity</b></a></li>								
+									<li><a href="{{ route('activities') }}"><b>Aktivity</b></a></li>
+
+								
 									<li><a href="components.html"><b>Nastavenia</b></a></li>
 									<li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><b>Odhlásiť sa</b></a></li>
 								</ul>
@@ -81,14 +85,62 @@
 						</ul>						
 				
 					</div>
+
+				 <ul class="nav navbar-nav">
+                            <li><a href="{{ url('/') }}">Domovská stránka</a></li>                       
+                            <li><a href="{{ url('statistics') }}">Štatistiky</a></li>    
+                        
+                                                    
+                            
+                        </ul>
+
+
 					@endauth
+					@guest
+
+					<div class="navbar-collapse collapse" style="visibility: hidden;">						
+							
+						<ul class="nav navbar-nav" style="float:right;">	
+																
+							<li class="dropdown">
+								
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false"><img src="{{ asset('img/user.png') }}"></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">Username</a>				
+								
+							</li>
+							
+						</ul>						
+				
+					</div>
+
+
+
+					<div class="navbar-collapse collapse">
+					 <ul class="nav navbar-nav">
+                            <li><a href="{{ url('/') }}">Domovská stránka</a></li>                       
+                            <li><a href="{{ url('statistics') }}">Štatistiky</a></li>    
+                        
+                                                    
+                            
+                        </ul>
+
+					</div>
+					@endguest	
+				
+						
 				
 
 
 				</div>
+
 			
 				</div>
+
+			
 		</header>
+
+
+
 		<!-- end header -->
 		
 
@@ -195,7 +247,7 @@ Nenašli sa žiadne výsledky.
 
 	<div class="form-group">
    <div class="col-md-8 col-md-offset-5">
-                         <a href="{{ url('/') }}"> 
+                         <a href="{{ url()->previous() }}"> 
                             <button type="button" style="height:40px; width:250px" class="btn btn-default btn-lg">
   							<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Naspäť
 							</button>
