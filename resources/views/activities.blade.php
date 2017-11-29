@@ -153,7 +153,7 @@
 					<div class="col-lg-12">
 						<div class="big-cta">
 							<div class="cta-text">
-								<h2>Aktivity</h2>
+								<h2><span>Aktivity</span></h2>
 							</div>
 						</div>
 					</div>
