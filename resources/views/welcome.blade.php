@@ -247,7 +247,18 @@
 
 					<ul class="nav navbar-nav">
 							<li class="active"><a href="{{ url('/') }}">Domovská stránka</a></li>						
-							<li><a href="{{ url('statistics') }}">Štatistiky</a></li>	
+							
+							<li class="dropdown">							
+				
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">Štatistiky</a>				
+								<ul class="dropdown-menu">									
+									<li><a href="{{ route('bar-chart') }}"><b>Podľa fakulty</b></a></li>
+									<li><a href="{{ route('bar-chart2') }}"><b>Podľa pozície</b></a></li>
+                         
+
+								</ul>
+
+							</li>
 						
                             						
 							
@@ -276,8 +287,21 @@
 
 					<div class="navbar-collapse collapse">
 						<ul class="nav navbar-nav">
-							<li class="active"><a href="{{ url('/') }}">Domovská stránka</a></li>						
-							<li><a href="{{ url('statistics') }}">Štatistiky</a></li>						                           						
+							<li class="active"><a href="{{ url('/') }}">Domovská stránka</a></li>					
+							
+							</li>
+							<li class="dropdown">							
+				
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">Štatistiky</a>				
+								<ul class="dropdown-menu">									
+									<li><a href="{{ route('bar-chart') }}"><b>Podľa fakulty</b></a></li>
+									<li><a href="{{ route('bar-chart2') }}"><b>Podľa pozície</b></a></li>
+                         
+
+								</ul>
+
+							</li>
+
 							
 						</ul>
 
