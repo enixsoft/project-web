@@ -205,7 +205,7 @@
 	<div id="wrapper">
 		
 			<!-- start header -->
-	<header>
+		<header>
 			<div class="navbar navbar-default navbar-static-top">
 				<div class="container">
 				
@@ -295,7 +295,6 @@
 
 			
 		</header>
-
 
 
 

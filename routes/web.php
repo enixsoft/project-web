@@ -539,3 +539,13 @@ Route::post('/projects/ProfileController@update_record', 'ProfileController@upda
 
 
 
+Route::get('bar-chart', 'ChartController@index')->name('bar-chart');
+Route::get('bar-chart2', 'Chart2Controller@index')->name('bar-chart2');
+
+Route::get('stastistics-fpv', 'ChartController@get_stastistics_faculty_of_natural_sciences')->name('stastistics-fpv');
+Route::get('stastistics-ff', 'ChartController@get_stastistics_faculty_of_phylosophy')->name('stastistics-ff');
+Route::get('stastistics-pf', 'ChartController@get_stastistics_of_pedagogic_faculty')->name('stastistics-pf');
+Route::get('stastistics-fss', 'ChartController@get_stastistics_faculty_of_central_european_studies')->name('stastistics-fss');
+Route::get('stastistics-fsvz', 'ChartController@get_stastistics_faculty_of_social_sciences_and_health')->name('stastistics-fsvz');
+
+
