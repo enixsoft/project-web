@@ -27,7 +27,9 @@ class ZamestnanciTableSeeder extends Seeder
                     'dep_acronym' => $obj->dep_acronym,
                     'faculty' => $obj->faculty,
                     'faculty_acronym' => $obj->faculty_acronym,
-                    'description' => $obj->description));
+                    'description' => $obj->description,
+                    'comments_allowed' => 0
+                ));
             }
     }
 }

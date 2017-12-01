@@ -523,6 +523,12 @@ Route::get('/employees/{internalId}/activities', ['as' => 'details', 'uses' => '
 
 Route::post('/employees/EmployeeController@update_record', 'EmployeeController@update_record')->name('update_data_record');
 
+Route::post('/employees/CommentController@create_comment', 'CommentController@create_comment')->name('create_comment');
+Route::post('/employees/CommentController@allow_comments', 'CommentController@allow_comments')->name('allow_comments');
+Route::post('/employees/CommentController@disable_comments', 'CommentController@disable_comments')->name('disable_comments');
+//otestovat
+
+
 
 Route::get('/publications/{internalId}', ['as' => 'details', 'uses' => 'PublicationController@detail_about_record']);
 Route::post('/publications/PublicationController@update_record', 'PublicationController@update_record')->name('update_data_record');
@@ -534,6 +540,8 @@ Route::get('/projects/{internalId}', ['as' => 'details', 'uses' => 'ProjectContr
 Route::post('/projects/ProjectController@update_record', 'ProjectController@update_record')->name('update_data_record');
 
 Route::post('/projects/ProfileController@update_record', 'ProfileController@update_record')->name('update_data_record');
+
+
 
 
 

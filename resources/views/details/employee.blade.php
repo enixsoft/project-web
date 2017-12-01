@@ -78,6 +78,35 @@
     p {
             white-space: pre-wrap;
     }
+
+    .thumbnail {
+    padding:0px;
+}
+.panel {
+    position:relative;
+}
+.panel>.panel-heading:after,.panel>.panel-heading:before{
+    position:absolute;
+    top:11px;left:-16px;
+    right:100%;
+    width:0;
+    height:0;
+    display:block;
+    content:" ";
+    border-color:transparent;
+    border-style:solid solid outset;
+    pointer-events:none;
+}
+.panel>.panel-heading:after{
+    border-width:7px;
+    border-right-color:#f7f7f7;
+    margin-top:1px;
+    margin-left:2px;
+}
+.panel>.panel-heading:before{
+    border-right-color:#ddd;
+    border-width:8px;
+}
     
 </style>
 <body>
@@ -386,38 +415,6 @@
             @endforeach
         </table>
 
-    <!--
-    @foreach ($zaznam as $z)
-    <div class="container">
-    
-    <h4> {{$stlpec1}} </h4>
-    <p> {{ object_get($z, $premenna1) }} </p>
-     
-    <h4>{{$stlpec2}}</h4>
-    <p>{{ object_get($z, $premenna2) }}</p>
-    
-    <h4>{{$stlpec3}}</h4>
-    <p>{{ object_get($z, $premenna3) }}</p>
-    <h4>{{$stlpec4}}</h4>
-    <p>{{ object_get($z, $premenna4) }}</p>
-     <h4>{{$stlpec5}}</h4>
-    <p>{{ object_get($z, $premenna5) }}</p>
-     <h4>{{$stlpec6}}</h4>
-    <p>{{ object_get($z, $premenna6) }}</p>
-     <h4>{{$stlpec7}}</h4>
-    <p>{{ object_get($z, $premenna7) }}</p>  
-     @endforeach
-    @foreach ($profile as $z)
-    <h4>{{$stlpec8}}</h4>
-    <p>{{ object_get($z, $premenna8) }}</p>  
-    <h4>{{$stlpec9}}</h4>
-    <p>{{ object_get($z, $premenna9) }}</p>  
-    <h4>{{$stlpec10}}</h4>
-    <p>{{ object_get($z, $premenna10) }}</p>  
-
-    @endforeach
-    </div>
-     -->
 
 
 @endguest
@@ -428,10 +425,138 @@
 <br>
 
 
+<div class="container">
+<div class="row">
+<div class="col-sm-12">
+<h3>Komentáre</h3>
+@auth
+@if($commentsAllowed==1)
+@if(Auth::user()->role == "admin")
+
+                                     <form class="form-horizontal" method="POST" action="{{ action('CommentController@disable_comments') }}">                                    
+
+
+                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                         <input type="hidden" name="commented_on_input" value="{{ $premenna0 }}">
+                           
+                                  
+                                        <br>
+                                        <div class="form-group">
+                           
+                                        <div class="col-md-8 col-md-offset-5">
+                                        <button type="submit" style="height:40px; width:250px" class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Zakázať komentáre</button>
+                                         </div>
+                                        </div>
+                                        
+
+                                    </form>
+
+@endif
+
+
+
+
+   
+                                     <form class="form-horizontal" method="POST" action="{{ action('CommentController@create_comment') }}">
+                                        <textarea placeholder="Sem píšte obsah vášho komentára." class="form-control" rows="5" name="comment_textarea"></textarea>                                  
+                                          
+
+
+                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                         <input type="hidden" name="commented_on_input" value="{{ $premenna0 }}">
+                                         <input type="hidden" name="user_who_commented_input" value="{{ Auth::user()->id }}">
+                                  
+                                        <br>
+                                        <div class="form-group">
+                           
+                                        <div class="col-md-8 col-md-offset-5">
+                                        <button type="submit" style="height:40px; width:250px" class="btn btn-success green"><i class="fa fa-share"></i> Odoslať</button>
+                                         </div>
+                                        </div>
+                                        
+
+                                    </form>
+                          
+ 
+
+</div><!-- /col-sm-12 -->
+</div><!-- /row -->
+</div>
+                         
+                        
+
+
+
+@if(count($comments)>0)
+@foreach ($comments as $c)
+<div class="row">
+<div class="col-sm-1">
+<div class="thumbnail">
+<img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+</div>
+</div>
+
+
+<div class="col-sm-11">
+<div class="panel panel-default">
+<div class="panel-heading">
+<strong>{{ $c->username }}</strong> <span class="text-muted">komentoval {{ date('d.m.Y H:m', strtotime($c->created_at)) }} </span>
+</div>
+<div class="panel-body">
+{{ $c->comment}}
+
+</div>
+</div>
+</div>
+
+</div>
+@endforeach
+@else
+<h4>Na tejto stránke nie sú zatiaľ žiadne komentáre.</h4>
+@endif
+@else
+<h4>Komentáre na tejto stránke nie sú povolené.</h4>
+@if(Auth::user()->role == "admin")
+
+                                     <form class="form-horizontal" method="POST" action="{{ action('CommentController@allow_comments') }}">                                    
+
+
+                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                         <input type="hidden" name="commented_on_input" value="{{ $premenna0 }}">
+                           
+                                  
+                                        <br>
+                                        <div class="form-group">
+                           
+                                        <div class="col-md-8 col-md-offset-5">
+                                        <button type="submit" style="height:40px; width:250px" class="btn btn-success green"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Povoliť komentáre</button>
+                                         </div>
+                                        </div>
+                                        
+
+                                    </form>
+
+@endif
+@endif
+@endauth
+
+@guest
+<h4>Pre zobrazenie komentárov je potrebné sa prihlásiť.</h4>
+@endguest
+
+
+
+<br>
+<br>
+<br>
+
+
+
+
 
    <div class="form-group">
    <div class="col-md-8 col-md-offset-5">
-                        <a href="{{ url()->previous() }}"> 
+                        <a href="{{ url('/') }}"> 
                             <button type="button" style="height:40px; width:250px" class="btn btn-default btn-lg">
   							<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Naspäť
 							</button>

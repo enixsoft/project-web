@@ -10,7 +10,7 @@ class Zamestnanec extends Model
     
     protected $table = 'zamestnanci';
 
-    protected $fillable = ['id', 'name', 'department', 'dep_acronym', 'faculty', 'faculty_acronym', 'description'];
+    protected $fillable = ['id', 'name', 'department', 'dep_acronym', 'faculty', 'faculty_acronym', 'description', 'comments_allowed'];
 
      protected $searchable = [
         'name',

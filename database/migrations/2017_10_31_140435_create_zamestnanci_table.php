@@ -23,6 +23,7 @@ class CreateZamestnanciTable extends Migration
             $table->string('faculty');
             $table->string('faculty_acronym');
             $table->string('description');
+            $table->integer('comments_allowed');
             $table->timestamps();
         });
 

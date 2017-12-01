@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Auth;
 
+
 use App\Models\Publications;
 
 
@@ -70,13 +71,31 @@ class EmployeeController extends Controller
             foreach ($zaznam as $z)
             {
               $premenna0=$z->id;
+              $commentsAllowed=$z->comments_allowed;
+
+              $comments = DB::table("comments")
+                  ->join('users', 'comments.user_who_commented_id', '=', 'users.id')
+                  ->where('commented_on_id', '=', $over_id)
+                  ->select('comments.comment', 'comments.created_at', 'users.username')
+                  ->orderBy('comments.created_at', 'desc')
+                  ->get();
+
+
+
+              
+
+
+
+
             }
-        
+
+
+           
 
 
      
           
-         return view("details.employee", compact('controller', 'zaznam', 'profile', 'nazov_popisu', 'stlpec1', 'stlpec2', 'stlpec3', 'stlpec4', 'stlpec5', 'stlpec6', 'stlpec7', 'stlpec8', 'stlpec9', 'stlpec10', 'premenna0', 'premenna1', 'premenna2', 'premenna3', 'premenna4', 'premenna5', 'premenna6', 'premenna7', 'premenna8', 'premenna9', 'premenna10'));
+         return view("details.employee", compact('controller', 'comments', 'commentsAllowed', 'zaznam', 'profile', 'nazov_popisu', 'stlpec1', 'stlpec2', 'stlpec3', 'stlpec4', 'stlpec5', 'stlpec6', 'stlpec7', 'stlpec8', 'stlpec9', 'stlpec10', 'premenna0', 'premenna1', 'premenna2', 'premenna3', 'premenna4', 'premenna5', 'premenna6', 'premenna7', 'premenna8', 'premenna9', 'premenna10'));
         
     }
 
