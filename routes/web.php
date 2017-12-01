@@ -549,3 +549,5 @@ Route::get('stastistics-fss', 'ChartController@get_stastistics_faculty_of_centra
 Route::get('stastistics-fsvz', 'ChartController@get_stastistics_faculty_of_social_sciences_and_health')->name('stastistics-fsvz');
 
 
+Route::get('/check_myinput', 'ChartController@check_input')->name('check_myinput');
+

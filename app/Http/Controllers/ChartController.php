@@ -525,6 +525,23 @@ class ChartController extends Controller
         return view('statistics_fss_faculty', compact('count_dekanat_fss', 'count_ruch', 'count_jazykoveda', 'count_vzdelavanie', 'count_jazyk', 'count_doktorandske_studium_fss'));
     }
 
+    public function check_input(Request $request)
+    {
+         \Log::debug('The request is actually working');
+         $name = $request->input('name');
+
+        if($name == "Fakulta prírodných Vied")
+        {
+              return view('welcome');
+        }
+
+        else
+        {
+            return view('welcome');
+        }
+
+    }
+
 
 
 }

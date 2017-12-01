@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <title>UKF - Katalóg zamestnancov</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="description" content="" />
     <!-- css -->
     <link href="{{ asset('css/bootstrap.min.css') }}" type="text/css" rel="stylesheet" />
@@ -253,8 +254,24 @@ canvasP.onclick = function(e) {
       case 'Fakulta prírodných Vied':
          //alert('clicked on slice 5');
        //  "{{ URL::to('zone') }}"
-       var url = "{{ route('stastistics-fpv')}}";
-       window.location.replace(url);
+
+       jQuery.ajax({
+
+        url:'/check_myinput',
+        type: 'GET',
+        data: {
+
+            name: 'My data sending to controller on comparing'
+
+        },
+        success: function( data ){
+
+            console.log(data);
+        }
+       });
+      
+      //var url = "{{ route('stastistics-fpv')}}";
+    // window.location.replace(url);
         break;
 
       case 'Filozofická fakulta':
