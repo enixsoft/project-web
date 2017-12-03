@@ -165,22 +165,18 @@ canvas
           
 
 <script>
-var canvasP = document.getElementById("pieChart");
+    var canvasP = document.getElementById("pieChart");
 
-   var dekanat_pf = {!! json_encode($count_dekanat_pf) !!};
-   var hudba = {!! json_encode($count_hudba) !!};
-   var studie = {!! json_encode($count_studie)!!};
-   var psychologia = {!! json_encode($count_psychologia)!!};
-   var pedagogika = {!! json_encode($count_pedagogika) !!};
-   var technika = {!! json_encode($count_technika) !!};
-   var sport = {!! json_encode($count_sport)!!};
-   var vychova = {!! json_encode($count_vychova)!!};
-   var doktorandske_studium = {!! json_encode($count_doktorandske_studium)!!};
+   var dekanat_pf = {!! json_encode($my_array[0]) !!};
+   var hudba = {!! json_encode($my_array[1]) !!};
+   var studie = {!! json_encode($my_array[2])!!};
+   var psychologia = {!! json_encode($my_array[3])!!};
+   var pedagogika = {!! json_encode($my_array[4]) !!};
+   var technika = {!! json_encode($my_array[5]) !!};
+   var sport = {!! json_encode($my_array[6])!!};
+   var vychova = {!! json_encode($my_array[7])!!};
+   var doktorandske_studium = {!! json_encode($my_array[8])!!};
    
-  
-
-
-    
 
    var ctxP = canvasP.getContext('2d');
    var myPieChart = new Chart(ctxP, {

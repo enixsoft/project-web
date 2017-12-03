@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Charts;
 use App\User;
 use DB;
+use SplFixedArray;
 
 class ChartController extends Controller
 {
@@ -81,91 +82,85 @@ class ChartController extends Controller
     {
         $all_users = DB::table('zamestnanci')->get();
 
-        $count_dekanat = 0;
-        $count_botanika = 0;
-        $count_chemia = 0;
-        $count_ekologia = 0;
-        $count_fyzika = 0;
-        $count_geografia = 0;
-        $count_inf_techn = 0;
-        $count_matika = 0;
-        $count_zoologia = 0;
-        $count_ekonomika = 0;
-        $count_gemologicky_ustav = 0;
-        $count_doktorandske_studium = 0;
+        $chart = "FPV";
+        $title = "Štatistika zamestnancov Fakulty prírodných Vied UKF";
 
+        $my_array = array (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 
-
-
-
+/*
+        foreach($my_array as $key => $value)
+        {
+            $my_array[$key] = 0;
+        }
+*/
 
         foreach($all_users as $element)
         {
             if($element->department == "FPV - Dekanát Fakulty prírodných vied")
             {
-                $count_dekanat++;
+                $my_array[0]++;
             }
 
             else if($element->department == "FPV - Katedra botaniky a genetiky")
             {
-                $count_botanika++;
+                $my_array[1]++;
             }
 
             else if($element->department == "FPV - Katedra chémie")
             {
-                $count_chemia++;
+                $my_array[2]++;
             }
 
             else if($element->department == "FPV - Katedra ekológie a environment.")
             {
-                $count_ekologia++;
+                $my_array[3]++;
             }
 
             else if($element->department == "FPV - Katedra fyziky")
             {
-                $count_fyzika++;
+                $my_array[4]++;
             }
             
             else if($element->department == "FPV - Katedra geografie a reg. rozvoja")
             {
-                $count_geografia++;
+                $my_array[5]++;
             }
 
             else if($element->department == "FPV - Katedra informatiky")
             {
-                $count_inf_techn++;
+                $my_array[6]++;
             }
 
             else if($element->department == "FPV - Katedra matematiky")
             {
-                $count_matika++;
+                $my_array[7]++;
             }
 
             else if($element->department == "FPV - Katedra zoológie a antropológie")
             {
-                $count_zoologia++;
+                $my_array[8]++;
             }
 
             else if($element->department == "FPV - Ústav  ekonomiky a manažmentu")
             {
-                $count_ekonomika++;
+                $my_array[9]++;
             }
 
             else if($element->department == "FPV Gemologický ústav")
             {
-                $count_gemologicky_ustav++;
+                $my_array[10]++;
             }
 
             else if($element->department == "FPV-doktorandské štúdium")
             {
-                $count_doktorandske_studium++;
+                $my_array[11]++;
             }
 
         }
 
+       
 
-
-        return view('statistics_fpv_faculty', compact('count_dekanat', 'count_botanika', 'count_chemia', 'count_ekologia', 'count_fyzika', 'count_geografia', 'count_inf_techn', 'count_matika', 'count_zoologia', 'count_ekonomika', 'count_gemologicky_ustav', 'count_doktorandske_studium'));
+        return view('statistics_view', compact('chart', 'my_array', 'title'));
     }
 
 
@@ -173,239 +168,206 @@ class ChartController extends Controller
     {
         $all_users = DB::table('zamestnanci')->get();
 
-        $count_dekanat_ff = 0;
-        $count_jazykove_centrum = 0;
-        $count_translatologia = 0;
-        $count_anglistika = 0;
-        $count_archeologia = 0;
-        $count_etnologia = 0;
-        $count_filozofia = 0;
-        $count_germanistika = 0;
-        $count_historia = 0;
-        $count_kulturologia = 0;
-        $count_manazment = 0;
-        $count_reklama = 0;
-        $count_muzeologia = 0;
-        $count_nabozenstvo = 0;
-        $count_politologia = 0;
-        $count_romanistika = 0;
-        $count_rusistika = 0;
-        $count_literatura = 0;
-        $count_sociologia = 0;
-        $count_etiketa = 0;
-        $count_zurnalistika = 0;
-        $count_komunikacia = 0;
-        $count_metoda = 0;
-        $count_medialne_centrum = 0;
-        $count_doktorandske_studium = 0;
+        $chart = "FF";
+        $title = "Štatistika zamestnancov Filozofickej Fakulty UKF";
+
+        $my_array = array (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 
         
-
-
-
-
 
         foreach($all_users as $element)
         {
             if($element->department == "FF - Dekanát Filozofickej fakulty")
             {
-                $count_dekanat_ff++;
+                $my_array[0]++;
             }
 
             else if($element->department == "FF - Jazykové centrum")
             {
-                $count_jazykove_centrum++;
+                $my_array[1]++;
             }
 
             else if($element->department == "FF - Katedra  translatológie")
             {
-                $count_translatologia++;
+                $my_array[2]++;
             }
 
             else if($element->department == "FF - Katedra anglistiky a amerikanistiky")
             {
-                $count_anglistika++;
+                $my_array[3]++;
             }
 
             else if($element->department == "FF - Katedra archeológie")
             {
-                $count_archeologia++;
+                $my_array[4]++;
             }
 
             else if($element->department == "FF - Katedra etnológie a folkloristiky")
             {
-                $count_etnologia++;
+                $my_array[5]++;
             }
 
             else if($element->department == "FF - Katedra filozofie")
             {
-                $count_filozofia++;
+                $my_array[6]++;
             }
 
             else if($element->department == "FF - Katedra germanistiky")
             {
-                $count_germanistika++;
+                $my_array[7]++;
             }
 
             else if($element->department == "FF - Katedra histórie")
             {
-                $count_historia++;
+                $my_array[8]++;
             }
 
             else if($element->department == "FF - Katedra kulturológie")
             {
-                $count_kulturologia++;
+                $my_array[9]++;
             }
 
             else if($element->department == "FF - Katedra manažmentu kult.a turizmu")
             {
-                $count_manazment++;
+                $my_array[10]++;
             }
 
             else if($element->department == "FF - Katedra masm. komunikácie a reklamy")
             {
-                $count_reklama++;
+                $my_array[11]++;
             }
 
             else if($element->department == "FF - Katedra muzeológie")
             {
-                $count_muzeologia++;
+                $my_array[12]++;
             }
 
             else if($element->department == "FF - Katedra náboženských štúdií")
             {
-                $count_nabozenstvo++;
+                $my_array[13]++;
             }
 
             else if($element->department == "FF - Katedra politológie a euroáz.štúdií")
             {
-                $count_politologia++;
+                $my_array[14]++;
             }
 
             else if($element->department == "FF - Katedra romanistiky")
             {
-                $count_romanistika++;
+                $my_array[15]++;
             }
 
             else if($element->department == "FF - Katedra rusistiky")
             {
-                $count_rusistika++;
+                $my_array[16]++;
             }
 
             else if($element->department == "FF - Katedra slovenského jazyka a litera")
             {
-                $count_literatura++;
+                $my_array[17]++;
             }
 
             else if($element->department == "FF - Katedra sociológie")
             {
-                $count_sociologia++;
+                $my_array[18]++;
             }
 
             else if($element->department == "FF - Katedra všeob. a aplikovanej etiky")
             {
-                $count_etiketa++;
+                $my_array[19]++;
             }
 
              else if($element->department == "FF - Katedra žurnalistiky")
             {
-                $count_zurnalistika++;
+                $my_array[20]++;
             }
 
             else if($element->department == "FF - Ústav lit. a umeleckej komunikácie")
             {
-                $count_komunikacia++;
+                $my_array[21]++;
             }
 
             else if($element->department == "FF - Ústav pre v. k. d. Konšt. a Metoda")
             {
-                $count_metoda++;
+                $my_array[22]++;
             }
 
             else if($element->department == "FF Mediálne centrum")
             {
-                $count_medialne_centrum++;
+                $my_array[23]++;
             }
 
             else if($element->department == "FF-doktorandské štúdium")
             {
-                $count_doktorandske_studium++;
+                $my_array[24]++;
             }
         }
 
 
-
-        return view('statistics_ff_faculty', compact('count_dekanat_ff', 'count_jazykove_centrum', 'count_translatologia', 'count_anglistika', 'count_archeologia', 'count_etnologia', 'count_filozofia', 'count_germanistika', 'count_historia', 'count_kulturologia', 'count_manazment', 'count_reklama', 'count_muzeologia', 'count_nabozenstvo', 'count_politologia', 'count_romanistika', 'count_rusistika', 'count_literatura', 'count_sociologia', 'count_etiketa', 'count_zurnalistika', 'count_komunikacia', 'count_metoda', 'count_medialne_centrum', 'count_doktorandske_studium'));
+        return view('statistics_view', compact('chart', 'my_array', 'title'));
     }
 
     public function get_stastistics_of_pedagogic_faculty()
     {
         $all_users = DB::table('zamestnanci')->get();
 
-        $count_dekanat_pf = 0;
-        $count_hudba = 0;
-        $count_studie = 0;
-        $count_psychologia = 0;
-        $count_pedagogika = 0;
-        $count_technika = 0;
-        $count_sport = 0;
-        $count_vychova = 0;
-        $count_doktorandske_studium = 0;
+        $chart = "PF";
+        $title = "Štatistika zamestnancov Pedagogickej Fakulty UKF";
 
-
+         $my_array = array (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 
 
         foreach($all_users as $element)
         {
             if($element->department == "PF - Dekanát Pedagogickej fakulty")
             {
-                $count_dekanat_pf++;
+                $my_array[0]++;
             }
 
             else if($element->department == "PF - Katedra hudby")
             {
-                $count_hudba++;
+                $my_array[1]++;
             }
 
             else if($element->department == "PF - Katedra lingvodid.a interkult.štúdi")
             {
-                $count_studie++;
+                $my_array[2]++;
             }
 
             else if($element->department == "PF - Katedra pedag. a škol. psychológie")
             {
-                $count_psychologia++;
+                $my_array[3]++;
             }
 
             else if($element->department == "PF - Katedra pedagogiky")
             {
-                $count_pedagogika++;
+                $my_array[4]++;
             }
 
             else if($element->department == "PF - Katedra techniky a inf. technológií")
             {
-                $count_technika++;
+                $my_array[5]++;
             }
 
             else if($element->department == "PF - Katedra telesnej výchovy a športu")
             {
-                $count_sport++;
+                $my_array[6]++;
             }
 
             else if($element->department == "PF - Katedra výtvarnej tvorby a výchovy")
             {
-                $count_vychova++;
+                $my_array[7]++;
             }
 
             else if($element->department == "PF-doktorandské štúdium")
             {
-                $count_doktorandske_studium++;
+                $my_array[8]++;
             }
         }
 
 
 
-        return view('statistics_pf_faculty', compact('count_dekanat_pf', 'count_hudba', 'count_studie', 'count_psychologia', 'count_pedagogika', 'count_technika', 'count_sport', 'count_vychova', 'count_doktorandske_studium'));
+        return view('statistics_view', compact('chart', 'my_array', 'title'));
     }
 
 
@@ -413,116 +375,119 @@ class ChartController extends Controller
     {
         $all_users = DB::table('zamestnanci')->get();
 
-        $count_dekanat_fsvz = 0;
-        $count_medicina = 0;
-        $count_osetrovatelstvo = 0;
-        $count_psychologicke_vedy = 0;
-        $count_socialne_vedy = 0;
-        $count_aplikovana_psychologia = 0;
-        $count_romologia = 0;
-        $count_doktorandske_studium = 0;
+        $chart = "FSVaZ";
+        $title = "Štatistika zamestnancov Fakulty sociál. vied a Zdravotníctva UKF";
 
-        
-
-
-
+        $my_array = array (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 
 
         foreach($all_users as $element)
         {
             if($element->department == "FSVaZ - Dekanát FSVaZ")
             {
-                $count_dekanat_fsvz++;
+                $my_array[0]++;
             }
 
             else if($element->department == "FSVaZ - Katedra klin. disc. a urg. med.")
             {
-                $count_medicina++;
+                $my_array[1]++;            
             }
 
             else if($element->department == "FSVaZ - Katedra ošetrovateľstva")
             {
-                $count_osetrovatelstvo++;
+                $my_array[2]++;
             }
 
             else if($element->department == "FSVaZ - Katedra psychologických vied")
             {
-                $count_psychologicke_vedy++;
+                $my_array[3]++;
             }
 
             else if($element->department == "FSVaZ - Katedra soc. práce a soc. vied")
             {
-                $count_socialne_vedy++;
+                $my_array[4]++;
             }
 
             else if($element->department == "FSVaZ - Ústav aplikovanej psychológie")
             {
-                $count_aplikovana_psychologia++;
+                $my_array[5]++;
             }
 
             else if($element->department == "FSVaZ - Ústav romologických štúdií")
             {
-                $count_romologia++;
+                $my_array[6]++;
             }
 
             else if($element->department == "FSVaZ-doktorandské štúdium")
             {
-                $count_doktorandske_studium++;
+                $my_array[7]++;
             }
         }
 
-
-
-        return view('statistics_fsvz_faculty', compact('count_dekanat_fsvz', 'count_medicina', 'count_osetrovatelstvo', 'count_psychologicke_vedy', 'count_socialne_vedy', 'count_aplikovana_psychologia', 'count_romologia', 'count_doktorandske_studium'));
+        return view('statistics_view', compact('chart', 'my_array', 'title'));
     }
 
     public function get_stastistics_faculty_of_central_european_studies()
     {
         $all_users = DB::table('zamestnanci')->get();
 
-        $count_dekanat_fss = 0;
-        $count_ruch = 0;
-        $count_jazykoveda = 0;
-        $count_vzdelavanie = 0;
-        $count_jazyk = 0;
-        $count_doktorandske_studium_fss = 0;
+        $chart = "FSS";
+        $title = "Štatistika zamestnancov Fakulty stredoeurópskych Štúdií UKF";
 
+        $my_array = array (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 
         foreach($all_users as $element)
         {
             if($element->department == "FSŠ - Dekanát FSŠ")
             {
-                $count_dekanat_fss++;
+                $my_array[0]++;
             }
 
             else if($element->department == "FSŠ - Katedra cestovného ruchu")
             {
-                $count_ruch++;
+                $my_array[1]++;
             }
 
             else if($element->department == "FSŠ - Ústav maď.jazykovedy  a lit. vedy")
             {
-                $count_jazykoveda++;
+                $my_array[2]++;
             }
 
             else if($element->department == "FSŠ - ústav pre vzdelávanie pedagógov")
             {
-                $count_vzdelavanie++;
+                $my_array[3]++;
             }
 
             else if($element->department == "FSŠ -Ústav stredoeur.jazykov a kultúr")
             {
-                $count_jazyk++;
+                $my_array[4]++;
             }
 
             else if($element->department == "FSŠ-doktorandské štúdium")
             {
-                $count_doktorandske_studium_fss++;
+                $my_array[5]++;
             }
 
         }
 
-        return view('statistics_fss_faculty', compact('count_dekanat_fss', 'count_ruch', 'count_jazykoveda', 'count_vzdelavanie', 'count_jazyk', 'count_doktorandske_studium_fss'));
+        return view('statistics_view', compact('chart', 'my_array', 'title'));
+    }
+
+    public function check_input(Request $request)
+    {
+        $name = $request->input('name');
+
+        if($name == "Fakulta prírodných Vied")
+        {
+            return redirect()->route('/');
+
+        }
+
+        else
+        {
+            //
+        }
+
     }
 
 
