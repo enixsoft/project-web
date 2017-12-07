@@ -3,6 +3,8 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Input;
+use Intervention\Image\ImageManagerStatic as Image;
 
 
 class UserSeeder extends Seeder
@@ -15,17 +17,62 @@ class UserSeeder extends Seeder
     public function run()
     {
         
-        
+
+         /*$filename = time() . '.' . $data['profile_img']->extension();
+    $path = $data['profile_img']->storeAs('uploads/profile_images', $filename);
+
+    // This would ideally be in a job, triggered by the user created event
+    Image::make($path)->resize(100,100)->save($path);
+        */
+
+         //$image = file('public/user.png');
+
+         /*$image = Input::file('public/user.png');
+
+
+         $imageType =  $image->extension();
+
+         $imageStr = (string) Image::make( $image )->resize( 300, null, function ( $constraint ) 
+                                     {
+                                         $constraint->aspectRatio();
+                                     }
+                                     )->encode( $imageType );
+                                     ------------------------------------------------------------------
+
+$image = 'http://images.itracki.com/2011/06/favicon.png';
+// Read image path, convert to base64 encoding
+$imageData = base64_encode(file_get_contents($image));
+
+// Format the image SRC:  data:{mime};base64,{data};
+$src = 'data: '.mime_content_type($image).';base64,'.$imageData;
+
+// Echo out a sample image
+echo '<img src="'.$src.'">';
+                                --------------------------------------------------------------------------
+                            */
+
+
+      $defaultPicturePath = "public/user.png";
+      
+      $defaultPictureFile = file_get_contents($defaultPicturePath);
+      
+      $defaultPictureType = File::extension($defaultPicturePath);
+      
+      $defaultPictureBlob = base64_encode($defaultPictureFile);
+
+
 
         DB::table('users')->insert([            
             'username' => "admin",
             'password' => bcrypt('heslo123'),
             'email' => "admin@ukf.sk",
             'role' => "admin",
-            'remember_token' => null,         
+            'remember_token' => null,
+            'profile_picture' => $defaultPictureBlob,
+            'profile_picture_type' => $defaultPictureType           
         ]);
         
-
+        
         $arrayidzamestnanci = DB::select('select id, name from zamestnanci', [1]);
 
         foreach($arrayidzamestnanci as $idzam)          
@@ -33,7 +80,7 @@ class UserSeeder extends Seeder
 
             $idzamNewName = $this->removeCommonWords($idzam->name);
             $idzamNewName = $this->clean($idzamNewName);
-            $idzamEmail = $this->createEmail($idzamNewName);
+            $idzamEmail =   $this->createEmail($idzamNewName);
 
             $emailDuplicateCheck = DB::table('users')
                         ->where('email', '=', $idzamEmail . "@ukf.sk")
@@ -53,13 +100,15 @@ class UserSeeder extends Seeder
             'password' => bcrypt('heslo123'),
             'email' => $idzamEmail . "@ukf.sk",
             'role' => "user",
-            'remember_token' => null,         
+            'remember_token' => null,
+            'profile_picture' => $defaultPictureBlob,
+            'profile_picture_type' => $defaultPictureType                    
         ]);
 
 
 
         }
-
+            
 
     }
 

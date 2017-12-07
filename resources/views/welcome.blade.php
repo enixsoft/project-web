@@ -206,6 +206,7 @@
 		
 			<!-- start header -->
 		<header>
+			<br>
 			<div class="navbar navbar-default navbar-static-top">
 				<div class="container">
 				
@@ -225,18 +226,32 @@
 						<ul class="nav navbar-nav" style="float:right;">	
 																
 							<li class="dropdown">
-								
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false"><img src="{{ asset('img/user.png') }}"></a>
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">{{ Auth::user()->username }}</a>				
-								<ul class="dropdown-menu">									
-									<li><a href="{{ route('profile') }}"><b>Profil</b></a></li>
-									<li><a href="{{ route('publications') }}"><b>Publikácie</b></a></li>
-                                   	<li><a href="{{ route('projects') }}"><b>Projekty</b></a></li>
-									<li><a href="{{ route('activities') }}"><b>Aktivity</b></a></li>
+								 
+								 <?php
+								  $imageDataType=Auth::user()->profile_picture_type;
+								  $imageData=Auth::user()->profile_picture;
+								  $imageLink = 'data: '.$imageDataType.';base64,'.$imageData;
+								 ?>
 
 								
-									<li><a href="components.html"><b>Nastavenia</b></a></li>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false"><img src="{{ $imageLink }}"></a>						    
+																																				
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">{{ Auth::user()->username }}</a>	
+
+
+
+								<ul class="dropdown-menu">									
+									@if(Auth::user()->role == "admin")
+									<li><a href="{{ route('settings') }}"><b>Nastavenia</b></a></li>
 									<li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><b>Odhlásiť sa</b></a></li>
+									@else
+									<li><a href="{{ route('profile') }}"><b>Profil</b></a></li>									
+									<li><a href="{{ route('publications') }}"><b>Publikácie</b></a></li>
+                                   	<li><a href="{{ route('projects') }}"><b>Projekty</b></a></li>
+									<li><a href="{{ route('activities') }}"><b>Aktivity</b></a></li>								
+									<li><a href="{{ route('settings') }}"><b>Nastavenia</b></a></li>
+									<li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><b>Odhlásiť sa</b></a></li>
+									@endif
 								</ul>
 
 							</li>

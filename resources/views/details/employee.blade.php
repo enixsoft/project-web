@@ -429,8 +429,10 @@
 <div class="row">
 <div class="col-sm-12">
 <h3>Komentáre</h3>
-@auth
+
 @if($commentsAllowed==1)
+
+@auth
 @if(Auth::user()->role == "admin")
 
                                      <form class="form-horizontal" method="POST" action="{{ action('CommentController@disable_comments') }}">                                    
@@ -482,17 +484,21 @@
 </div><!-- /col-sm-12 -->
 </div><!-- /row -->
 </div>
-                         
+                       
                         
-
-
+@endauth
 
 @if(count($comments)>0)
 @foreach ($comments as $c)
 <div class="row">
 <div class="col-sm-1">
 <div class="thumbnail">
-<img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+         <?php
+                                  $imageDataType=$c->profile_picture_type;
+                                  $imageData=$c->profile_picture;
+                                  $imageLink = 'data: '.$imageDataType.';base64,'.$imageData;
+          ?>
+<img class="img-responsive user-photo" src="{{ $imageLink }}">
 </div>
 </div>
 
@@ -511,11 +517,14 @@
 
 </div>
 @endforeach
+
 @else
 <h4>Na tejto stránke nie sú zatiaľ žiadne komentáre.</h4>
 @endif
+
 @else
 <h4>Komentáre na tejto stránke nie sú povolené.</h4>
+@auth
 @if(Auth::user()->role == "admin")
 
                                      <form class="form-horizontal" method="POST" action="{{ action('CommentController@allow_comments') }}">                                    
@@ -537,12 +546,10 @@
                                     </form>
 
 @endif
-@endif
 @endauth
+@endif
 
-@guest
-<h4>Pre zobrazenie komentárov je potrebné sa prihlásiť.</h4>
-@endguest
+
 
 
 

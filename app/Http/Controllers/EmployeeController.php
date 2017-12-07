@@ -76,7 +76,7 @@ class EmployeeController extends Controller
               $comments = DB::table("comments")
                   ->join('users', 'comments.user_who_commented_id', '=', 'users.id')
                   ->where('commented_on_id', '=', $over_id)
-                  ->select('comments.comment', 'comments.created_at', 'users.username')
+                  ->select('comments.comment', 'comments.created_at', 'users.username', 'users.profile_picture', 'users.profile_picture_type')
                   ->orderBy('comments.created_at', 'desc')
                   ->get();
 
@@ -207,14 +207,7 @@ class EmployeeController extends Controller
 
     public function update_record(Request $request)
     {
-        //$previous_room = url()->previous();
-        /*
-          $validator = Validator::make($request->all(), [
-            'textarea1' => 'required|string|min:2|max:750',        //set it to whatever you like
-            'textarea2' => 'required|string|min:2|max:750',
-            //'textarea_three' =>  'required|string|min:2|max:750'
-        ]);
-            */
+        
 
 
 
@@ -223,7 +216,10 @@ class EmployeeController extends Controller
        $textarea3 = $request->get('textarea3'),
        $textarea4 = $request->get('textarea4'),
        $textarea5 = $request->get('textarea5'),
-       $textarea6 = $request->get('textarea6')
+       $textarea6 = $request->get('textarea6'),
+       $textarea7 = $request->get('textarea7'),
+       $textarea8 = $request->get('textarea8'),
+       $textarea8 = $request->get('textarea9')
                             );
 
        foreach ($textAreas as $key => &$value) 
@@ -248,6 +244,11 @@ class EmployeeController extends Controller
 
 
           ]);
+
+
+            DB::table('profile')
+            ->where('profile.zamestnanec_id', '=', $request->get('id'))
+            ->update(['profile.description' => $textAreas[6], 'profile.consultation_hours' => $textAreas[7], 'profile.education' => $textAreas[8]]);
 
 
 
