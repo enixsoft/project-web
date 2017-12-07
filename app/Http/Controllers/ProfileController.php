@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Auth;
 use DB;             // added due to using in function
 
+
+
 class ProfileController extends Controller
 {
 
@@ -63,6 +65,13 @@ class ProfileController extends Controller
           return back()->with('success', 'Thank you for your hard work!');
          
      }
+
+     
+
+
+
+
+     
 
 }
 

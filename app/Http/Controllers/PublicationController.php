@@ -9,6 +9,8 @@ use Validator;
 use Auth;
 use DB;             // added due to using in function
 
+use Illuminate\Support\Facades\Input;
+
 class PublicationController extends Controller
 {
 
@@ -166,7 +168,64 @@ class PublicationController extends Controller
           
 
        return Redirect::back();
-}
+      }
+
+
+      public function search_publication(Request $request)
+      {
+
+           $resultCategory="publications";
+
+     //   $stlpec1 = "Zamestnanec_ID";
+
+        $stlpec1 = "Názov";
+        $stlpec2 = "ISBN";
+        $stlpec3 = "Autori";
+        $stlpec4 = "Vydavateľ";
+
+      //  $variable1 = "zamestnanec_id";
+        $variable0 = "id";
+        $variable1 = "title";
+        $variable2 = "ISBN";
+        $variable3 = "all_authors";
+        $variable4 = "publisher";
+
+   //   $variable4 = "publisher";
+
+
+       $isbn = Input::get('ISBN');
+       $Title = Input::get('title'); 
+       $Sub_title = Input::get('sub_title');
+       $Author = Input::get('author');
+       $Type = $request->type;
+       $Publisher = $request->publisher;
+       $Pages = Input::get('pages');
+       $Year = Input::get('year');
+       $Code = $request->code;
+
+
+
+        $user = DB::table('publications') ->select('id', 'ISBN','title', 'all_authors', 'publisher')       // SQL query
+            ->where('ISBN', 'like','%'.$isbn.'%')
+            ->where('title', 'like', '%'.$Title.'%')
+            ->where('sub_title', 'like', '%'.$Sub_title.'%')
+            ->where('all_authors', 'like', '%'.$Author.'%')
+            ->where('type', 'like', '%'.$Type.'%')
+            ->where('publisher', 'like', '%'.$Publisher.'%')
+            ->where('pages', 'like', '%'.$Pages.'%')
+            ->where('year', 'like', '%'.$Year.'%')
+            ->where('code', 'like', '%'.$Code.'%')
+            ->get();
+           
+
+             
+
+          return view("searchresults2", compact('user', 'stlpec1', 'stlpec2', 'stlpec3', 'stlpec4', 'variable0', 'variable1', 
+              'variable2', 'variable3', 'variable4', 'resultCategory'));
+
+      }
+
+   
 
 
 }

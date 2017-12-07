@@ -2,11 +2,15 @@
 
 use Illuminate\Support\Facades\Input;
 
+use Illuminate\Support\Facades\Select;
+
 use App\Models\User;
 use App\Models\Zamestnanec;
 
 
 use Illuminate\Support\Facades\Textarea;
+
+use Illuminate\Support\Collection\firstWhere;
 
 /*
 |--------------------------------------------------------------------------
@@ -145,7 +149,24 @@ Route::get('/', function() {
    //$ids = DB::select('select id from zamestnanci', [1]);
   //return view('welcome', compact('ids'));
 
-    return view('welcome');
+
+  // Tabulka zamestnanci
+
+  $tabulka_zam_fakulta = DB::table('zamestnanci')->DISTINCT()->select('faculty')->get();
+  $tabulka_zam_popis = DB::table('zamestnanci')->DISTINCT()->select('description')->get();
+  $tabulka_zam_katedra = DB::table('zamestnanci')->DISTINCT()->select('department')->get();
+  
+
+  // Tabulka publications
+
+  $tabulka_publ_typ = DB::table('publications')->DISTINCT()->select('type')->get();
+  $tabulka_publ_vydavatel = DB::table('publications')->DISTINCT()->select('publisher')->get();
+  $tabulka_publ_kod = DB::table('publications')->DISTINCT()->select('code')->get();
+
+ 
+
+
+  return view('welcome', compact('tabulka_zam_fakulta', 'tabulka_zam_popis', 'tabulka_zam_katedra', 'tabulka_publ_typ', 'tabulka_publ_vydavatel', 'tabulka_publ_kod'));
 });
 
 
@@ -252,7 +273,7 @@ Route::post('searchProject', array(       // treba oddelit okrem stlpcov aj jedn
 ));
 
 
-
+/*
 Route::post('searchEmployee', array(    // vyhlada zamestnanca
 
     'as' => 'searchEmployee',
@@ -316,6 +337,11 @@ Route::post('searchEmployee', array(    // vyhlada zamestnanca
 
 ));
 
+*/
+
+
+/*
+
 
 Route::post('searchPublication', array(
 
@@ -377,7 +403,7 @@ Route::post('searchPublication', array(
 
 
 ));
-
+*/
 
 Route::post('searchActivity', array(
 
@@ -541,6 +567,11 @@ Route::post('/projects/ProjectController@update_record', 'ProjectController@upda
 
 Route::post('/projects/ProfileController@update_record', 'ProfileController@update_record')->name('update_data_record');
 
+
+// pridane
+Route::post('/search_employee','EmployeeController@search_employee', 'EmployeeController@search_employee')->name('search_employee');
+
+Route::post('/search_publication', 'PublicationController@search_publication', 'PublicationController@search_publication')->name('search_publication');
 
 
 

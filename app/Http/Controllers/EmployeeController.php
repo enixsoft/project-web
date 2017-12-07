@@ -7,15 +7,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Auth;
 
-
 use App\Models\Publications;
-
 
 use Validator;
 
 
 
 use DB;             // added due to using in function
+use Illuminate\Support\Facades\Input;
 
 
 class EmployeeController extends Controller
@@ -252,7 +251,60 @@ class EmployeeController extends Controller
 
 
        return Redirect::back();
-}
+      }
+
+
+    public function search_employee(Request $request)
+    {
+
+
+      $resultCategory="employees";
+      
+      $stlpec1 = "Meno";
+      $stlpec2 = "Katedra";
+      $stlpec3 = "Fakulta";
+      $stlpec4 = "Popis";
+
+      $variable0 = "id";
+      $variable1 = "name";
+      $variable2 = "department";
+      $variable3 = "faculty";
+      $variable4 = "description";
+
+      $Fulltext = Input::get('fulltext'); 
+      $Name = Input::get('name');
+      $Department = Input::get('department'); 
+
+
+      $Faculty = $request->faculty;
+      $Description = $request->description;
+
+
+      if (is_null($Fulltext)) 
+          {
+            $user = DB::table('zamestnanci') ->select('id', 'name', 'department','faculty', 'description')       // SQL query
+            ->where('name', 'like','%'.$Name.'%')
+            ->where('department', 'like', '%'.$Department.'%')
+            ->where('faculty', 'like', '%'.$Faculty.'%')
+            ->where('description', 'like', '%'.$Description.'%')
+            ->get();
+        
+          }
+
+          else //Full-text vyhladavanie         
+          {
+  
+                
+            $user=Zamestnanec::search($Fulltext)     
+            ->get();
+         }
+
+      
+               return view("searchresults2", compact('user', 'stlpec1', 'stlpec2', 'stlpec3', 'stlpec4', 'variable0', 'variable1', 
+              'variable2', 'variable3', 'variable4', 'resultCategory'));
+              
+         
+     }
 
    
 
