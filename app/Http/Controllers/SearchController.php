@@ -224,6 +224,48 @@ class SearchController extends Controller
 
      }
 
+        public function searchUsers()     
+
+     {
+
+      $autentifikacia = Auth::user();
+       
+
+        
+  
+
+      $resultCategory="users";
+
+      
+      $stlpec1 = "Prihl. meno";
+      $stlpec2 = "ID používateľa";
+      $stlpec3 = "E-mail";
+      $stlpec4 = "Práva";
+
+      $variable0 = "id";
+      $variable1 = "username";
+      $variable2 = "id";
+      $variable3 = "email";
+      $variable4 = "role";
+       
+
+         if($autentifikacia->role=="admin")
+        {
+
+        $user = DB::table('users') ->select('id', 'username', 'email', 'role')      // SQL query
+                ->get();
+        }
+
+
+        $user = null;
+
+             
+
+         return view("searchresults2", compact('user', 'stlpec1', 'stlpec2', 'stlpec3', 'stlpec4', 'variable0', 'variable1', 
+              'variable2', 'variable3', 'variable4', 'resultCategory'));
+
+     }
+
 
 
 

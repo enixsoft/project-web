@@ -17,9 +17,9 @@ class ProfileController extends Controller
 
         $user = Auth::user();
 
-        
-        return app('App\Http\Controllers\EmployeeController')->detail_about_record($user->zamestnanec_id);
+        return redirect()->action('EmployeeController@detail_about_record', ['over_id' => $user->zamestnanec_id]);
 
+    
     }
 
   

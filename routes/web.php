@@ -47,6 +47,7 @@ Route::post('searchEmployee', 'SearchController@searchEmployee')->name('searchEm
 Route::post('searchPublication', 'SearchController@searchPublication')->name('searchPublication');    
 Route::post('searchProject', 'SearchController@searchProject')->name('searchProject');
 Route::post('searchActivity', 'SearchController@searchActivity')->name('searchActivity');
+Route::get('users', 'SearchController@searchUsers')->name('users');
 
     
 
@@ -72,7 +73,7 @@ Route::auth();
 */
 
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
 
 
 
@@ -94,7 +95,7 @@ Route::post('/settings/UserController@uploadProfilePicture', 'UserController@upl
 
 
 
-//-------------Zamestnanci, publikacie, projekty, aktivity, profil VYHLADAVANIE a UPRAVA---------------------------------------------
+//-------------Zamestnanci, publikacie, projekty, aktivity, profil, pouzivatelia VYHLADAVANIE a UPRAVA---------------------------------------------
 
 Route::get('/employees/{internalId}', ['as' => 'details', 'uses' => 'EmployeeController@detail_about_record']);
 
@@ -119,6 +120,14 @@ Route::get('/projects/{internalId}', ['as' => 'details', 'uses' => 'ProjectContr
 Route::post('/projects/ProjectController@update_record', 'ProjectController@update_record')->name('update_data_record');
 
 Route::post('/projects/ProfileController@update_record', 'ProfileController@update_record')->name('update_data_record');
+
+Route::get('/users/{internalId}', ['as' => 'details', 'uses' => 'UserController@detail_about_record']);
+
+Route::post('/users/deleteUser', 'UserController@deleteUser')->name('deleteUser');
+
+Route::post('/users/updateUser', 'UserController@update_record')->name('updateUser');
+
+
 
 
 

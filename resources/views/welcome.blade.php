@@ -242,6 +242,7 @@
 
 								<ul class="dropdown-menu">									
 									@if(Auth::user()->role == "admin")
+									<li><a href="{{ route('users') }}"><b>Používatelia</b></a></li>
 									<li><a href="{{ route('settings') }}"><b>Nastavenia</b></a></li>
 									<li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><b>Odhlásiť sa</b></a></li>
 									@else

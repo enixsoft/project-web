@@ -20,12 +20,120 @@ class UserController extends Controller
 {
     
 
-       public function getview()  //Nastavenia
+    
+
+    public function getview()  //Nastavenia
     {
         return view("settings");
         
     }
 
+
+    public function detail_about_record($over_id)
+     {
+
+            
+
+            $controller="UserController@update_record";
+                
+            $nazov_popisu = "Používatelia";
+            $tabulka = 'users';
+
+            $stlpec1 = "Profilový obrázok";
+            $stlpec2 = "ID používateľa";
+            $stlpec3 = "ID zamestnanca";
+            $stlpec4 = "Meno";
+            $stlpec5 = "E-mail"; 
+            $stlpec6 = "Práva"; 
+      
+            
+
+
+            $premenna0 = "zamestnanec_id";            
+            $premenna00 = "id";
+            
+
+            $premenna1 = "profile_picture";
+            $premenna2 = "id";
+            $premenna3 = "zamestnanec_id";
+            $premenna4 = "username";
+            $premenna5 = "email";
+            $premenna6 = "role";
+                          
+
+            $autentifikacia = Auth::user();
+       
+
+        
+             if($autentifikacia->role=="admin")
+            { 
+    
+            $zaznam = DB::table("users")
+            ->where('id', '=', $over_id)
+            ->get();
+
+            foreach ($zaznam as $z)
+            {
+              $premenna0=$z->zamestnanec_id;
+              $premenna00=$z->id;
+
+            }
+
+            }
+            else
+            {   
+                $zaznam=null; 
+                $premenna0=null;              
+                $premenna00=null;
+            }
+          
+        
+
+
+     
+          
+         return view("details.user", compact('controller', 'zaznam', 'profile', 'nazov_popisu', 'stlpec1', 'stlpec2', 'stlpec3', 'stlpec4', 'stlpec5', 'stlpec6', 'premenna0', 'premenna00', 'premenna1', 'premenna2', 'premenna3', 'premenna4', 'premenna5', 'premenna6'));
+        
+    }
+
+     public function update_record(Request $request)
+    {
+
+
+       $textAreas =  array (       
+       $textarea2 = $request->get('textarea2'), 
+       $textarea3 = $request->get('textarea3'),
+       $textarea4 = $request->get('textarea4')
+                            );
+
+       foreach ($textAreas as $key => &$value) 
+       {
+                      
+              if (is_null($value)) 
+               {
+                  $value = "";
+        
+               }
+        
+       }
+
+
+
+
+          DB::table('users')
+            ->where('users.id', '=', $request->get('id'))
+            ->update(['users.zamestnanec_id' => $request->get('textarea1'), 'users.username' => $textAreas[0],
+              'users.email' => $textAreas[1], 'users.role' => $textAreas[2], 
+
+
+          ]);
+
+             return Redirect::back();
+
+
+
+
+    }
 
     public function uploadProfilePicture(Request $request)
     {
@@ -88,14 +196,27 @@ class UserController extends Controller
        return Redirect::back();
 
 
-
     }
+
 
       public function changePassword(Request $request)
     {
         
     }
 
+      public function deleteUser(Request $request)
+    {
+        $autentifikacia = Auth::user();
+       
+
+        
+        if($autentifikacia->role=="admin")
+        {
+             DB::table('users')->where('id', '=', $request->get('id'))->delete();
+        }
+          return redirect()->route('users');
+
+    }
 
     
 
