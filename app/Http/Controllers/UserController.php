@@ -24,7 +24,8 @@ class UserController extends Controller
 
     public function getview()  //Nastavenia
     {
-        return view("settings");
+        //return view("settings");
+        return view('settings');
         
     }
 
