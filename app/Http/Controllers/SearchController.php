@@ -255,9 +255,10 @@ class SearchController extends Controller
         $user = DB::table('users') ->select('id', 'username', 'email', 'role')      // SQL query
                 ->get();
         }
-
-
+        else
+        {
         $user = null;
+        }
 
              
 
