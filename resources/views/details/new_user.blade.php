@@ -93,30 +93,13 @@
 					<div class="col-lg-12">
 						<div class="big-cta">
 							<div class="cta-text">
-								@if(count($zaznam)>0)
-                                @foreach ($zaznam as $z)
-								<h2><span>Používateľ</span> {{ $z->$premenna4 }}</h2>
-								 @endforeach
-                                 @endif
+						
+								<h2><span>Pridanie nového </span>používateľa</h2>
+							
 							</div>
 						</div>
 					</div>
-				</div>
-                  <div class="navbar-collapse collapse">
-                            <ul class="nav navbar-nav">  
-                            @if(count($zaznam)>0)
-                            @foreach ($zaznam as $z)
-                            @if(!is_null($premenna0))
-                            <li><a href="{{ url('/')}}/employees/{{ $premenna0 }}"><b>Zamestnancov profil</b></a></li>
-                            <li><a href="{{ url('/')}}/employees/{{ $premenna0 }}/publications"><b>Zamestnancove publikácie</b></a></li>                                                            
-                            <li><a href="{{ url('/')}}/employees/{{ $premenna0 }}/projects"><b>Zamestnancove projekty</b></a></li>                                                                        
-                            <li><a href="{{ url('/')}}/employees/{{ $premenna0 }}/activities"><b>Zamestnancove aktivity</b></a></li>
-                            @endif
-                            @endforeach
-                            @endif
-                        </ul>
-
-                    </div>
+				</div>                
 
 
 			</div>
@@ -133,35 +116,19 @@
 
 @auth
 @if(Auth::user()->role == "admin")
-@if(count($zaznam)>0)
+
 	 	
-      <form class="form-horizontal" method="POST" action="{{route('updateUser')}}"> 				
+      <form class="form-horizontal" method="POST" action="{{route('addUser')}}"> 				
         <table class="table">
-        	  @foreach ($zaznam as $z)
-            <tr>
-                <th><h4>{{$stlpec1}}</h4></th>
-                     <?php
-                                  $imageDataType=$z->profile_picture_type;
-                                  $imageData=$z->profile_picture;
-                                  $imageLink = 'data: '.$imageDataType.';base64,'.$imageData;
-                      ?>
+        	 
 
-                <td><img src="{{ $imageLink }}">
-
-                    
-                </td>
-            </tr>
-             <tr>
-                <th><h4>{{$stlpec2}}</h4></th>
-                <td><input readonly class="form-control" name="id" value="{{ object_get($z, $premenna2) }}"></input></td>
-            </tr>
             <tr>
                 <th><h4>{{$stlpec3}}</h4></th>
-                <td><textarea class="form-control" name="textarea1" rows="5">{{ object_get($z, $premenna3) }}</textarea></td>
+                <td><textarea class="form-control" name="textarea1" rows="5"></textarea></td>
             </tr>
             <tr>
                 <th><h4>{{$stlpec4}}</h4></th>               
-                <td><textarea class="form-control" name="textarea2"  rows="5">{{ object_get($z, $premenna4) }}</textarea></td>
+                <td><textarea class="form-control" name="textarea2"  rows="5"></textarea></td>
             </tr>  
             <tr>
                 <th><h4>{{$stlpec5}}</h4></th>
@@ -169,11 +136,11 @@
             </tr>
             <tr>
                 <th><h4>{{$stlpec6}}</h4></th>
-                <td><textarea class="form-control" name="textarea3"  rows="5">{{ object_get($z, $premenna5) }}</textarea></td>
+                <td><textarea class="form-control" name="textarea3"  rows="5"></textarea></td>
             </tr>
             <tr>
                 <th><h4>{{$stlpec7}}</h4></th>
-                <td><textarea class="form-control" name="textarea4"  rows="5">{{ object_get($z, $premenna6) }}</textarea></td>
+                <td><input type="text" class="form-control" name="role"></input></td>
             </tr>
     
 
@@ -183,14 +150,14 @@
 
 
 
-            @endforeach
+          
         </table>
 
 
         <div class="form-group">
                             <div class="col-md-8 col-md-offset-5">
                                 <button style="height:40px; width:250px" type="submit" class="btn btn-primary" >
-                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Uložiť
+                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Pridať
                                 </button>
          					</div>
         </div>
@@ -203,48 +170,7 @@
 <br>
 
  
-   <div class="form-group">
-   <div class="col-md-8 col-md-offset-5">
-                        <form method="POST" action="{{ route('deleteUser')}}">     
-                            <input  type="hidden" name="id" value="{{ $premenna00 }}">
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                           
-                            <button type="submit" style="height:40px; width:250px" class="btn btn-danger">
-                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Odstrániť používateľa
-                            </button>
 
-                        </form>
-   </div>
-   </div>
-
-
-
-@else
-<p>
-<h2>
-Chyba
-</h2>
-Používateľ so zadaným ID neexistuje. 
-</p>
-  <!--   <div style="width: 1100px; border: 1px solid black; padding: 2px">-->
-    <!--  </div>--> 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-@endif
 @else
 <p>
 <h2>

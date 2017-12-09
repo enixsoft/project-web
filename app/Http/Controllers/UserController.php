@@ -9,6 +9,8 @@ use Auth;
 
 use App\Models\Publications;
 
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\File;
 
 use Validator;
 
@@ -44,8 +46,9 @@ class UserController extends Controller
             $stlpec2 = "ID používateľa";
             $stlpec3 = "ID zamestnanca";
             $stlpec4 = "Meno";
-            $stlpec5 = "E-mail"; 
-            $stlpec6 = "Práva"; 
+            $stlpec5 = "Heslo";
+            $stlpec6 = "E-mail"; 
+            $stlpec7 = "Práva"; 
       
             
 
@@ -93,9 +96,66 @@ class UserController extends Controller
 
      
           
-         return view("details.user", compact('controller', 'zaznam', 'profile', 'nazov_popisu', 'stlpec1', 'stlpec2', 'stlpec3', 'stlpec4', 'stlpec5', 'stlpec6', 'premenna0', 'premenna00', 'premenna1', 'premenna2', 'premenna3', 'premenna4', 'premenna5', 'premenna6'));
+         return view("details.user", compact('controller', 'zaznam', 'profile', 'nazov_popisu', 'stlpec1', 'stlpec2', 'stlpec3', 'stlpec4', 'stlpec5', 'stlpec6', 'stlpec7', 'premenna0', 'premenna00', 'premenna1', 'premenna2', 'premenna3', 'premenna4', 'premenna5', 'premenna6'));
         
     }
+
+    public function create_new_user()
+     {
+
+            
+
+            $controller="UserController@addUser";
+                
+            $nazov_popisu = "Používatelia";
+            $tabulka = 'users';
+
+            $stlpec1 = "Profilový obrázok";
+            $stlpec2 = "ID používateľa";
+            $stlpec3 = "ID zamestnanca";
+            $stlpec4 = "Meno";
+            $stlpec5 = "Heslo";
+            $stlpec6 = "E-mail"; 
+            $stlpec7 = "Práva"; 
+      
+            
+
+
+            $premenna0 = "zamestnanec_id";            
+            $premenna00 = "id";
+            
+
+            $premenna1 = "profile_picture";
+            $premenna2 = "id";
+            $premenna3 = "zamestnanec_id";
+            $premenna4 = "username";
+            $premenna5 = "email";
+            $premenna6 = "role";
+                          
+
+            $autentifikacia = Auth::user();
+       
+
+        
+             if($autentifikacia->role=="admin")
+            { 
+    
+             
+            
+            }
+          
+        
+
+
+     
+          
+         return view("details.new_user", compact('controller', 'zaznam', 'profile', 'nazov_popisu', 'stlpec1', 'stlpec2', 'stlpec3', 'stlpec4', 'stlpec5', 'stlpec6', 'stlpec7'));
+        
+    }
+
+
+
+
 
      public function update_record(Request $request)
     {
@@ -120,10 +180,11 @@ class UserController extends Controller
 
 
 
+        $pass=bcrypt($request->password);
 
           DB::table('users')
             ->where('users.id', '=', $request->get('id'))
-            ->update(['users.zamestnanec_id' => $request->get('textarea1'), 'users.username' => $textAreas[0],
+            ->update(['users.zamestnanec_id' => $request->get('textarea1'), 'users.username' => $textAreas[0], 'users.password' =>  $pass,
               'users.email' => $textAreas[1], 'users.role' => $textAreas[2], 
 
 
@@ -202,7 +263,17 @@ class UserController extends Controller
 
       public function changePassword(Request $request)
     {
-        
+        $pass=bcrypt($request->password);
+
+         DB::table('users')
+         ->where('id', '=', $request->get('id'))
+         ->update(['users.password' => $pass]);
+
+         Auth::logout();
+
+        return redirect()->route('/');
+
+
     }
 
       public function deleteUser(Request $request)
@@ -216,6 +287,63 @@ class UserController extends Controller
              DB::table('users')->where('id', '=', $request->get('id'))->delete();
         }
           return redirect()->route('users');
+
+    }
+
+        public function addUser(Request $request)
+    {
+        $autentifikacia = Auth::user();
+       
+
+        
+        if($autentifikacia->role=="admin")
+        {
+
+       $pass=bcrypt($request->password);
+
+       $textAreas =  array (         
+       $textarea3 = $request->get('textarea2'),
+       $textarea4 = $request->get('textarea3')
+                            );
+
+       foreach ($textAreas as $key => &$value) 
+       {
+                      
+              if (is_null($value)) 
+               {
+                  $value = "";
+        
+               }
+        
+       }
+
+      $defaultPicturePath = "img/user.png";
+      
+      $defaultPictureFile = file_get_contents($defaultPicturePath);
+      
+      $defaultPictureType = File::extension($defaultPicturePath);
+      
+      $defaultPictureBlob = base64_encode($defaultPictureFile);
+
+
+
+
+
+
+            DB::table('users')->insert([            
+            'zamestnanec_id' => $request->get('textarea1'),
+            'password' => $pass,
+            'username' => $textAreas[0],
+            'email' => $textAreas[1],
+            'role' =>  $request->get('role'),
+            'remember_token' => null,
+            'profile_picture' => $defaultPictureBlob,
+            'profile_picture_type' => $defaultPictureType           
+        ]);
+        
+        }
+
+              return Redirect::back();
 
     }
 

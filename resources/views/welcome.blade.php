@@ -326,11 +326,6 @@
 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
 @endauth
 
-@guest
-    Neprihlásený používateľ.
-    <a href="{{ route('register') }}">Registrácia (debug)</a>
-    <a href="{{ route('login') }}">Prihlásenie (debug)</a>
-@endguest
 
 
 	</div>			  
@@ -425,12 +420,19 @@
 
                    		
                             
+                            
                        <div class="form-group">
                             <label for="email" class="col-md-4 control-label">Katedra:</label>
 
                             <div class="col-md-6">
                                 
-                                <input type="text" class="form-control" name="department">
+                                <select id="selectnumber" class="form-control" name="department">
+                                <option></option>
+                                @foreach($tabulka_zam_katedra as $katedra)
+                                <option value="{{$katedra->department}}">{{$katedra->department}}</option>
+                                @endforeach
+            					
+        						</select>
                             
                             </div>
                         </div>
@@ -438,10 +440,16 @@
                        <div class="form-group">
                             <label for="email" class="col-md-4 control-label">Fakulta:</label>
 
-                            <div class="col-md-6">
-                                
-                                <input type="text" class="form-control" name="faculty">
-                            
+                            <div class="col-md-6" >
+                               
+                                <select id="selectnumber" class="form-control" name="faculty">
+                                <option></option>
+                                @foreach($tabulka_zam_fakulta as $fakulta)
+                                <option value="{{$fakulta->faculty}}">{{$fakulta->faculty}}</option>
+                                @endforeach
+            					
+        						</select>
+                              
                             </div>
                         </div>
 
@@ -450,7 +458,13 @@
 
                             <div class="col-md-6">
                                 
-                                <input type="text" class="form-control" name="description">
+                                 <select id="hh" class="form-control" name="description">
+                                <option></option>
+                                @foreach($tabulka_zam_popis as $popis)
+                                <option value="{{$popis->description}}">{{$popis->description}}</option>
+                                @endforeach
+            					
+        						</select>
                             
                             </div>
 
@@ -599,22 +613,34 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                         <div class="form-group">
                             <label for="email" class="col-md-4 control-label">Typ:</label>
 
                             <div class="col-md-6">
                                 
-                                <input type="text" class="form-control" name="type">
+                                <select id="selectnumber" class="form-control" name="type">
+                                <option></option>
+                                @foreach($tabulka_publ_typ as $typ)
+                                <option value="{{$typ->type}}">{{$typ->type}}</option>
+                                @endforeach
+            					
+        						</select>
                             
                             </div>
                         </div>
 
-                        <div class="form-group">
+                         <div class="form-group">
                             <label for="email" class="col-md-4 control-label">Vydavateľ:</label>
 
                             <div class="col-md-6">
                                 
-                                <input type="text" class="form-control" name="publisher">
+                                <select id="selectnumber" class="form-control" name="publisher">
+                                <option></option>
+                                @foreach($tabulka_publ_vydavatel as $vydavatel)
+                                <option value="{{$vydavatel->publisher}}">{{$vydavatel->publisher}}</option>
+                                @endforeach
+            					
+        						</select>
                             
                             </div>
                         </div>    
@@ -639,15 +665,22 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                         <div class="form-group">
                             <label for="email" class="col-md-4 control-label">Kód:</label>
 
                             <div class="col-md-6">
                                 
-                                <input type="text" class="form-control" name="code">
+                                <select id="selectnumber" class="form-control" name="code">
+                                <option></option>
+                                @foreach($tabulka_publ_kod as $kod)
+                                <option value="{{$kod->code}}">{{$kod->code}}</option>
+                                @endforeach
+            					
+        						</select>
                             
                             </div>
                         </div>
+
 
                         <div class="form-group">
                              
@@ -755,12 +788,18 @@
                         </div>
 
 
-                       	<div class="form-group">
+                       	 	<div class="form-group">
                             <label for="email" class="col-md-4 control-label">Dátum:</label>
 
                             <div class="col-md-6">
                                 
-                                <input type="text" class="form-control" name="date">
+                                <select id="selectnumber" class="form-control" name="date">
+                                <option></option>
+                                @foreach($tabulka_akt_datum as $datum)
+                                <option value="{{$datum->date}}">{{$datum->date}}</option>
+                                @endforeach
+            					
+        						</select>
                             
                             </div>
                         </div>
@@ -770,7 +809,13 @@
 
                             <div class="col-md-6">
                                 
-                                <input type="text" class="form-control" name="title">
+                                <select id="selectnumber" class="form-control" name="title">
+                                <option></option>
+                                @foreach($tabulka_akt_nazov as $nazov)
+                                <option value="{{$nazov->title}}">{{$nazov->title}}</option>
+                                @endforeach
+            					
+        						</select>
                             
                             </div>
                         </div>
@@ -780,7 +825,13 @@
 
                             <div class="col-md-6">
                                 
-                                <input type="text" class="form-control" name="country">
+                                <select id="selectnumber" class="form-control" name="country">
+                                <option></option>
+                                @foreach($tabulka_akt_krajina as $krajina)
+                                <option value="{{$krajina->country}}">{{$krajina->country}}</option>
+                                @endforeach
+            					
+        						</select>
                             
                             </div>
                         </div>
@@ -790,7 +841,13 @@
 
                             <div class="col-md-6">
                                 
-                                <input type="text" class="form-control" name="type">
+                                <select id="selectnumber" class="form-control" name="type">
+                                <option></option>
+                                @foreach($tabulka_akt_typ as $typ)
+                                <option value="{{$typ->type}}">{{$typ->type}}</option>
+                                @endforeach
+            					
+        						</select>
                             
                             </div>
                         </div>
@@ -800,7 +857,13 @@
 
                             <div class="col-md-6">
                                 
-                                <input type="text" class="form-control" name="category">
+                                <select id="selectnumber" class="form-control" name="category">
+                                <option></option>
+                                @foreach($tabulka_akt_kategoria as $kategoria)
+                                <option value="{{$kategoria->category}}">{{$kategoria->category}}</option>
+                                @endforeach
+            					
+        						</select>
                             
                             </div>
                         </div>    
@@ -922,12 +985,19 @@
                         </div>
                        
 
+                      
                        <div class="form-group">
                             <label for="email" class="col-md-4 control-label">Titul:</label>
 
                             <div class="col-md-6">
                                 
-                                <input type="text" class="form-control" name="title">
+                                <select id="selectnumber" class="form-control" name="title">
+                                <option></option>
+                                @foreach($tabulka_proj_nazov as $nazov)
+                                <option value="{{$nazov->title}}">{{$nazov->title}}</option>
+                                @endforeach
+            					
+        						</select>
                             
                             </div>
                         </div>
@@ -937,7 +1007,13 @@
 
                             <div class="col-md-6">
                                 
-                                <input type="text" class="form-control" name="year_from">
+                                <select id="selectnumber" class="form-control" name="year_from">
+                                <option></option>
+                                @foreach($tabulka_proj_z_roku as $z_roku)
+                                <option value="{{$z_roku->year_from}}">{{$z_roku->year_from}}</option>
+                                @endforeach
+            					
+        						</select>
                             
                             </div>
                         </div>
@@ -947,7 +1023,13 @@
 
                             <div class="col-md-6">
                                 
-                                <input type="text" class="form-control" name="year_end">
+                                <select id="selectnumber" class="form-control" name="year_end">
+                                <option></option>
+                                @foreach($tabulka_proj_do_roku as $do_roku)
+                                <option value="{{$do_roku->year_end}}">{{$do_roku->year_end}}</option>
+                                @endforeach
+            					
+        						</select>
                             
                             </div>
                         </div>
@@ -957,11 +1039,17 @@
 
                             <div class="col-md-6">
                                 
-                                <input type="text" class="form-control" name="reg_number">
+                                <select id="selectnumber" class="form-control" name="reg_number">
+                                <option></option>
+                                @foreach($tabulka_proj_reg_cislo as $reg_cislo)
+                                <option value="{{$reg_cislo->reg_number}}">{{$reg_cislo->reg_number}}</option>
+                                @endforeach
+            					
+        						</select>
                             
                             </div>
                         </div>
-
+                        
                         <div class="form-group">
                              
                                 

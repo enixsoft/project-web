@@ -22,22 +22,32 @@ use Illuminate\Support\Facades\Textarea;
 
 Route::get('/', function() {
   
-      return view('welcome');
-});
+     // Tabulka zamestnanci
+  $tabulka_zam_fakulta = DB::table('zamestnanci')->DISTINCT()->select('faculty')->get();
+  $tabulka_zam_popis = DB::table('zamestnanci')->DISTINCT()->select('description')->get();
+  $tabulka_zam_katedra = DB::table('zamestnanci')->DISTINCT()->select('department')->get();
+  
+  // Tabulka publications
+  $tabulka_publ_typ = DB::table('publications')->DISTINCT()->select('type')->get();
+  $tabulka_publ_vydavatel = DB::table('publications')->DISTINCT()->select('publisher')->get();
+  $tabulka_publ_kod = DB::table('publications')->DISTINCT()->select('code')->get();
+  // Tabulka activities
+  $tabulka_akt_nazov = DB::table('activities')->DISTINCT()->select('title')->get();
+  $tabulka_akt_typ = DB::table('activities')->DISTINCT()->select('type')->get();
+  $tabulka_akt_kategoria = DB::table('activities')->DISTINCT()->select('category')->get();
+  $tabulka_akt_krajina = DB::table('activities')->DISTINCT()->select('country')->get();
+  $tabulka_akt_datum = DB::table('activities')->DISTINCT()->select('date')->get();
+  // Tabulka projects
+  $tabulka_proj_nazov = DB::table('projects')->DISTINCT()->select('title')->get();
+  $tabulka_proj_z_roku = DB::table('projects')->DISTINCT()->select('year_from')->get();
+  $tabulka_proj_do_roku = DB::table('projects')->DISTINCT()->select('year_end')->get();
+  $tabulka_proj_reg_cislo = DB::table('projects')->DISTINCT()->select('reg_number')->get();
+ 
+  return view('welcome', compact('tabulka_zam_fakulta', 'tabulka_zam_popis', 'tabulka_zam_katedra', 'tabulka_publ_typ', 'tabulka_publ_vydavatel', 'tabulka_publ_kod', 'tabulka_akt_nazov', 'tabulka_akt_typ', 'tabulka_akt_kategoria', 'tabulka_akt_krajina', 'tabulka_akt_datum', 'tabulka_proj_nazov', 'tabulka_proj_z_roku', 'tabulka_proj_do_roku', 'tabulka_proj_reg_cislo'));
+})->name('/');
 
 
-Route::get('welcome', function() {
-    return view('welcome');
-});
 
-Route::get('/test', function() {
-    
-     
-
-     //$t= '*' . str_replace(' ', '*', $term) . '*';
-    
-    return view('test', ['user' => $t]);
-});
 
 
 
@@ -89,8 +99,9 @@ Route::get('/activities', 'ActivityController@getview')->name('activities');
 
 Route::get('/settings', 'UserController@getview')->name('settings');
 
-Route::post('/settings/UserController@uploadProfilePicture', 'UserController@uploadProfilePicture')->name('uploadProfilePicture');
+Route::post('/settings/uploadProfilePicture', 'UserController@uploadProfilePicture')->name('uploadProfilePicture');
 
+Route::post('/settings/changePassword', 'UserController@changePassword')->name('changePassword');
 
 
 
@@ -127,7 +138,9 @@ Route::post('/users/deleteUser', 'UserController@deleteUser')->name('deleteUser'
 
 Route::post('/users/updateUser', 'UserController@update_record')->name('updateUser');
 
+Route::get('new_user', 'UserController@create_new_user')->name('new_user');
 
+Route::post('addUser', 'UserController@addUser')->name('addUser');
 
 
 
@@ -145,4 +158,5 @@ Route::get('stastistics-fsvz', 'ChartController@get_stastistics_faculty_of_socia
 
 
 Route::post('check_myinput', 'ChartController@check_input');
+
 

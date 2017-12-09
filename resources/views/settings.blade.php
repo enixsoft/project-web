@@ -108,7 +108,7 @@ $(document).ready(function(){
 
                 
                 	
-                	<form method="POST" enctype="multipart/form-data" action="{{action('UserController@uploadProfilePicture')}}"> 
+                	<form method="POST" enctype="multipart/form-data" action="{{route('uploadProfilePicture')}}"> 
                 	
   						
                 	<input readonly class="form-control" name="id" value="{{ Auth::user()->id }}" style="display: none;">
@@ -128,7 +128,7 @@ $(document).ready(function(){
 				
 		
     				  <button type="submit" class="btn btn-primary" >
-                                 <span class="glyphicon glyphicon-checkmark" aria-hidden="true"></span> Odoslať 
+                                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Odoslať 
                       </button>
 
                        <input type="text" id="upload-file-info" readonly class="form-control"  style="width: 175px;" >
@@ -149,7 +149,24 @@ $(document).ready(function(){
 
             <tr>
                 <th><h4>Zmena hesla</h4></th>
-                <td></td>
+                <td>
+  					 
+  					<form method="POST" enctype="multipart/form-data" action="{{route('changePassword')}}"> 
+  					<input type="hidden" name="_token" value="{{ csrf_token() }}">
+  					<input readonly class="form-control" name="id" value="{{ Auth::user()->id }}" style="display: none;">
+  					
+  					<label for="password">Zadajte nové heslo:</label>                           
+                    <input id="password" type="password" class="form-control" name="password" required style="width: 175px;">		  
+
+	
+					<br>
+		
+    				  <button type="submit" class="btn btn-primary" style="width: 175px;">
+                                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Odoslať 
+                      </button>
+                      
+                       </form>
+                   </td>
             </tr>
  
 
