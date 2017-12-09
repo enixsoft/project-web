@@ -915,7 +915,7 @@
                   <div class="container">
 						
 						
-					 <form class="form-horizontal" method="POST" action="{{route('searchActivity')}}">
+					 <form class="form-horizontal" method="POST" action="{{action('ActivityController@search_activity')}}">
                        
 
                         <div class="form-group">
@@ -961,7 +961,7 @@
 
 						<div class="container">
 
-						<form class="form-horizontal" method="POST" action="{{route('searchActivity')}}"> 
+						<form class="form-horizontal" method="POST" action="{{action('ActivityController@search_activity')}}"> 
 
 						 <div class="form-group">
                             <label for="email" class="col-md-4 control-label">Zamestnanec (ID):</label>
@@ -979,7 +979,13 @@
 
                             <div class="col-md-6">
                                 
-                                <input type="text" class="form-control" name="date">
+                                <select id="selectnumber" class="form-control" name="date">
+                                <option></option>
+                                @foreach($tabulka_akt_datum as $datum)
+                                <option value="{{$datum->date}}">{{$datum->date}}</option>
+                                @endforeach
+            					
+        						</select>
                             
                             </div>
                         </div>
@@ -989,7 +995,13 @@
 
                             <div class="col-md-6">
                                 
-                                <input type="text" class="form-control" name="title">
+                                <select id="selectnumber" class="form-control" name="title">
+                                <option></option>
+                                @foreach($tabulka_akt_nazov as $nazov)
+                                <option value="{{$nazov->title}}">{{$nazov->title}}</option>
+                                @endforeach
+            					
+        						</select>
                             
                             </div>
                         </div>
@@ -999,7 +1011,13 @@
 
                             <div class="col-md-6">
                                 
-                                <input type="text" class="form-control" name="country">
+                                <select id="selectnumber" class="form-control" name="country">
+                                <option></option>
+                                @foreach($tabulka_akt_krajina as $krajina)
+                                <option value="{{$krajina->country}}">{{$krajina->country}}</option>
+                                @endforeach
+            					
+        						</select>
                             
                             </div>
                         </div>
@@ -1009,7 +1027,13 @@
 
                             <div class="col-md-6">
                                 
-                                <input type="text" class="form-control" name="type">
+                                <select id="selectnumber" class="form-control" name="type">
+                                <option></option>
+                                @foreach($tabulka_akt_typ as $typ)
+                                <option value="{{$typ->type}}">{{$typ->type}}</option>
+                                @endforeach
+            					
+        						</select>
                             
                             </div>
                         </div>
@@ -1019,7 +1043,13 @@
 
                             <div class="col-md-6">
                                 
-                                <input type="text" class="form-control" name="category">
+                                <select id="selectnumber" class="form-control" name="category">
+                                <option></option>
+                                @foreach($tabulka_akt_kategoria as $kategoria)
+                                <option value="{{$kategoria->category}}">{{$kategoria->category}}</option>
+                                @endforeach
+            					
+        						</select>
                             
                             </div>
                         </div>    
@@ -1084,7 +1114,7 @@
                   <div class="container">
 						
 						
-					 <form class="form-horizontal" method="POST" action="{{route('searchProject')}}">
+					 <form class="form-horizontal" method="POST" action="{{action('ProjectController@search_project')}}">
                        
 
                         <div class="form-group">
@@ -1128,7 +1158,7 @@
 						
 					<div class="container">
 
-					<form class="form-horizontal" method="POST" action="{{route('searchProject')}}">     			
+					<form class="form-horizontal" method="POST" action="{{action('ProjectController@search_project')}}">     			
 
 						<div class="form-group">
                             <label for="email" class="col-md-4 control-label">Zamestnanec (ID):</label>
@@ -1146,7 +1176,13 @@
 
                             <div class="col-md-6">
                                 
-                                <input type="text" class="form-control" name="title">
+                                <select id="selectnumber" class="form-control" name="title">
+                                <option></option>
+                                @foreach($tabulka_proj_nazov as $nazov)
+                                <option value="{{$nazov->title}}">{{$nazov->title}}</option>
+                                @endforeach
+            					
+        						</select>
                             
                             </div>
                         </div>
@@ -1156,7 +1192,13 @@
 
                             <div class="col-md-6">
                                 
-                                <input type="text" class="form-control" name="year_from">
+                                <select id="selectnumber" class="form-control" name="year_from">
+                                <option></option>
+                                @foreach($tabulka_proj_z_roku as $z_roku)
+                                <option value="{{$z_roku->year_from}}">{{$z_roku->year_from}}</option>
+                                @endforeach
+            					
+        						</select>
                             
                             </div>
                         </div>
@@ -1166,7 +1208,13 @@
 
                             <div class="col-md-6">
                                 
-                                <input type="text" class="form-control" name="year_end">
+                                <select id="selectnumber" class="form-control" name="year_end">
+                                <option></option>
+                                @foreach($tabulka_proj_do_roku as $do_roku)
+                                <option value="{{$do_roku->year_end}}">{{$do_roku->year_end}}</option>
+                                @endforeach
+            					
+        						</select>
                             
                             </div>
                         </div>
@@ -1176,7 +1224,13 @@
 
                             <div class="col-md-6">
                                 
-                                <input type="text" class="form-control" name="reg_number">
+                                <select id="selectnumber" class="form-control" name="reg_number">
+                                <option></option>
+                                @foreach($tabulka_proj_reg_cislo as $reg_cislo)
+                                <option value="{{$reg_cislo->reg_number}}">{{$reg_cislo->reg_number}}</option>
+                                @endforeach
+            					
+        						</select>
                             
                             </div>
                         </div>

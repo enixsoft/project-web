@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Redirect;
 use Auth;
 use DB;             // added due to using in function
 
+use Illuminate\Support\Facades\Input;
+
 class ActivityController extends Controller
 {
 
@@ -158,7 +160,56 @@ class ActivityController extends Controller
 
 
        return Redirect::back();
-}
+    }
+
+    
+    public function search_activity(Request $request)
+    {
+
+      $resultCategory="activities";
+
+      
+      $stlpec1 = "ID";
+      $stlpec2 = "Dátum";
+      $stlpec3 = "Typ";
+      $stlpec4 = "Autori";
+
+      $variable0 = "id_aktivita";
+      $variable1 = "ID";
+      $variable2 = "date";
+      $variable3 = "type";
+      $variable4 = "all_authors";
+
+
+       $Zamestnanec_id = Input::get('zamestnanec_id');
+       $Date = $request->date; 
+       $Title = $request->title;
+       $Country = $request->country;
+       $Type = $request->type;
+       $Category = $request->category;
+       $All_authors = Input::get('all_authors');
+       
+
+
+
+        $user = DB::table('activities') ->select('id_aktivita', 'ID', 'date','type', 'all_authors')       // SQL query
+            ->where('zamestnanec_id', 'like','%'.$Zamestnanec_id.'%')
+            ->where('date', 'like', '%'.$Date.'%')
+            ->where('title', 'like', '%'.$Title.'%')
+            ->where('country', 'like', '%'.$Country.'%')
+            ->where('type', 'like', '%'.$Type.'%')
+            ->where('category', 'like', '%'.$Category.'%')
+            ->where('all_authors', 'like', '%'.$All_authors.'%')
+            ->get();
+           
+
+             
+
+         return view("searchresults2", compact('user', 'stlpec1', 'stlpec2', 'stlpec3', 'stlpec4', 'variable0', 'variable1', 
+              'variable2', 'variable3', 'variable4', 'resultCategory'));
+
+
+    }
 
 
 }

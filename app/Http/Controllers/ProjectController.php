@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Auth;
 use DB;             // added due to using in function
 
+use Illuminate\Support\Facades\Input;
+
 class ProjectController extends Controller
 {
 
@@ -145,7 +147,45 @@ class ProjectController extends Controller
 
 
        return Redirect::back();
-}
+      }
+
+      public function search_project(Request $request)
+      {
+          $resultCategory="projects";
+
+          $stlpec1 = "Názov";
+          $stlpec2 = "ID Zamestnanca";
+          $stlpec3 = "Od roku";
+          $stlpec4 = "Do roku";
+
+          $variable0 = "id";
+          $variable1 = "title";
+          $variable2 = "zamestnanec_id";
+          $variable3 = "year_from";
+          $variable4 = "year_end";
+
+
+          $Zamestnanec = Input::get('zamestnanec');
+          $Title = $request->title;
+          $Year_from = $request->year_from;
+          $Year_end = $request->year_end;
+          $Reg_number = $request->reg_number;
+
+
+
+           $user = DB::table('projects') ->select('zamestnanec_id', 'id', 'title','year_from', 'year_end')       // SQL query
+            ->where('zamestnanec_id', 'like','%'.$Zamestnanec.'%')
+            ->where('title', 'like', '%'.$Title.'%')
+            ->where('year_from', 'like', '%'.$Year_from.'%')
+            ->where('year_end', 'like', '%'.$Year_end.'%')
+            ->get();
+           
+
+             
+
+            return view("searchresults2", compact('user', 'stlpec1', 'stlpec2', 'stlpec3', 'stlpec4', 'variable0', 'variable1', 
+              'variable2', 'variable3', 'variable4', 'resultCategory'));
+      }
 
 
 }
