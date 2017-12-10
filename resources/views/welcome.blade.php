@@ -634,13 +634,7 @@
 
                             <div class="col-md-6">
                                 
-                                <select id="selectnumber" class="form-control" name="publisher">
-                                <option></option>
-                                @foreach($tabulka_publ_vydavatel as $vydavatel)
-                                <option value="{{$vydavatel->publisher}}">{{$vydavatel->publisher}}</option>
-                                @endforeach
-            					
-        						</select>
+                                 <input type="text" class="form-control" name="publisher">
                             
                             </div>
                         </div>    
@@ -793,13 +787,7 @@
 
                             <div class="col-md-6">
                                 
-                                <select id="selectnumber" class="form-control" name="date">
-                                <option></option>
-                                @foreach($tabulka_akt_datum as $datum)
-                                <option value="{{$datum->date}}">{{$datum->date}}</option>
-                                @endforeach
-            					
-        						</select>
+                                 <input type="text" class="form-control" name="date">
                             
                             </div>
                         </div>
@@ -809,13 +797,7 @@
 
                             <div class="col-md-6">
                                 
-                                <select id="selectnumber" class="form-control" name="title">
-                                <option></option>
-                                @foreach($tabulka_akt_nazov as $nazov)
-                                <option value="{{$nazov->title}}">{{$nazov->title}}</option>
-                                @endforeach
-            					
-        						</select>
+                                 <input type="text" class="form-control" name="title">
                             
                             </div>
                         </div>
@@ -991,13 +973,7 @@
 
                             <div class="col-md-6">
                                 
-                                <select id="selectnumber" class="form-control" name="title">
-                                <option></option>
-                                @foreach($tabulka_proj_nazov as $nazov)
-                                <option value="{{$nazov->title}}">{{$nazov->title}}</option>
-                                @endforeach
-            					
-        						</select>
+                                <input type="text" class="form-control" name="title">
                             
                             </div>
                         </div>
@@ -1039,13 +1015,7 @@
 
                             <div class="col-md-6">
                                 
-                                <select id="selectnumber" class="form-control" name="reg_number">
-                                <option></option>
-                                @foreach($tabulka_proj_reg_cislo as $reg_cislo)
-                                <option value="{{$reg_cislo->reg_number}}">{{$reg_cislo->reg_number}}</option>
-                                @endforeach
-            					
-        						</select>
+                                <input type="text" class="form-control" name="reg_number">
                             
                             </div>
                         </div>
